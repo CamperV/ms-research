@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-I/usr/include/opencv -I/usr/include/opencv2 -std=c++0x
+CFLAGS=-I/usr/include/opencv -I/usr/include/opencv2
 LIBS=`pkg-config --libs opencv`
 LIBDIR=-L/usr/local/include
 UTILDIR=utils

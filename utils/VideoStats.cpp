@@ -3,7 +3,7 @@
  *
  */
 
-#include "VideoStats.hpp"
+#include "VideoStats.h"
 
 VideoStats::VideoStats() {
   counter = 0;
