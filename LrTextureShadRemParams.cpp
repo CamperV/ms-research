@@ -45,8 +45,8 @@ LrTextureShadRemParams::LrTextureShadRemParams() {
 	cleanShadows = true;
 	fillShadows = true;
 	minShadowPerim = 35;
-	cleanSrMask = true;
-	fillSrMask = true;
+	cleanSrMask = false;
+	fillSrMask = false;
 }
 
 LrTextureShadRemParams::~LrTextureShadRemParams() {

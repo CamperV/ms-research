@@ -75,7 +75,7 @@ void LrTextureShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask
 		postShadows.mask.copyTo(shadows);
 	}
 
-	srMask.setTo(0, shadows);
+	srMask.setTo(127, shadows);
 	if (params.cleanSrMask || params.fillSrMask) {
 		postSrMask.update(srMask, params.cleanSrMask, params.fillSrMask);
 		postSrMask.mask.copyTo(srMask);

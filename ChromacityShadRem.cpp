@@ -32,7 +32,7 @@ void ChromacityShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMas
 	extractDarkPixels(hsvFrame, fg, hsvBg, darkPixels);
 	extractShadows(hsvFrame, darkPixels, hsvBg, shadows);
 
-	srMask.setTo(0, shadows.mask);
+	srMask.setTo(127, shadows.mask);
 
 	if (params.cleanSrMask) {
 		ConnCompGroup ccg;

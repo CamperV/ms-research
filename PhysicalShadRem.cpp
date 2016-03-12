@@ -40,7 +40,7 @@ void PhysicalShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask,
 		cv::dilate(shadows, shadows, cv::Mat());
 	}
 
-	srMask.setTo(0, shadows);
+	srMask.setTo(127, shadows);
 
 	if (params.cleanSrMask) {
 		ConnCompGroup ccg;

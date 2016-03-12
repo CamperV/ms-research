@@ -48,7 +48,7 @@ void GeometryShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask,
 
 			cv::Rect segmentBox(segmentMaskPositions[i], segmentMasks[i].size());
 			cv::Mat srMaskRoi(srMask, segmentBox);
-			srMaskRoi.setTo(0, segmentShadowMask);
+			srMaskRoi.setTo(127, segmentShadowMask);
 		}
 	}
 

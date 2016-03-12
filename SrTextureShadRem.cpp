@@ -33,7 +33,7 @@ void SrTextureShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask
 	extractCandidateShadowPixels(grayFrame, fg, grayBg, candidateShadows);
 	getShadows(grayFrame, candidateShadows, grayBg, shadows);
 
-	srMask.setTo(0, shadows);
+	srMask.setTo(127, shadows);
 
 	if (params.cleanSrMask) {
 		ConnCompGroup ccg;
