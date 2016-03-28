@@ -42,6 +42,27 @@ void SrTextureShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask
 	}
 }
 
+void SrTextureShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask, 
+                                     const cv::Mat& bg, cv::Mat& srMask, cv::Mat& candidateShadows) {
+	ConnCompGroup fg(fgMask);
+	fg.mask.copyTo(srMask);
+
+	cv::Mat grayFrame, grayBg;
+	cv::cvtColor(frame, grayFrame, CV_BGR2GRAY);
+	cv::cvtColor(bg, grayBg, CV_BGR2GRAY);
+
+	//extractCandidateShadowPixels(grayFrame, fg, grayBg, candidateShadows);
+	getShadows(grayFrame, candidateShadows, grayBg, shadows);
+
+	srMask.setTo(75, shadows);
+
+	if (params.cleanSrMask) {
+		ConnCompGroup ccg;
+		ccg.update(srMask, true, true);
+		ccg.mask.copyTo(srMask);
+	}
+}
+
 void SrTextureShadRem::extractCandidateShadowPixels(const cv::Mat& grayFrame, const ConnCompGroup& fg,
 		const cv::Mat& grayBg, cv::Mat& candidateShadows) {
 	candidateShadows.create(grayFrame.size(), CV_8U);

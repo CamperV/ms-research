@@ -19,6 +19,32 @@ ChromacityShadRem::ChromacityShadRem(const ChromacityShadRemParams& params) {
 ChromacityShadRem::~ChromacityShadRem() {
 }
 
+// overloaded function to extract shadow mask as output
+void ChromacityShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask, 
+                                      const cv::Mat& bg, cv::Mat& srMask, cv::Mat& shadowMask) {
+	ConnCompGroup fg(fgMask);
+	fgMask.copyTo(srMask);
+
+
+	ConnCompGroup darkPixels;
+	ConnCompGroup shadows;
+	cv::Mat hsvFrame, hsvBg;
+	cv::cvtColor(frame, hsvFrame, CV_BGR2HSV);
+	cv::cvtColor(bg, hsvBg, CV_BGR2HSV);
+
+	extractDarkPixels(hsvFrame, fg, hsvBg, darkPixels);
+	extractShadows(hsvFrame, darkPixels, hsvBg, shadows);
+
+	srMask.setTo(127, shadows.mask);
+	shadowMask.setTo(255, shadows.mask);
+
+	if (params.cleanSrMask) {
+		ConnCompGroup ccg;
+		ccg.update(srMask, true, true);
+		ccg.mask.copyTo(srMask);
+	}
+}
+
 void ChromacityShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask, const cv::Mat& bg, cv::Mat& srMask) {
 	ConnCompGroup fg(fgMask);
 	fgMask.copyTo(srMask);

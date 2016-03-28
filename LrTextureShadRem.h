@@ -43,12 +43,15 @@ class LrTextureShadRem {
 		virtual ~LrTextureShadRem();
 
 		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
+		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask, cv::Mat& candidateShadows);
 
+    // moved to public for trackbars
+		LrTextureShadRemParams params;
 
 	private:
 		static const std::vector<cv::Mat> skeletonKernels;
 
-		LrTextureShadRemParams params;
+		//LrTextureShadRemParams params;
 
 		int frameCount;
 		float avgAtten;

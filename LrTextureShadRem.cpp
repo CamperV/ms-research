@@ -82,6 +82,66 @@ void LrTextureShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask
 	}
 }
 
+// overloaded function for candidateShadows
+// feed Chromacity Output into this algorithm
+void LrTextureShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMask, 
+                                     const cv::Mat& bg, cv::Mat& srMask, cv::Mat& candidateShadows) {
+	ConnCompGroup fg(fgMask);
+	fg.mask.copyTo(srMask);
+
+	cv::Mat grayFrame, grayBg, hsvFrame, hsvBg;
+	cv::cvtColor(frame, grayFrame, CV_BGR2GRAY);
+	cv::cvtColor(bg, grayBg, CV_BGR2GRAY);
+	cv::cvtColor(frame, hsvFrame, CV_BGR2HSV);
+	cv::cvtColor(bg, hsvBg, CV_BGR2HSV);
+
+	// calculate global frame properties
+	avgAtten = ((avgAtten * frameCount) + frameAvgAttenuation(hsvFrame, hsvBg, fg.mask)) / (frameCount + 1);
+	avgSat = ((avgSat * frameCount) + frameAvgSaturation(hsvFrame, fg.mask)) / (frameCount + 1);
+	avgPerim = ((avgPerim * frameCount) + fgAvgPerim(fg)) / (frameCount + 1);
+	++frameCount;
+
+	// find candidate shadow pixels
+	//getCandidateShadows(hsvFrame, hsvBg, fg.mask, candidateShadows);
+
+	// split using foreground edges
+	getEdgeDiff(grayFrame, grayBg, fg, candidateShadows, cannyFrame, cannyBg, cannyDiffWithBorders, borders, cannyDiff);
+	cv::Mat splitCandidateShadowsMask;
+	maskDiff(candidateShadows, cannyDiff, splitCandidateShadowsMask, params.splitRadius);
+
+	// connected components are candidate shadow regions
+	splitCandidateShadows.update(splitCandidateShadowsMask, false, true);
+
+	shadows.create(grayFrame.size(), CV_8U);
+	shadows.setTo(cv::Scalar(0));
+
+	// classify regions with high correlation as shadows
+	for (int sr = 0; sr < (int) splitCandidateShadows.comps.size(); ++sr) {
+		ConnComp& cc = splitCandidateShadows.comps[sr];
+
+		float regionCorr = getGradDirCorr(grayFrame, cc, grayBg);
+		if (regionCorr > gradCorrThresh) {
+			cc.draw(shadows, 255);
+		}
+	}
+
+	bool cleanShadows = (avgAtten < params.avgAttenThresh ? params.cleanShadows : false);
+	if (cleanShadows || params.fillShadows || params.minShadowPerim > 0) {
+		if (cleanShadows) {
+			cv::morphologyEx(shadows, shadows, cv::MORPH_CLOSE, cv::Mat(), cv::Point(-1, -1), 2);
+		}
+
+		postShadows.update(shadows, false, params.fillShadows, params.minShadowPerim);
+		postShadows.mask.copyTo(shadows);
+	}
+
+	srMask.setTo(75, shadows);
+	if (params.cleanSrMask || params.fillSrMask) {
+		postSrMask.update(srMask, params.cleanSrMask, params.fillSrMask);
+		postSrMask.mask.copyTo(srMask);
+	}
+}
+
 float LrTextureShadRem::frameAvgAttenuation(const cv::Mat& hsvFrame, const cv::Mat& hsvBg, const cv::Mat& fg) {
 	float avgAtten = 0;
 	int count = 0;

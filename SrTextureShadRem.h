@@ -31,6 +31,7 @@ class SrTextureShadRem {
 		virtual ~SrTextureShadRem();
 
 		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
+		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask, cv::Mat& candidateShadows);
 
 	private:
 		SrTextureShadRemParams params;

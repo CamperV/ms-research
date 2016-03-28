@@ -32,9 +32,13 @@ class ChromacityShadRem {
 		virtual ~ChromacityShadRem();
 
 		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
+		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask, cv::Mat& shadowsMask);
+
+    // made public for trackbars
+		ChromacityShadRemParams params;
 
 	private:
-		ChromacityShadRemParams params;
+		//ChromacityShadRemParams params;
 
 		void extractDarkPixels(const cv::Mat& hsvFrame, const ConnCompGroup& fg, const cv::Mat& hsvBg,
 				ConnCompGroup& darkPixels);
