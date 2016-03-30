@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-I/usr/include/opencv -I/usr/include/opencv2
+CFLAGS=-I/usr/include/opencv -I/usr/include/opencv2 -I. -I./include
 LIBS=`pkg-config --libs opencv`
 LIBDIR=-L/usr/local/include
 UTILDIR=utils
@@ -17,8 +17,8 @@ utils/%.o: utils/%.cpp
 .PHONY: all
 all: $(TARGETS)
 
-shadowdetect: main.o $(OBJS) $(UTILS)
-	$(CC) $(CFLAGS) -o shadowdetect main.o $(OBJS) $(UTILS) $(LIBS) $(LIBDIR)
+shadowdetect: shadowdetect.o $(OBJS) $(UTILS)
+	$(CC) $(CFLAGS) -o shadowdetect shadowdetect.o $(OBJS) $(UTILS) $(LIBS) $(LIBDIR)
 
 .PHONY: clean
 clean: ; rm -rf *.o $(UTILDIR)/*.o $(TARGETS)
