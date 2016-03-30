@@ -13,7 +13,7 @@
 
 #include <cxcore.h>
 #include "SrTextureShadRemParams.h"
-#include "utils/GaborFilter.h"
+#include "GaborFilter.h"
 
 class ConnCompGroup;
 

@@ -15,28 +15,30 @@
 #include <iostream>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/video/video.hpp"
-#include <opencv2/video/background_segm.hpp>
+#include "opencv2/video/background_segm.hpp"
 
 #include "ChromacityShadRem.h"
 #include "GeometryShadRem.h"
 #include "LrTextureShadRem.h"
 #include "PhysicalShadRem.h"
 #include "SrTextureShadRem.h"
-#include "utils/VideoStats.h"
+#include "VideoStats.h"
 
 using namespace std;
 using namespace cv;
 
 int main(int argc, char** argv) {
   
+  string infile = "";
   if(argc > 1) {
     cout << "Opening video capture " << argv[1] << "..." << endl;
+    infile = argv[1];
   } else {
-    cout << "Enter video filename." << endl;
-    exit(0);
+    cout << "No input file specified: using DEFAULT." << endl;
+    infile = "samples/highway1_raw.mp4";
   }
 
-  VideoCapture capture(argv[1]);
+  VideoCapture capture(infile);
   VideoStats vstats;
 
   vstats.setWidth(capture.get(CV_CAP_PROP_FRAME_WIDTH));
@@ -52,15 +54,13 @@ int main(int argc, char** argv) {
 
 	// create shadow removers
 	ChromacityShadRem chr;
-	SrTextureShadRem srTex;
 	LrTextureShadRem lrTex;
 
 	// matrices to store the masks after shadow removal
-	Mat chrMask, srTexMask, lrTexMask;
+	Mat chrMask, lrTexMask;
 
   // init windows
   namedWindow("Chromacity", 1);
-  //namedWindow("Small Region Texture", 1);
   namedWindow("Large Region Texture", 1);
 
   /* TRACKBARS & PARAMS */
@@ -134,6 +134,20 @@ int main(int argc, char** argv) {
   // processing loop
   for(;;) {
 
+    if(!step) {
+      capture >> frame;
+      MOG(frame, fg);
+      MOG.getBackgroundImage(bg);
+    }
+
+    // Looks like we've hit the end of our feed! Restart
+    if(frame.empty()) {
+        cout << "Frame is empty, restarting..." << endl;
+        capture.set(CV_CAP_PROP_POS_AVI_RATIO, 0.0);
+        cout << "Done!" << endl;
+        continue;
+    }
+
     /* PRE-PROCESSING */
 
     // UPDATE FLOAT PARAMS
@@ -155,33 +169,16 @@ int main(int argc, char** argv) {
     lrTex.params.gradCorrThreshLowAtten = (float)gradCorrThreshLowAttenInt / 100.0;
     lrTex.params.gradCorrThreshHighAtten = (float)gradCorrThreshHighAttenInt / 100.0;
 
-    capture >> frame;
-
-    // Looks like we've hit the end of our feed! Restart
-    if(frame.empty()) {
-        cout << "Frame is empty, restarting..." << endl;
-        capture.set(CV_CAP_PROP_POS_AVI_RATIO, 0.0);
-        cout << "Done!" << endl;
-        continue;
-    }
-
-    MOG(frame, fg);
-    MOG.getBackgroundImage(bg);
-
     /* PROCESSING */
 
 #ifdef PRECALC
     Mat shadowMask = Mat::zeros(frame.rows, frame.cols, CV_8U);
 
 	  chr.removeShadows(frame, fg, bg, chrMask, shadowMask);
-	  srTex.removeShadows(frame, fg, bg, srTexMask, shadowMask);
 	  lrTex.removeShadows(frame, fg, bg, lrTexMask, shadowMask);
-
 #else
 	  chr.removeShadows(frame, fg, bg, chrMask);
-	  //srTex.removeShadows(frame, fg, bg, srTexMask);
 	  lrTex.removeShadows(frame, fg, bg, lrTexMask);
-
 #endif
 
     /* POST-PROCESSING */
@@ -190,18 +187,25 @@ int main(int argc, char** argv) {
     vstats.displayStats();
 
 	  // show results
-	  imshow("Frame", frame);                       // og frame
-	  //imshow("Foreground", fg);                   // foreground
-	  imshow("Chromacity", chrMask);              // chromacity-detected shadows
-	  //imshow("Small Region Texture", srTexMask);  // small-region shadows
-	  imshow("Large Region Texture", lrTexMask);    // large-region shadows
+	  imshow("Frame", frame);
+	  imshow("Chromacity", chrMask);
+	  imshow("Large Region Texture", lrTexMask);
 
     /* STEP-THROUGH */
 
+    int k;
     if(step) {
-      if(waitKey(0) == 115) step = !step;
+      k = waitKey(30);
+      if(k) {
+        if(k == 27) break;
+        else if(k == 115) step = !step;
+      } 
     } else {
-      if(waitKey(30) == 115) step = !step;
+      k = waitKey(30);
+      if(k) {
+        if(k == 27) break;
+        else if(k == 115) step = !step;
+      } 
     }
   }
 	return 0;

@@ -10,7 +10,7 @@
 
 #include <cv.h>
 #include "SrTextureShadRem.h"
-#include "utils/ConnCompGroup.h"
+#include "ConnCompGroup.h"
 
 SrTextureShadRem::SrTextureShadRem(const SrTextureShadRemParams& params) {
 	this->params = params;

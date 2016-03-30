@@ -11,7 +11,7 @@
 #include <limits>
 #include <cv.h>
 #include "GeometryShadRem.h"
-#include "utils/ConnCompGroup.h"
+#include "ConnCompGroup.h"
 
 GeometryShadRem::GeometryShadRem(const GeometryShadRemParams& params) {
 	this->params = params;

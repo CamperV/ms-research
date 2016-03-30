@@ -13,7 +13,7 @@
 
 #include <cxcore.h>
 #include "PhysicalShadRemParams.h"
-#include "utils/ConnCompGroup.h"
+#include "ConnCompGroup.h"
 
 /**
  * Implemented from:

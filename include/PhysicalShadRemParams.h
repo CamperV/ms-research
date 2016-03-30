@@ -11,7 +11,7 @@
 #ifndef PHYSICALSHADREMPARAMS_H_
 #define PHYSICALSHADREMPARAMS_H_
 
-#include "utils/GaussianMixtureModel.h"
+#include "GaussianMixtureModel.h"
 
 class PhysicalShadRemParams {
 

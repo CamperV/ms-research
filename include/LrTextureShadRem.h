@@ -13,7 +13,7 @@
 
 #include <cxcore.h>
 #include "LrTextureShadRemParams.h"
-#include "utils/ConnCompGroup.h"
+#include "ConnCompGroup.h"
 
 /**
  * Implemented from:

@@ -10,7 +10,7 @@
 
 #include <cv.h>
 #include "PhysicalShadRem.h"
-#include "utils/ConnCompGroup.h"
+#include "ConnCompGroup.h"
 
 const float PhysicalShadRem::BGR2GRAY[] = { 0.114f, 0.299f, 0.587f };
 

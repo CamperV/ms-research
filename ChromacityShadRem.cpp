@@ -10,7 +10,7 @@
 
 #include <cv.h>
 #include "ChromacityShadRem.h"
-#include "utils/ConnCompGroup.h"
+#include "ConnCompGroup.h"
 
 ChromacityShadRem::ChromacityShadRem(const ChromacityShadRemParams& params) {
 	this->params = params;

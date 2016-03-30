@@ -1,14 +1,27 @@
 CC=g++
-CFLAGS=-I/usr/include/opencv -I/usr/include/opencv2 -I. -I./include
+CFLAGS=-I/usr/include/opencv -I/usr/include/opencv2 -I. -I include
 LIBS=`pkg-config --libs opencv`
 LIBDIR=-L/usr/local/include
-UTILDIR=utils
 
-OBJS=ChromacityShadRem.o ChromacityShadRemParams.o GeometryShadRem.o GeometryShadRemParams.o LrTextureShadRem.o LrTextureShadRemParams.o PhysicalShadRem.o PhysicalShadRemParams.o SrTextureShadRem.o SrTextureShadRemParams.o
-UTILS=$(UTILDIR)/GaborFilter.o $(UTILDIR)/ConnComp.o $(UTILDIR)/ConnCompGroup.o $(UTILDIR)/GaussianMixtureModel.o $(UTILDIR)/VideoStats.o
+SOURCES=		shadowdetect.cpp \
+						ChromacityShadRem.cpp ChromacityShadRemParams.cpp \
+						GeometryShadRem.cpp GeometryShadRemParams.cpp \
+						LrTextureShadRem.cpp LrTextureShadRemParams.cpp \
+						PhysicalShadRem.cpp PhysicalShadRemParams.cpp \
+						SrTextureShadRem.cpp SrTextureShadRemParams.cpp
+
+UTILDIR=utils
+UTILS=			$(UTILDIR)/GaborFilter.cpp \
+						$(UTILDIR)/ConnComp.cpp $(UTILDIR)/ConnCompGroup.cpp \
+						$(UTILDIR)/GaussianMixtureModel.cpp \
+						$(UTILDIR)/VideoStats.cpp
+
+OBJS=$(SOURCES:.cpp=.o)
+OBJS+=$(UTILS:.cpp=.o)
+
 TARGETS=shadowdetect
 
-utils/%.o: utils/%.cpp
+$(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
 
 %.o: %.cpp
@@ -17,8 +30,8 @@ utils/%.o: utils/%.cpp
 .PHONY: all
 all: $(TARGETS)
 
-shadowdetect: shadowdetect.o $(OBJS) $(UTILS)
-	$(CC) $(CFLAGS) -o shadowdetect shadowdetect.o $(OBJS) $(UTILS) $(LIBS) $(LIBDIR)
+$(TARGETS): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGETS) $(OBJS) $(LIBS) $(LIBDIR)
 
 .PHONY: clean
-clean: ; rm -rf *.o $(UTILDIR)/*.o $(TARGETS)
+clean: ; rm -rf $(OBJS) $(TARGETS)
