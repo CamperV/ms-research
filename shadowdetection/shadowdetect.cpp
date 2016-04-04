@@ -98,11 +98,11 @@ int main(int argc, char** argv) {
   createTrackbar("sThreshLowSat", "Large Region Texture", &lrTex.params.sThreshLowSat, 255);
   createTrackbar("sThreshHighSat", "Large Region Texture", &lrTex.params.sThreshHighSat, 255);
 
-  createTrackbar("avgAttenThresh", "Large Region Texture", &avgAttenThreshInt, 500);
   createTrackbar("vThreshUpperLowAtten", "Large Region Texture", &vThreshUpperLowAttenInt, 100);
   createTrackbar("vThreshUpperHighAtten", "Large Region Texture", &vThreshUpperHighAttenInt, 100);
   createTrackbar("vThreshLowerLowAtten", "Large Region Texture", &vThreshLowerLowAttenInt, 100);
   createTrackbar("vThreshLowerHighAtten", "Large Region Texture", &vThreshLowerHighAttenInt, 100);
+  createTrackbar("avgAttenThresh", "Large Region Texture", &avgAttenThreshInt, 500);
 
   //createTrackbar("avgPerimThresh", "Large Region Texture", &avgPerimThreshInt, 500);
   //createTrackbar("edgeDiffRadius", "Large Region Texture", &lrTex.params.edgeDiffRadius, 10);
@@ -112,7 +112,7 @@ int main(int argc, char** argv) {
 
   createTrackbar("cannyThresh1", "Large Region Texture", &cannyThresh1Int, 200);
   createTrackbar("cannyThresh2", "Large Region Texture", &cannyThresh2Int, 200);
-  createTrackbar("cannyApertureSize", "Large Region Texture", &lrTex.params.cannyApertureSize, 10);
+  //createTrackbar("cannyApertureSize", "Large Region Texture", &lrTex.params.cannyApertureSize, 10);
 
   //createTrackbar("minCorrPoints", "Large Region Texture", &lrTex.params.minCorrPoints, 10);
   //createTrackbar("maxCorrRounds", "Large Region Texture", &lrTex.params.maxCorrRounds, 10);
