@@ -3,8 +3,7 @@ CFLAGS=-I/usr/include/opencv -I/usr/include/opencv2 -I. -I include
 LIBS=`pkg-config --libs opencv`
 LIBDIR=-L/usr/local/include
 
-SOURCES=		shadowdetect.cpp \
-						ChromacityShadRem.cpp ChromacityShadRemParams.cpp \
+SOURCES=		ChromacityShadRem.cpp ChromacityShadRemParams.cpp \
 						GeometryShadRem.cpp GeometryShadRemParams.cpp \
 						LrTextureShadRem.cpp LrTextureShadRemParams.cpp \
 						PhysicalShadRem.cpp PhysicalShadRemParams.cpp \
@@ -19,7 +18,7 @@ UTILS=			$(UTILDIR)/GaborFilter.cpp \
 OBJS=$(SOURCES:.cpp=.o)
 OBJS+=$(UTILS:.cpp=.o)
 
-TARGETS=shadowdetect
+TARGETS=shadowdetect quantitative
 
 $(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
@@ -30,8 +29,11 @@ $(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 .PHONY: all
 all: $(TARGETS)
 
-$(TARGETS): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGETS) $(OBJS) $(LIBS) $(LIBDIR)
+shadowdetect: shadowdetect.o $(OBJS)
+	$(CC) $(CFLAGS) -o shadowdetect shadowdetect.o $(OBJS) $(LIBS) $(LIBDIR)
+
+quantitative: quantitative.o $(OBJS)
+	$(CC) $(CFLAGS) -o quantitative quantitative.o $(OBJS) $(LIBS) $(LIBDIR)
 
 .PHONY: clean
 clean: ; rm -rf $(OBJS) $(TARGETS)
