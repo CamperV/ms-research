@@ -1,0 +1,16 @@
+Executable 'quantitative' analyzes the Discrimination and Detection rates for differing environments and shadows.
+
+USAGE: ./quantitative [input directory]
+--> [input directory] format: ./samples/[input]/ ...
+
+Options:
+---
+samples
+-aton_highway3
+-aton_campus
+-aton_lab
+-aton_room
+-aton_hallway
+
+Detection rate - correctly label the most shadow pixels
+Discrimination rate - preserving foreground pixels

@@ -25,7 +25,6 @@ void ChromacityShadRem::removeShadows(const cv::Mat& frame, const cv::Mat& fgMas
 	ConnCompGroup fg(fgMask);
 	fgMask.copyTo(srMask);
 
-
 	ConnCompGroup darkPixels;
 	ConnCompGroup shadows;
 	cv::Mat hsvFrame, hsvBg;

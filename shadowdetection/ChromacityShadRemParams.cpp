@@ -8,15 +8,21 @@
 // or (at your option) any later version.
 // (see http://www.opensource.org/licenses for more info)
 
+#include <iostream>
 #include "ChromacityShadRemParams.h"
+#include "SimpleIni.h"
 
 ChromacityShadRemParams::ChromacityShadRemParams() {
-	winSize = 1;
-	cleanSrMask = false;
-	hThresh = 48;
-	sThresh = 40;
-	vThreshUpper = 1;
-	vThreshLower = 0.3;
+
+  CSimpleIniA ini(true, true, true);
+  if (ini.LoadFile("params.ini") < 0) throw "Load failed for file 1";
+
+	winSize = atoi(ini.GetValue("ChromacityShadRemParams", "winSize", NULL));
+	cleanSrMask = (bool)atoi(ini.GetValue("ChromacityShadRemParams", "cleanSrMask", NULL));
+	hThresh = atoi(ini.GetValue("ChromacityShadRemParams", "hThresh", NULL));
+	sThresh = atoi(ini.GetValue("ChromacityShadRemParams", "sThresh", NULL));
+	vThreshUpper = atof(ini.GetValue("ChromacityShadRemParams", "vThreshUpper", NULL));
+	vThreshLower = atof(ini.GetValue("ChromacityShadRemParams", "vThreshLower", NULL));
 }
 
 ChromacityShadRemParams::~ChromacityShadRemParams() {

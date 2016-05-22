@@ -10,43 +10,48 @@
 
 #include <cxcore.h>
 #include "LrTextureShadRemParams.h"
+#include "SimpleIni.h"
 
 LrTextureShadRemParams::LrTextureShadRemParams() {
-	avgSatThresh = 35;
-	hThreshLowSat = 76;
-	hThreshHighSat = 62;
-	sThreshLowSat = 36;
-	sThreshHighSat = 93;
-	avgAttenThresh = 1.58;
-	vThreshUpperLowAtten = 1;
-	vThreshUpperHighAtten = 0.99;
-	vThreshLowerLowAtten = 0.6;
-	vThreshLowerHighAtten = 0.21;
-	avgPerimThresh = 100;
-	edgeDiffRadius = 1;
-	borderDiffRadius = 0;
-	splitIncrement = 1;
-	splitRadius = 1;
-	cannyThresh1 = 72;
-	cannyThresh2 = 94;
-	cannyApertureSize = 3;
-	cannyL2Grad = true;
+  CSimpleIniA ini(true, true, true);
+  if (ini.LoadFile("params.ini") < 0) throw "Load failed for file 1";
 
-	minCorrPoints = 9;
-	maxCorrRounds = 1;
-	corrBorder = 1;
-	gradScales = 1;
-	gradMagThresh = 6;
-	gradAttenThresh = 0.1;
-	gradDistThresh = CV_PI / 10;
-	gradCorrThreshLowAtten = 0.2;
-	gradCorrThreshHighAtten = 0.1;
+	avgSatThresh = atoi(ini.GetValue("LrTextureShadRemParams", "avgSatThresh", NULL));
+	hThreshLowSat = atoi(ini.GetValue("LrTextureShadRemParams", "hThreshLowSat", NULL));
+	hThreshHighSat = atoi(ini.GetValue("LrTextureShadRemParams", "hThreshHighSat", NULL));
+	sThreshLowSat = atoi(ini.GetValue("LrTextureShadRemParams", "sThreshLowSat", NULL));
+	sThreshHighSat = atoi(ini.GetValue("LrTextureShadRemParams", "sThreshHighSat", NULL));
+	avgAttenThresh = atof(ini.GetValue("LrTextureShadRemParams", "avgAttenThresh", NULL));
+	vThreshUpperLowAtten = atof(ini.GetValue("LrTextureShadRemParams", "vThreshUpperLowAtten", NULL));
+	vThreshUpperHighAtten = atof(ini.GetValue("LrTextureShadRemParams", "vThreshUpperHighAtten", NULL));
+	vThreshLowerLowAtten = atof(ini.GetValue("LrTextureShadRemParams", "vThreshLowerLowAtten", NULL));
+	vThreshLowerHighAtten = atof(ini.GetValue("LrTextureShadRemParams", "vThreshLowerHighAtten", NULL));
+	avgPerimThresh = atoi(ini.GetValue("LrTextureShadRemParams", "avgPerimThresh", NULL));
+	edgeDiffRadius = atoi(ini.GetValue("LrTextureShadRemParams", "edgeDiffRadius", NULL));
+	borderDiffRadius = atoi(ini.GetValue("LrTextureShadRemParams", "borderDiffRadius", NULL));
+	splitIncrement = atoi(ini.GetValue("LrTextureShadRemParams", "splitIncrement", NULL));
+	splitRadius = atoi(ini.GetValue("LrTextureShadRemParams", "splitRadius", NULL));
 
-	cleanShadows = true;
-	fillShadows = true;
-	minShadowPerim = 35;
-	cleanSrMask = false;
-	fillSrMask = false;
+	cannyThresh1 = atoi(ini.GetValue("LrTextureShadRemParams", "cannyThresh1", NULL));
+	cannyThresh2 = atoi(ini.GetValue("LrTextureShadRemParams", "cannyThresh2", NULL));
+	cannyApertureSize = atoi(ini.GetValue("LrTextureShadRemParams", "cannyApertureSize", NULL));
+	cannyL2Grad = (bool)atoi(ini.GetValue("LrTextureShadRemParams", "cannyL2Grad", NULL));
+
+	minCorrPoints = atoi(ini.GetValue("LrTextureShadRemParams", "minCorrPoints", NULL));
+	maxCorrRounds = atoi(ini.GetValue("LrTextureShadRemParams", "maxCorrRounds", NULL));
+	corrBorder = atoi(ini.GetValue("LrTextureShadRemParams", "corrBorder", NULL));
+	gradScales = atoi(ini.GetValue("LrTextureShadRemParams", "gradScales", NULL));
+	gradMagThresh = atoi(ini.GetValue("LrTextureShadRemParams", "gradMagThresh", NULL));
+	gradAttenThresh = atof(ini.GetValue("LrTextureShadRemParams", "gradAttenThresh", NULL));
+	gradDistThresh = atof(ini.GetValue("LrTextureShadRemParams", "gradDistThresh", NULL));
+	gradCorrThreshLowAtten = atof(ini.GetValue("LrTextureShadRemParams", "gradCorrThreshLowAtten", NULL));
+	gradCorrThreshHighAtten = atof(ini.GetValue("LrTextureShadRemParams", "gradCorrThreshHighAtten", NULL));
+
+	cleanShadows = (bool)atoi(ini.GetValue("LrTextureShadRemParams", "cleanShadows", NULL));
+	fillShadows = (bool)atoi(ini.GetValue("LrTextureShadRemParams", "fillShadows", NULL));
+	minShadowPerim = atoi(ini.GetValue("LrTextureShadRemParams", "minShadowPerim", NULL));
+	cleanSrMask = (bool)atoi(ini.GetValue("LrTextureShadRemParams", "cleanSrMask", NULL));
+	fillSrMask = (bool)atoi(ini.GetValue("LrTextureShadRemParams", "fillSrMask", NULL));
 }
 
 LrTextureShadRemParams::~LrTextureShadRemParams() {

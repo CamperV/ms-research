@@ -30,23 +30,25 @@ double calcDetectRate(Mat mask, Mat shadows) {
   // TP/TN - True Positive/Negative
   // FP/FN - False Positive/Negative
 
-  int TPs = -1;
-  int FNs = -1;
+  int TPs = 0;
+  int FNs = 0;
 
   assert(mask.rows == shadows.rows);
   assert(mask.cols == shadows.cols);
 
   for(int r = 0; r < mask.rows; r++) {
     for(int c = 0; c < mask.cols; c++) {
-      int maskval = mask.at<unsigned char>(r, c);
-      int shadval = shadows.at<unsigned char>(r, c);
+      unsigned char maskval = mask.at<unsigned char>(r, c);
+      unsigned char shadval = shadows.at<unsigned char>(r, c);
 
-      if(maskval == (char)0 && shadval == (char)127) FNs++;
-      if(maskval == (char)255 && shadval == (char)127) FNs++;
-      if(maskval == (char)127 && shadval == (char)127) TPs++;
+      if(maskval == shadval) {
+        if((int)shadval == 127) TPs++;
+      } else if(maskval != shadval) {
+        if((int)shadval == 127) FNs++;
+      }
     }
   }
-  return TPs/(FNs+TPs);
+  return (double)TPs/(double)(FNs+TPs);
 }
 
 double calcDiscrimRate(Mat mask, Mat shadows) {
@@ -54,32 +56,36 @@ double calcDiscrimRate(Mat mask, Mat shadows) {
   // TP/TN - True Positive/Negative
   // FP/FN - False Positive/Negative
 
-  int TPf = -1;
-  int FNf = -1;
+  int TPf = 0;
+  int FNf = 0;
 
   assert(mask.rows == shadows.rows);
   assert(mask.cols == shadows.cols);
 
   for(int r = 0; r < mask.rows; r++) {
     for(int c = 0; c < mask.cols; c++) {
-      char maskval = mask.at<unsigned char>(r, c);
-      char shadval = shadows.at<unsigned char>(r, c);
+      unsigned char maskval = mask.at<unsigned char>(r, c);
+      unsigned char shadval = shadows.at<unsigned char>(r, c);
 
-      if(maskval == (char)0 && shadval == (char)255) FNf++;
-      if(maskval == (char)127 && shadval == (char)255) FNf++;
-      if(maskval == (char)255 && shadval == (char)255) TPf++;
+      if(maskval == shadval) {
+        if((int)shadval == 255) TPf++;
+      } else if(maskval != shadval) {
+        if((int)shadval == 255) FNf++;
+      }
     }
   }
-  return TPf/(FNf+TPf);
+  return (double)TPf/(double)(FNf+TPf);
 }
 
 int main(int argc, char** argv) {
   
   string infile = "";
   if(argc > 3) {
-    cout << "Opening image " << argv[1] << "..." << endl;
-    cout << "Opening background " << argv[2] << "..." << endl;
-    cout << "Opening shadows " << argv[3] << "..." << endl;
+    cout << "\n---" << endl;
+    cout << "---\n" << endl;
+    cout << "> Opening image " << argv[1] << "..." << endl;
+    cout << "> Opening background " << argv[2] << "..." << endl;
+    cout << "> Opening shadows " << argv[3] << "..." << endl;
   } else {
     cout << "Not enough inputs specified: exiting" << endl;
     exit(0);
@@ -87,7 +93,7 @@ int main(int argc, char** argv) {
 
   Mat frame = imread(argv[1]);
   Mat bg = imread(argv[2]);
-  Mat shadows = imread(argv[3]);
+  Mat shadows = imread(argv[3], CV_LOAD_IMAGE_GRAYSCALE);
 
   if (!frame.data) { 
     cout << "Capture failed to open." << endl; 
@@ -97,6 +103,8 @@ int main(int argc, char** argv) {
   Mat fg;
   absdiff(frame, bg, fg);
   cvtColor(fg, fg, CV_BGR2GRAY);
+
+  // clean up shadows
   threshold(fg, fg, 25, 255, THRESH_BINARY);
 
   erode(fg, fg, Mat(), Point(-1,-1)); 
@@ -112,13 +120,18 @@ int main(int argc, char** argv) {
 	// matrices to store the masks after shadow removal
 	Mat chrMask, physMask, geoMask, srTexMask, lrTexMask;
 
+  // remove shadows
 	chr.removeShadows(frame, fg, bg, chrMask);
 	phys.removeShadows(frame, fg, bg, physMask);
 	geo.removeShadows(frame, fg, bg, geoMask);
   srTex.removeShadows(frame, fg, bg, srTexMask);
   lrTex.removeShadows(frame, fg, bg, lrTexMask);
 
-  cout << "\nDetection and Discrimination Rates:" << endl;
+  /*--------*/
+  /* OUTPUT */
+  /*--------*/
+
+  cout << "\nDetection and Discrimination Rates (higher is better!):" << endl;
   cout << "-----------------------------------" << endl;
   cout << "Chromacity:\t(" << calcDetectRate(chrMask, shadows) << ", " << calcDiscrimRate(chrMask, shadows) << ")" << endl;
   cout << "Physical:\t(" << calcDetectRate(physMask, shadows) << ", " << calcDiscrimRate(physMask, shadows) << ")" << endl;
@@ -127,6 +140,7 @@ int main(int argc, char** argv) {
   cout << "Large Region:\t(" << calcDetectRate(lrTexMask, shadows) << ", " << calcDiscrimRate(lrTexMask, shadows) << ")" << endl;
 
   // processing loop
+  /*
   for(;;) {
 	  // show results
 	  imshow("Frame", frame);
@@ -139,5 +153,6 @@ int main(int argc, char** argv) {
 
     if(waitKey(30) == 'q') break;
   }
+  */
 	return 0;
 }
