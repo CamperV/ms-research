@@ -9,19 +9,24 @@
 // (see http://www.opensource.org/licenses for more info)
 
 #include "GeometryShadRemParams.h"
+#include "SimpleIni.h"
 
 GeometryShadRemParams::GeometryShadRemParams() {
-	smoothFactor = 4;
-	headThreshRatio = 2;
-	minHeadSeq = 4;
-	maxEdgeDistance = 4;
-	edgeThreshRatio = 2;
-	minEdgeSeq = 3;
-	bottomShiftRatio = 8;
-	gWeight = 0.7;
-	sRelativeWeight = 0.2;
-	thresholdScale = 0.4;
-	cleanSrMask = false;
+  CSimpleIniA ini(true, true, true);
+  if (ini.LoadFile("params.ini") < 0) throw "Load failed for file 1";
+
+	smoothFactor = atoi(ini.GetValue("GeometryShadRemParams", "smoothFactor", NULL));
+	headThreshRatio = atoi(ini.GetValue("GeometryShadRemParams", "headThreshRatio", NULL));
+	minHeadSeq = atoi(ini.GetValue("GeometryShadRemParams", "minHeadSeq", NULL));
+	maxEdgeDistance = atoi(ini.GetValue("GeometryShadRemParams", "maxEdgeDistance", NULL));
+	edgeThreshRatio = atoi(ini.GetValue("GeometryShadRemParams", "edgeThreshRatio", NULL));
+	minEdgeSeq = atoi(ini.GetValue("GeometryShadRemParams", "minEdgeSeq", NULL));
+	bottomShiftRatio = atoi(ini.GetValue("GeometryShadRemParams", "bottomShiftRatio", NULL));
+	gWeight = atof(ini.GetValue("GeometryShadRemParams", "gWeight", NULL));
+	sRelativeWeight = atof(ini.GetValue("GeometryShadRemParams", "sRelativeWeight", NULL));
+	thresholdScale = atof(ini.GetValue("GeometryShadRemParams", "thresholdScale", NULL));
+
+	cleanSrMask = (bool)atoi(ini.GetValue("GeometryShadRemParams", "cleanSrMask", NULL));
 }
 
 GeometryShadRemParams::~GeometryShadRemParams() {

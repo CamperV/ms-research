@@ -10,15 +10,16 @@
 
 #include <cxcore.h>
 #include "SrTextureShadRemParams.h"
+#include "SimpleIni.h"
 
 SrTextureShadRemParams::SrTextureShadRemParams() {
   CSimpleIniA ini(true, true, true);
   if (ini.LoadFile("params.ini") < 0) throw "Load failed for file 1";
 
-	gainThreshold = atof(ini.GetValue("LrTextureShadRemParams", "gainThreshold", NULL));
-	gaborKernelRadius = atoi(ini.GetValue("LrTextureShadRemParams", "gaborKernlRadius", NULL));
-	gaborWavelength = atoi(ini.GetValue("LrTextureShadRemParams", "gaborWavelength", NULL));
-	gaborAspectRatio = atof(ini.GetValue("LrTextureShadRemParams", "gaborAspectRatio", NULL));
+	gainThreshold = atof(ini.GetValue("SrTextureShadRemParams", "gainThreshold", NULL));
+	gaborKernelRadius = atoi(ini.GetValue("SrTextureShadRemParams", "gaborKernelRadius", NULL));
+	gaborWavelength = atoi(ini.GetValue("SrTextureShadRemParams", "gaborWavelength", NULL));
+	gaborAspectRatio = atof(ini.GetValue("SrTextureShadRemParams", "gaborAspectRatio", NULL));
 
 	gaborBandwidths.push_back(0.4);
 	gaborBandwidths.push_back(0.8);
@@ -34,9 +35,9 @@ SrTextureShadRemParams::SrTextureShadRemParams() {
 	gaborPhases.push_back(0);
 	gaborPhases.push_back(CV_PI / 2);
 
-	neighborhood = atoi(ini.GetValue("LrTextureShadRemParams", "neighborhood", NULL));
-	distThreshold = atof(ini.GetValue("LrTextureShadRemParams", "distThreshold", NULL));
-	cleanSrMask = (bool)atoi(ini.GetValue("LrTextureShadRemParams", "cleanSrMask", NULL));
+	neighborhood = atoi(ini.GetValue("SrTextureShadRemParams", "neighborhood", NULL));
+	distThreshold = atof(ini.GetValue("SrTextureShadRemParams", "distThreshold", NULL));
+	cleanSrMask = (bool)atoi(ini.GetValue("SrTextureShadRemParams", "cleanSrMask", NULL));
 }
 
 SrTextureShadRemParams::~SrTextureShadRemParams() {

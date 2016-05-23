@@ -10,26 +10,33 @@
 
 #include <cxcore.h>
 #include "PhysicalShadRemParams.h"
+#include "SimpleIni.h"
 
 PhysicalShadRemParams::PhysicalShadRemParams() {
-	coneAngle = CV_PI / 20;
-	coneR1 = 0.3;
-	coneR2 = 1;
-	weightSmootTerm = 4;
-	learnBorders = false;
-	gmmGaussians = 5;
-	gmmInitVar = 30;
-	gmmMinVar = 1;
-	gmmStdThreshold = 2;
-	gmmWinnerTakesAll = false;
-	gmmLearningRate = 0.1;
+  CSimpleIniA ini(true, true, true);
+  if (ini.LoadFile("params.ini") < 0) throw "Load failed for file 1";
+
+	coneAngle = atof(ini.GetValue("PhysicalShadRemParams", "coneAngle", NULL));
+	coneR1 = atof(ini.GetValue("PhysicalShadRemParams", "coneR1", NULL));
+	coneR2 = atof(ini.GetValue("PhysicalShadRemParams", "coneR2", NULL));
+	weightSmootTerm = atoi(ini.GetValue("PhysicalShadRemParams", "weightSmootTerm", NULL));
+	learnBorders = (bool)atoi(ini.GetValue("PhysicalShadRemParams", "learnBorders", NULL));
+	gmmGaussians = atoi(ini.GetValue("PhysicalShadRemParams", "gmmGaussians", NULL));
+	gmmInitVar = atoi(ini.GetValue("PhysicalShadRemParams", "gmmInitVar", NULL));
+	gmmMinVar = atoi(ini.GetValue("PhysicalShadRemParams", "gmmMinVar", NULL));
+	gmmStdThreshold = atoi(ini.GetValue("PhysicalShadRemParams", "gmmStdThreshold", NULL));
+	gmmWinnerTakesAll = (bool)atoi(ini.GetValue("PhysicalShadRemParams", "gmmWinnerTakesAll", NULL));
+	gmmLearningRate = atof(ini.GetValue("PhysicalShadRemParams", "gmmLearningRate", NULL));
+
 	gmmSortMode = GaussianMixtureModel::SORT_BY_WEIGHT;
-	gmmFitLogistic = false;
-	gmmAccumWeightThresh = 0.7;
-	postThresh = 0.15;
-	cleanShadows = false;
-	dilateShadows = false;
-	cleanSrMask = false;
+
+	gmmFitLogistic = (bool)atoi(ini.GetValue("PhysicalShadRemParams", "gmmFitLogistic", NULL));
+	gmmAccumWeightThresh = atof(ini.GetValue("PhysicalShadRemParams", "gmmAccumWeightThresh", NULL));
+	postThresh = atof(ini.GetValue("PhysicalShadRemParams", "postThresh", NULL));
+
+	cleanShadows = (bool)atoi(ini.GetValue("PhysicalShadRemParams", "cleanShadows", NULL));
+	dilateShadows = (bool)atoi(ini.GetValue("PhysicalShadRemParams", "dilateShadows", NULL));
+	cleanSrMask = (bool)atoi(ini.GetValue("PhysicalShadRemParams", "cleanSrMask", NULL));
 }
 
 PhysicalShadRemParams::~PhysicalShadRemParams() {
