@@ -16,5 +16,6 @@ do
   filename=$(basename "$file") 
   filename="${filename%.*}"
 
-  ./quantitative $file $S/$INDIR/$BG/$filename.jpg $S/$INDIR/$SD/$filename.png
+  #./quantitative $file $S/$INDIR/$BG/$filename.jpg $S/$INDIR/$SD/$filename.png
+  ./quantitative $file $S/$INDIR/$BG/$filename.* $S/$INDIR/$SD/$filename.*
 done

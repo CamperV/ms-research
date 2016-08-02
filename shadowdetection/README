@@ -1,6 +1,6 @@
 Executable 'quantitative' analyzes the Discrimination and Detection rates for differing environments and shadows.
 
-USAGE: ./quantitative [input directory]
+USAGE: ./batch_quantitative [input directory]
 --> [input directory] format: ./samples/[input]/ ...
 
 Options:

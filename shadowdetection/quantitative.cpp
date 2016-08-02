@@ -38,8 +38,8 @@ double calcDetectRate(Mat mask, Mat shadows) {
 
   for(int r = 0; r < mask.rows; r++) {
     for(int c = 0; c < mask.cols; c++) {
-      unsigned char maskval = mask.at<unsigned char>(r, c);
-      unsigned char shadval = shadows.at<unsigned char>(r, c);
+      int maskval = mask.at<unsigned char>(r, c);
+      int shadval = shadows.at<unsigned char>(r, c);
 
       if(maskval == shadval) {
         if((int)shadval == 127) TPs++;
@@ -64,8 +64,10 @@ double calcDiscrimRate(Mat mask, Mat shadows) {
 
   for(int r = 0; r < mask.rows; r++) {
     for(int c = 0; c < mask.cols; c++) {
-      unsigned char maskval = mask.at<unsigned char>(r, c);
-      unsigned char shadval = shadows.at<unsigned char>(r, c);
+      //unsigned char maskval = mask.at<unsigned char>(r, c);
+      //unsigned char shadval = shadows.at<unsigned char>(r, c);
+      int maskval = mask.at<unsigned char>(r, c);
+      int shadval = shadows.at<unsigned char>(r, c);
 
       if(maskval == shadval) {
         if((int)shadval == 255) TPf++;
@@ -82,7 +84,6 @@ int main(int argc, char** argv) {
   string infile = "";
   if(argc > 3) {
     cout << "\n---" << endl;
-    cout << "---\n" << endl;
     cout << "> Opening image " << argv[1] << "..." << endl;
     cout << "> Opening background " << argv[2] << "..." << endl;
     cout << "> Opening shadows " << argv[3] << "..." << endl;
@@ -105,10 +106,10 @@ int main(int argc, char** argv) {
   cvtColor(fg, fg, CV_BGR2GRAY);
 
   // clean up shadows
-  threshold(fg, fg, 25, 255, THRESH_BINARY);
+  //threshold(fg, fg, 25, 255, THRESH_BINARY);
 
-  erode(fg, fg, Mat(), Point(-1,-1)); 
-  dilate(fg, fg, Mat(), Point(-1,-1)); 
+  //erode(fg, fg, Mat(), Point(-1,-1)); 
+  //dilate(fg, fg, Mat(), Point(-1,-1)); 
 
 	// create shadow removers
 	ChromacityShadRem chr;
@@ -131,20 +132,26 @@ int main(int argc, char** argv) {
   /* OUTPUT */
   /*--------*/
 
-  cout << "\nDetection and Discrimination Rates (higher is better!):" << endl;
+  cout << "\nDetection and Discrimination Rates:" << endl;
   cout << "-----------------------------------" << endl;
-  cout << "Chromacity:\t(" << calcDetectRate(chrMask, shadows) << ", " << calcDiscrimRate(chrMask, shadows) << ")" << endl;
-  cout << "Physical:\t(" << calcDetectRate(physMask, shadows) << ", " << calcDiscrimRate(physMask, shadows) << ")" << endl;
-  cout << "Geometry:\t(" << calcDetectRate(geoMask, shadows) << ", " << calcDiscrimRate(geoMask, shadows) << ")" << endl;
-  cout << "Small Region:\t(" << calcDetectRate(srTexMask, shadows) << ", " << calcDiscrimRate(srTexMask, shadows) << ")" << endl;
-  cout << "Large Region:\t(" << calcDetectRate(lrTexMask, shadows) << ", " << calcDiscrimRate(lrTexMask, shadows) << ")" << endl;
+  cout << "Chromacity:\t("    << 100*calcDetectRate(chrMask, shadows)     << ",\t" 
+                              << 100*calcDiscrimRate(chrMask, shadows)    << ")"  << endl;
+  cout << "Physical:\t("      << 100*calcDetectRate(physMask, shadows)    << ",\t" 
+                              << 100*calcDiscrimRate(physMask, shadows)   << ")"  << endl;
+  cout << "Geometry:\t("      << 100*calcDetectRate(geoMask, shadows)     << ",\t" 
+                              << 100*calcDiscrimRate(geoMask, shadows)    << ")"  << endl;
+  cout << "Small Region:\t("  << 100*calcDetectRate(srTexMask, shadows)   << ",\t" 
+                              << 100*calcDiscrimRate(srTexMask, shadows)  << ")"  << endl;
+  cout << "Large Region:\t("  << 100*calcDetectRate(lrTexMask, shadows)   << ",\t" 
+                              << 100*calcDiscrimRate(lrTexMask, shadows)  << ")"  << endl;
 
   // processing loop
-  /*
   for(;;) {
 	  // show results
 	  imshow("Frame", frame);
 	  imshow("Ground Truth", shadows);
+    imshow("Foreground", fg);
+    imshow("Background", bg);
 	  imshow("Chromacity", chrMask);
 	  imshow("Physical", physMask);
 	  imshow("Geometry", geoMask);
@@ -153,6 +160,5 @@ int main(int argc, char** argv) {
 
     if(waitKey(30) == 'q') break;
   }
-  */
 	return 0;
 }
