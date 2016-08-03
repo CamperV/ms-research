@@ -13,6 +13,7 @@
 // ---
 
 #include <iostream>
+#include <iomanip>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 
@@ -22,62 +23,10 @@
 #include "PhysicalShadRem.h"
 #include "SrTextureShadRem.h"
 
+#include "Metrics.h"
+
 using namespace std;
 using namespace cv;
-
-double calcDetectRate(Mat mask, Mat shadows) {
-  // all concerning shadows
-  // TP/TN - True Positive/Negative
-  // FP/FN - False Positive/Negative
-
-  int TPs = 0;
-  int FNs = 0;
-
-  assert(mask.rows == shadows.rows);
-  assert(mask.cols == shadows.cols);
-
-  for(int r = 0; r < mask.rows; r++) {
-    for(int c = 0; c < mask.cols; c++) {
-      int maskval = mask.at<unsigned char>(r, c);
-      int shadval = shadows.at<unsigned char>(r, c);
-
-      if(maskval == shadval) {
-        if((int)shadval == 127) TPs++;
-      } else if(maskval != shadval) {
-        if((int)shadval == 127) FNs++;
-      }
-    }
-  }
-  return (double)TPs/(double)(FNs+TPs);
-}
-
-double calcDiscrimRate(Mat mask, Mat shadows) {
-  // all concerning foreground
-  // TP/TN - True Positive/Negative
-  // FP/FN - False Positive/Negative
-
-  int TPf = 0;
-  int FNf = 0;
-
-  assert(mask.rows == shadows.rows);
-  assert(mask.cols == shadows.cols);
-
-  for(int r = 0; r < mask.rows; r++) {
-    for(int c = 0; c < mask.cols; c++) {
-      //unsigned char maskval = mask.at<unsigned char>(r, c);
-      //unsigned char shadval = shadows.at<unsigned char>(r, c);
-      int maskval = mask.at<unsigned char>(r, c);
-      int shadval = shadows.at<unsigned char>(r, c);
-
-      if(maskval == shadval) {
-        if((int)shadval == 255) TPf++;
-      } else if(maskval != shadval) {
-        if((int)shadval == 255) FNf++;
-      }
-    }
-  }
-  return (double)TPf/(double)(FNf+TPf);
-}
 
 int main(int argc, char** argv) {
   
@@ -106,10 +55,10 @@ int main(int argc, char** argv) {
   cvtColor(fg, fg, CV_BGR2GRAY);
 
   // clean up shadows
-  //threshold(fg, fg, 25, 255, THRESH_BINARY);
+  threshold(fg, fg, 25, 255, THRESH_BINARY);
 
-  //erode(fg, fg, Mat(), Point(-1,-1)); 
-  //dilate(fg, fg, Mat(), Point(-1,-1)); 
+  erode(fg, fg, Mat(), Point(-1,-1)); 
+  dilate(fg, fg, Mat(), Point(-1,-1)); 
 
 	// create shadow removers
 	ChromacityShadRem chr;
@@ -134,7 +83,8 @@ int main(int argc, char** argv) {
 
   cout << "\nDetection and Discrimination Rates:" << endl;
   cout << "-----------------------------------" << endl;
-  cout << "Chromacity:\t("    << 100*calcDetectRate(chrMask, shadows)     << ",\t" 
+  cout << setprecision(4) << fixed 
+       << "Chromacity:\t("    << 100*calcDetectRate(chrMask, shadows)     << ",\t" 
                               << 100*calcDiscrimRate(chrMask, shadows)    << ")"  << endl;
   cout << "Physical:\t("      << 100*calcDetectRate(physMask, shadows)    << ",\t" 
                               << 100*calcDiscrimRate(physMask, shadows)   << ")"  << endl;

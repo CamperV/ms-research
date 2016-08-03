@@ -13,12 +13,13 @@ UTILDIR=utils
 UTILS=			$(UTILDIR)/GaborFilter.cpp \
 						$(UTILDIR)/ConnComp.cpp $(UTILDIR)/ConnCompGroup.cpp \
 						$(UTILDIR)/GaussianMixtureModel.cpp \
-						$(UTILDIR)/VideoStats.cpp
+						$(UTILDIR)/VideoStats.cpp \
+						$(UTILDIR)/Metrics.cpp
 
 OBJS=$(SOURCES:.cpp=.o)
 OBJS+=$(UTILS:.cpp=.o)
 
-TARGETS=shadowdetect quantitative
+TARGETS=shadowdetect singletest quantitative
 
 $(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
@@ -31,6 +32,9 @@ all: $(TARGETS)
 
 shadowdetect: shadowdetect.o $(OBJS)
 	$(CC) $(CFLAGS) -o shadowdetect shadowdetect.o $(OBJS) $(LIBS) $(LIBDIR)
+
+singletest: singletest.o $(OBJS)
+	$(CC) $(CFLAGS) -o singletest singletest.o $(OBJS) $(LIBS) $(LIBDIR)
 
 quantitative: quantitative.o $(OBJS)
 	$(CC) $(CFLAGS) -o quantitative quantitative.o $(OBJS) $(LIBS) $(LIBDIR)
