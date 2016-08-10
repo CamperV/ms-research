@@ -51,6 +51,9 @@ int main(int argc, char** argv) {
   }
 
   Mat fg;
+  threshold(shadows, fg, 0, 255, THRESH_BINARY);
+
+  /** USED FOR ABSDIFF FG **
   absdiff(frame, bg, fg);
   cvtColor(fg, fg, CV_BGR2GRAY);
 
@@ -59,6 +62,7 @@ int main(int argc, char** argv) {
 
   erode(fg, fg, Mat(), Point(-1,-1)); 
   dilate(fg, fg, Mat(), Point(-1,-1)); 
+  */
 
 	// create shadow removers
 	ChromacityShadRem chr;
@@ -95,7 +99,24 @@ int main(int argc, char** argv) {
   cout << "Large Region:\t("  << 100*calcDetectRate(lrTexMask, shadows)   << ",\t" 
                               << 100*calcDiscrimRate(lrTexMask, shadows)  << ")"  << endl;
 
+  /*--------*/
+  /* STDERR */
+  /*--------*/
+
+  cerr << setprecision(4) << fixed
+       << "C,"                << 100*calcDetectRate(chrMask, shadows)     << "," 
+                              << 100*calcDiscrimRate(chrMask, shadows)    << endl;
+  cerr << "P,"                << 100*calcDetectRate(physMask, shadows)    << "," 
+                              << 100*calcDiscrimRate(physMask, shadows)   << endl;
+  cerr << "G,"                << 100*calcDetectRate(geoMask, shadows)     << "," 
+                              << 100*calcDiscrimRate(geoMask, shadows)    << endl;
+  cerr << "S,"               << 100*calcDetectRate(srTexMask, shadows)   << "," 
+                              << 100*calcDiscrimRate(srTexMask, shadows)  << endl;
+  cerr << "L,"               << 100*calcDetectRate(lrTexMask, shadows)   << "," 
+                              << 100*calcDiscrimRate(lrTexMask, shadows)  << endl;
+
   // processing loop
+  /*
   for(;;) {
 	  // show results
 	  imshow("Frame", frame);
@@ -110,5 +131,6 @@ int main(int argc, char** argv) {
 
     if(waitKey(30) == 'q') break;
   }
+  */
 	return 0;
 }
