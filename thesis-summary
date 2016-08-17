@@ -1,0 +1,101 @@
+THESIS RESEARCH SUMMARY
+
+------------
+The Problem:
+------------
+
+- Proper tracking and segmentation require accurate shadow removal/recognition pertaining to foreground objects
+- Shadow removal methods fail to perform optimally in diverse environments
+- Shadow removal methods fail to adapt over time to universal factors such as:
+  - illumination changes
+  - light/shadow color changes
+  - underlying texture quality and quantity
+  - foreground object size 
+  - etc.
+- There are a myriad of shadow detection methods, but none fully compnesates for each other's weaknesses
+- Shadow removal methods tend to require hand tuning for an environment in regards to parameters such as:
+  - attentuation thresholds 
+  - average foreground object size
+  - gradient direction thresholds
+  - H,S,V thresholds
+  - cone thresholds
+  - Canny edge thresholds
+  - etc.
+Problem: No leading shadow removal methods are robust enough to compensate for a scene over time, nor are they suitable for deployment in an environment without a priori tuning of parameters. 
+
+-----------------
+Origin + History:
+-----------------
+
+- Lit Review:
+  - All popular shadow removal methods
+    - Sanin et al. Survey:
+      - Chromacity, Physical, Geometry, SR & LR Textures
+    - Prati et al. Taxonomy:
+      - Statistical Nonparametric (SNP), Statistical Param (SP), Deterministic Nonmodel-based (DNM1) & DNM2
+  - Mitra et al. Hybrid threshold selection strategies
+  - Oliva et al. GIST
+  - Oliva et al. Scene Spatial Envelope
+  - Lowe et al. SIFT
+  - ??? et al. Bag-of-Features/Words
+  - Fei-Fei et al. Bayesian Scene Modeling
+  - ...
+- LR Texture's need for coarse grain decision making for switching between parameters
+- Hybrid algorithms
+- Meta/Self-Aware/Scene-Aware algorithms
+- Global properties of a scene: (need State-of-the-Art papers, see authors above)
+  - attentuation
+  - perimeter of foreground objects
+  - saturation
+  - HSV
+  - Spatial envelope
+  - edges/quantity/density of edges
+  - color variance/distribution
+  - GIST
+  - SIFT
+  - BoF
+- State-of-the-Art for moving shadows
+  - penumbra, umbra, anteumbra, cast shadows, etc
+- Need for adaptation, paper evaluating tracking performance over time/with shadows removed/present
+- More literature on long-term adaptation and models of such
+
+------------------
+Proposed Research:
+------------------
+
+- RE: The Problem. Since algorithms alone are deficient, develop framework capable of understanding salient enviornmental/scene parameters that affect shadow removal, and implement shadow removal in a two stage system:
+  - Macro: select which popular removal method is best suited for the scene based of holistic content analysis
+  - Micro: automatically tune the parameters necessary for the selected algorithm to perform optimally in an arbitrary environment
+- Sensitivity testing of large data sets for shadow removal performance with hard coded parameters
+- Technical challenge: Identify salient scene/environmental parameters that affect shadow removal performance. This necessarily extends to these scene parameters that affect other algorithms. There is current research that attempts to quantify what makes a scene a scene, but the research has not been extended to correlate their affect on algorithmic methods
+- Develop adaptive scheme for shadow removal without designing a new catch-all algorithm
+- Create an understanding of a scene using statistical machine learning methods
+
+---------------
+Work Completed:
+---------------
+
+- Demonstrated differing shadow removal methods perform better according to the scene it is applied to
+- Demonstrated a need for hard-coded parameters of certain methods to perform best for scenes (or even work at all, in some cases)
+- Observed already a small need for coarse grained decision making
+- Created graphical framework for rapidly evaluating efficacy of methods 
+- Created graphical framework for rapidly evaluating efficacy of parameters in multiple scenes, including the ability to modify them in real-time to observe effects
+- Created framework to quickly permute parameters and values via an .ini file system that adjusts in real-time, allowing an external script to manipulate values interatively, creating large sets of data showcasing shadow removal efficacy dependant on the articulated parameters
+
+---------------
+Work Remaining:
+---------------
+- Develop comprehensive understanding of removal method sensitivity to certain algorithmic parameters (e.g., Canny thresholds)
+- Develop holistic scene content understanding in order to select shadow removal method in macro stage of hypervisor program
+- Create correlation between quantitative global scene/environment properties and shadow removal accuracy
+- Develop understanding of how these scene/environment parameters change over time of day (rather than just between locales)
+- Use the aforementioned correlation to build hypervisor program to deploy adaptive shadow removal in arbitrary scenes and environments
+- Collect appropriate long-term data for adaptivity research
+
+------------------
+Facilities Needed:
+------------------
+
+- Need to collect environmental data long-term throughout days and possibly weather conditions
+- Possible IRB for recording this data
+- Camera and tripod
