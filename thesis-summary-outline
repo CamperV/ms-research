@@ -23,8 +23,6 @@ The Problem:
   - etc.
 Problem: No leading shadow removal methods are robust enough to compensate for a scene over time, nor are they suitable for deployment in an environment without a priori tuning of parameters. 
 
-  Object tracking and segmentation are pivotal to most preeminent computer vision applications, ranging in application from security and surveillance, to traffic monitoring and analysis. Notably, many applications utilize the extraction of foreground pixels to capture moving objects in a scene; however, since shadows share movement patterns with foreground objects (and have a similar magnitude of intensity change compared with the background model), they tend to be extracted alongside the desired object pixels [Sanin et al.]. While this may occasionally be the intention, shadows generally contribute to inaccurate object classifications and impede proper tracking of foreground objects. In order to rectify this, there have been a bevy of developments regarding shadow detection and removal from foreground objects. In order to perform optimally, these leading methods require assumptions to be made about key factors of a scene, including illumination changes, color variance, clearly defined foreground objects, etc. As a result, no leading shadow removal methods are robust enough to compensate for a scene over time, nor are they suitable for deployment in an environment without a priori tuning of parameters. The objective of this research is to develop a framework capable of understanding salient scene parameters that affect shadow removal, and implement said shadow removal for an arbitrary scene for an arbitrary length of time.
-
 -----------------
 Origin + History:
 -----------------

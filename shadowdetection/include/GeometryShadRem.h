@@ -29,8 +29,10 @@ class GeometryShadRem {
 
 		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
 
-	private:
+    // made  public for trackbars
 		GeometryShadRemParams params;
+
+	private:
 
 		cv::Mat grayFrame;
 

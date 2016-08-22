@@ -54,6 +54,8 @@ int main(int argc, char** argv) {
   }
 
   Mat fg;
+  threshold(shadows, fg, 0, 255, THRESH_BINARY);
+  /*
   absdiff(frame, bg, fg);
   cvtColor(fg, fg, CV_BGR2GRAY);
 
@@ -62,6 +64,7 @@ int main(int argc, char** argv) {
 
   erode(fg, fg, Mat(), Point(-1,-1)); 
   dilate(fg, fg, Mat(), Point(-1,-1)); 
+  */
 
 	// create shadow removers
 	ChromacityShadRem chr;
@@ -75,6 +78,7 @@ int main(int argc, char** argv) {
 
   // init windows
   namedWindow("Chromacity", 1);
+  namedWindow("Geometry", 1);
   namedWindow("Large Region Texture", 1);
 
   /* TRACKBARS & PARAMS */
@@ -87,6 +91,22 @@ int main(int argc, char** argv) {
   createTrackbar("sThresh", "Chromacity", &chr.params.sThresh, 255);
   createTrackbar("vThreshUpper", "Chromacity", &vThreshUpperInt, 100);
   createTrackbar("vThreshLower", "Chromacity", &vThreshLowerInt, 100);
+
+  // Geometry
+  int gWeightInt = 70;
+  int sRelativeWeightInt = 20;
+  int thresholdScaleInt = 40;
+
+  createTrackbar("smoothFactor", "Geometry", &geo.params.smoothFactor, 20);
+  createTrackbar("headThreshRatio", "Geometry", &geo.params.headThreshRatio, 20);
+  createTrackbar("minHeadSeq", "Geometry", &geo.params.minHeadSeq, 20);
+  createTrackbar("maxEdgeDistance", "Geometry", &geo.params.maxEdgeDistance, 20);
+  createTrackbar("edgeThreshRatio", "Geometry", &geo.params.edgeThreshRatio, 20);
+  createTrackbar("minEdgeSeq", "Geometry", &geo.params.minEdgeSeq, 20);
+  createTrackbar("bottomShiftRatio", "Geometry", &geo.params.bottomShiftRatio, 20);
+  createTrackbar("gWeight", "Geometry", &gWeightInt, 100);
+  createTrackbar("sRelativeWeightInt", "Geometry", &sRelativeWeightInt, 100);
+  createTrackbar("thresholdScaleInt", "Geometry", &thresholdScaleInt, 100);
 
   // Large Region
   int avgSatThreshInt = 35;
@@ -118,26 +138,26 @@ int main(int argc, char** argv) {
   createTrackbar("vThreshLowerHighAtten", "Large Region Texture", &vThreshLowerHighAttenInt, 200);
   createTrackbar("avgAttenThresh", "Large Region Texture", &avgAttenThreshInt, 500);
 
-  createTrackbar("avgPerimThresh", "Large Region Texture", &avgPerimThreshInt, 500);
-  createTrackbar("edgeDiffRadius", "Large Region Texture", &lrTex.params.edgeDiffRadius, 10);
-  createTrackbar("borderDiffRadius", "Large Region Texture", &lrTex.params.borderDiffRadius, 10);
-  createTrackbar("splitIncrement", "Large Region Texture", &lrTex.params.splitIncrement, 10);
-  createTrackbar("splitRadius", "Large Region Texture", &lrTex.params.splitRadius, 10);
+  //createTrackbar("avgPerimThresh", "Large Region Texture", &avgPerimThreshInt, 500);
+  //createTrackbar("edgeDiffRadius", "Large Region Texture", &lrTex.params.edgeDiffRadius, 10);
+  //createTrackbar("borderDiffRadius", "Large Region Texture", &lrTex.params.borderDiffRadius, 10);
+  //createTrackbar("splitIncrement", "Large Region Texture", &lrTex.params.splitIncrement, 10);
+  //createTrackbar("splitRadius", "Large Region Texture", &lrTex.params.splitRadius, 10);
 
-  createTrackbar("cannyThresh1", "Large Region Texture", &cannyThresh1Int, 200);
-  createTrackbar("cannyThresh2", "Large Region Texture", &cannyThresh2Int, 200);
-  createTrackbar("cannyApertureSize", "Large Region Texture", &lrTex.params.cannyApertureSize, 10);
+  //createTrackbar("cannyThresh1", "Large Region Texture", &cannyThresh1Int, 200);
+  //createTrackbar("cannyThresh2", "Large Region Texture", &cannyThresh2Int, 200);
+  //createTrackbar("cannyApertureSize", "Large Region Texture", &lrTex.params.cannyApertureSize, 10);
 
-  createTrackbar("minCorrPoints", "Large Region Texture", &lrTex.params.minCorrPoints, 10);
-  createTrackbar("maxCorrRounds", "Large Region Texture", &lrTex.params.maxCorrRounds, 10);
-  createTrackbar("corrBorder", "Large Region Texture", &lrTex.params.corrBorder, 10);
+  //createTrackbar("minCorrPoints", "Large Region Texture", &lrTex.params.minCorrPoints, 10);
+  //createTrackbar("maxCorrRounds", "Large Region Texture", &lrTex.params.maxCorrRounds, 10);
+  //createTrackbar("corrBorder", "Large Region Texture", &lrTex.params.corrBorder, 10);
 
-  createTrackbar("gradScales", "Large Region Texture", &lrTex.params.gradScales, 10);
-  createTrackbar("gradMagThresh", "Large Region Texture", &gradMagThreshInt, 10);
-  createTrackbar("gradAttenThresh", "Large Region Texture", &gradAttenThreshInt, 200);
-  createTrackbar("gradDistThresh", "Large Region Texture", &gradDistThreshInt, 200);
-  createTrackbar("gradCorrThreshLowAtten", "Large Region Texture", &gradCorrThreshLowAttenInt, 100);
-  createTrackbar("gradCorrThreshHighAtten", "Large Region Texture", &gradCorrThreshHighAttenInt, 100);
+  //createTrackbar("gradScales", "Large Region Texture", &lrTex.params.gradScales, 10);
+  //createTrackbar("gradMagThresh", "Large Region Texture", &gradMagThreshInt, 10);
+  //createTrackbar("gradAttenThresh", "Large Region Texture", &gradAttenThreshInt, 200);
+  //createTrackbar("gradDistThresh", "Large Region Texture", &gradDistThreshInt, 200);
+  //createTrackbar("gradCorrThreshLowAtten", "Large Region Texture", &gradCorrThreshLowAttenInt, 100);
+  //createTrackbar("gradCorrThreshHighAtten", "Large Region Texture", &gradCorrThreshHighAttenInt, 100);
 
   // processing loop
   for(;;) {
@@ -163,6 +183,10 @@ int main(int argc, char** argv) {
     lrTex.params.gradCorrThreshLowAtten = (float)gradCorrThreshLowAttenInt / 100.0;
     lrTex.params.gradCorrThreshHighAtten = (float)gradCorrThreshHighAttenInt / 100.0;
 
+    geo.params.gWeight = (float)gWeightInt/100;
+    geo.params.sRelativeWeight = (float)sRelativeWeightInt/100;
+    geo.params.thresholdScale = (float)thresholdScaleInt/100;
+
     /* PROCESSING */
 
 #ifdef PRECALC
@@ -173,25 +197,27 @@ int main(int argc, char** argv) {
 #else
 	  chr.removeShadows(frame, fg, bg, chrMask);
 	  lrTex.removeShadows(frame, fg, bg, lrTexMask);
+    geo.removeShadows(frame, fg, bg, geoMask);
 #endif
 
     /* POST-PROCESSING */
 
     stringstream str;
 
-    str << "Detection Rate: " << 100*calcDetectRate(lrTexMask, shadows);
-    putText(lrTexMask, str.str(), Point(10,25), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+    str << "Detection Rate: " << 100*calcDetectRate(geoMask, shadows);
+    putText(geoMask, str.str(), Point(10,25), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
             Scalar(50,50,200), 1, CV_AA);
 
     str.str("");
-    str << "Discrimination Rate: " << 100*calcDiscrimRate(lrTexMask, shadows);
-    putText(lrTexMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+    str << "Discrimination Rate: " << 100*calcDiscrimRate(geoMask, shadows);
+    putText(geoMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
             Scalar(50,50,200), 1, CV_AA);
 
 	  // show results
 	  imshow("Frame", frame);
     imshow("Ground Truth", shadows);
 	  imshow("Chromacity", chrMask);
+    imshow("Geometry", geoMask);
 	  imshow("Large Region Texture", lrTexMask);
 
 
