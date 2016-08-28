@@ -89,6 +89,51 @@ Work Completed:
 - Created graphical framework for rapidly evaluating efficacy of parameters in multiple scenes, including the ability to modify them in real-time to observe effects
 - Created framework to quickly permute parameters and values via an .ini file system that adjusts in real-time, allowing an external script to manipulate values interatively, creating large sets of data showcasing shadow removal efficacy dependant on the articulated parameters
 
+  Much of the work completed up to this point has involved development of tools and processes for analyzing, comparing, and evauluating shadow removal methods in differing environments. Standardized implementations of popular shadow removal methods, including ground truths, backgrounds, and frames, are used courtesy of A. Sanin, C. Sanderson, B.C. Lovell (http://arma.sourceforge.net/shadows), licensed under GPL v3+ and written in C++. These shadow removal methods are as follows:
+  - Chromacity: an approach contingent on color constancy and brightness variance.
+  - Physical: an approach centered around attenuation based on the color of the source illumination (white for inside, yellow for outside, etc).
+  - Geometry: an approach that evaluates the moments of mass of foreground objects, and attempts to find the shadow pixel based on projective geometry.
+  - Small Region Texture: an approach that attempts to match shadow pixels based on the underlying background texture. This approach achieves this using Gabor filtering.
+  - Large Region Texture: a similar approach to that of Small Region, Large Region matches shadow pixels based on direction gradient matching.
+A more complete taxonomy of these approaches will be provided with the research. The datasets used by Sanin et al. were also provided, and as such will be utilized in this research for more direct and accurate evaluations.
+  These implementations (by Sanin et al.) came with hardcoded parameters that were found to be correspondent with the provided datasets. Prominent parameters include:
+  - H,S, and V thresholds for color evaluation.
+  - Global Attentuation thresholds .
+  - Average foreground object sizes.
+  - Gradient direction thresholds.
+  - Canny edge thresholds.
+There are many more mutable parameters that affect shadow removal efficacy, and again, a more complete taxonomy will be provided. In order to then quickly evaluate the affect of modifying these in-built parameters, a graphical interface was created to adjust them during runtime and view the effects. The interface supports either entire sequences (e.g. video) or singular frames. The interface supports any of the aforementioned shadow removal methods. The efficacy of any method on any frame is then evaluated with the popular metrics Detection and Discrimination (seen below). These formulae measure how many shadow pixels are correctly identified, and how many foreground object pixels are correctly preserved, respectively. Snapshots of the graphical interface are also shown below.
+
+[Detection formula] [Discrimination formula]
+
+[GUI screens]
+
+  This interface is a cruicial development in terms precisely measuring each parameter's affect on a given scene. However, in order to study sahdow removal in terms of adaptivity over time, a more procedural method was required. Courtesy of brofield and licensed under MIT, SimpleINI (github.com/brofield/simpleini) allowed for creation of .ini files containing any given removal method's default parameters. The algorithms themselves were then modified to allow for runtime modifications to made to these parameters, meaning a procedural, iterative approach to analysis was created. A python script capable of writing to this .ini file allows for rapid permutation of parameters and values.
+
+  [params.ini screens]
+
+  With all of this created infrastructure, initial research has begun. The thrust of the initial research was to first and foremost prove the problem claimed above, that these leading algorithms are not suitable for arbitrary deployment, and they can be improved with parameters corresponding to their environment. As an example, a parameter dictating the lowest allowable value (HSV) for determined shadow regions is modified. 
+
+  [Ground truth] [frame]
+
+  For this demonstration, gray pixel represent detected shadows, with white pixels representing foreground object pixels. For a more quantitative angle, the Detection and Discrimination rates are included in the frame. The demonstrated parameter (vThreshLower) causes the LR Texture removal method to perform optimally in the CAVIAR scenes at its default value, 121. Similarly, the same algorithm performs poorly in the included dataset aton_highway1 with the default parameters. 
+
+  [caviar default] [highway1 default]
+
+  However, if vThreshLower is modified from 121 to 15, the following is observed:
+
+  [caviar15] [highway1 15]
+
+  As evident above, the parameter change causes the same algorithm to perform significantly better in the aton_highway1 frame, and poorly in the CAVIAR frame. This justifies the need for the 'micro' stage of the proposed research, in which the algorithms' parameters would be adequately tuned according to their environment. For a second demonstration, the Geometry shadow removal method was found to also showcasse different results on the same scene, but with differing parameters.
+
+  [Geometry frame] [geometry ground truth]
+
+  By changing such parameters as the saturation thresholds, changes in the shadow removal efficacy is evident by both increases and decreases in accuracy. Each shadow removal method has been found to have hard-coded, mutable parameters that affect the shadow removal in a given environment.
+
+
+
+
+
 ---------------
 Work Remaining:
 ---------------
