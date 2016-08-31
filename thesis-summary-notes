@@ -1,0 +1,18 @@
+Title:                                    Maybe for thesis proper
+Problem statement:                        Too vague and ambitious
+                                          Develop framework, demonstrate extensibility on scene variations
+                                          Does it occur more outdoors?
+
+1) Discovery:                             What scene chars matter?
+2) Feature Extraction Techniques:         Which are effective/efficient?
+3) Prediction:                            What algorithm is best? What params to modify/use?
+4) Demonstrate feasibility:               Use a 'slice' of 2) + 3), extraction for limited features
+
+Context:                                  IoT, arbitrary environments/outdoors
+Semantic scene content:                   Abstraction level? 
+History:                                  Printed paper: address if the problem is solved/how well.
+Figures:                                  Highlight currently adjusting parameter
+                                          Duplicates: Explain the dichotomies
+ini Method:                               New name...
+Long term datasets:                       indoor/outdoor contradictions
+Bibliography:                             Make one
