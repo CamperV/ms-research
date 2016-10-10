@@ -3,11 +3,12 @@ CFLAGS=-I/usr/include/opencv -I/usr/include/opencv2 -I. -I include
 LIBS=`pkg-config --libs opencv`
 LIBDIR=-L/usr/local/include
 
-SOURCES=		envparams.cpp
+SOURCES=		envparams.cpp \
+						seqparams.cpp
 
 OBJS=$(SOURCES:.cpp=.o)
 
-TARGETS=envparams
+TARGETS=envparams seqparams
 
 %.o: %.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
