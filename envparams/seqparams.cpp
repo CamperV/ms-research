@@ -15,7 +15,6 @@ int main(int argc, char** argv) {
   Mat img, out;
 
   if(argc > 1) {
-    cout << "Opening image " << argv[1] << "..." << endl;
     infile = argv[1];
   } else {
     cout << "No input file specified: using DEFAULT." << endl;
@@ -24,6 +23,10 @@ int main(int argc, char** argv) {
   }
 
   img = imread(infile, CV_LOAD_IMAGE_COLOR);
+
+#ifdef DEBUG
+  cout << "Opening " << infile << "..." << endl;
+#endif
 
   if (!img.data) { 
     cout << "Image failed to open." << endl; 
@@ -34,7 +37,7 @@ int main(int argc, char** argv) {
   //namedWindow("Image 1", 1);
 
   Mat imgHSV;
-  cvtColor(out, imgHSV, CV_RGB2HSV);
+  cvtColor(img, imgHSV, CV_RGB2HSV);
 
   /* PROCESSING */
 
@@ -79,8 +82,12 @@ int main(int argc, char** argv) {
         break;
     }
   }
-
-  cout << "Avg Hue: " << hmean << "\tAvg Sat: " << smean << "\tAvg Val: " << vmean << endl;
+#ifdef DEBUG
+  cout << "Avg Hue: " << hmean << "\t\tAvg Sat: " << smean << "\t\tAvg Val: " << vmean << endl;
+#endif
+#ifndef DEBUG
+  cout << hmean << "," << smean << "," << vmean << endl;
+#endif
 
   /*
   for(;;) {

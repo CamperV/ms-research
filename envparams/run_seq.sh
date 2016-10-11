@@ -4,5 +4,5 @@ INDIR=$1
 
 for file in $INDIR/{.,}*;
 do
-  ./envparams "$file" $INDIR/gndtruth.jpg
+  ./seqparams "$file" >> seqparams.csv
 done

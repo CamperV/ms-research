@@ -16,8 +16,11 @@ TARGETS=envparams seqparams
 .PHONY: all
 all: $(TARGETS)
 
-$(TARGETS): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGETS) $(OBJS) $(LIBS) $(LIBDIR)
+envparams: envparams.o
+	$(CC) $(CFLAGS) -o envparams envparams.o $(LIBS) $(LIBDIR)
+
+seqparams: seqparams.o
+	$(CC) $(CFLAGS) -o seqparams seqparams.o $(LIBS) $(LIBDIR)
 
 .PHONY: clean
 clean: ; rm -rf $(OBJS) $(TARGETS)
