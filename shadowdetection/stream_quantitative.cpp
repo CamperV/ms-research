@@ -45,6 +45,8 @@ int main(int argc, char** argv) {
   Mat frame;
   capture >> frame;
 
+  namedWindow("Foreground", 1);
+
   if (!frame.data) { 
     cout << "Capture failed to open." << endl; 
     return -1; 
@@ -53,8 +55,12 @@ int main(int argc, char** argv) {
   Mat fg, bg;
   BackgroundSubtractorMOG2 MOG = BackgroundSubtractorMOG2();
   MOG.set("detectShadows", 0);
-  MOG.set("nmixtures", 3);
-  MOG.set("fTau", 0.65);
+  MOG.set("nmixtures", 5);
+
+  int ft = 0;
+  createTrackbar("ftau", "Foreground", &ft, 100);
+
+  double _ft;
 
 	// create shadow removers
 	ChromacityShadRem chr;
@@ -71,17 +77,23 @@ int main(int argc, char** argv) {
 
     capture >> frame;
 
+    _ft = ft/100.0;
+    MOG.set("fTau", 0.65);
+
     MOG(frame, fg);
     MOG.getBackgroundImage(bg);
 
     erode(fg, fg, Mat(), Point(-1,-1)); 
-    dilate(fg, fg, Mat(), Point(-1,-1)); 
+    dilate(fg, fg, Mat(), Point(-1,-1), 2); 
+    erode(fg, fg, Mat(), Point(-1,-1)); 
+    dilate(fg, fg, Mat(), Point(-1,-1), 1); 
+
 
     // remove shadows
 	  chr.removeShadows(frame, fg, bg, chrMask);
 	  phys.removeShadows(frame, fg, bg, physMask);
 	  geo.removeShadows(frame, fg, bg, geoMask);
-    srTex.removeShadows(frame, fg, bg, srTexMask);
+    //srTex.removeShadows(frame, fg, bg, srTexMask);
     lrTex.removeShadows(frame, fg, bg, lrTexMask);
 
     /*--------*/
@@ -121,14 +133,14 @@ int main(int argc, char** argv) {
     */
 
 	  // show results
-	  //imshow("Frame", frame);
+	  imshow("Frame", frame);
     imshow("Foreground", fg);
     //imshow("Background", bg);
-	  imshow("Chromacity", chrMask);
-	  imshow("Physical", physMask);
-	  imshow("Geometry", geoMask);
+	  //imshow("Chromacity", chrMask);
+	  //imshow("Physical", physMask);
+	  //imshow("Geometry", geoMask);
 	  //imshow("Small Region Texture", srTexMask);
-	  imshow("Large Region Texture", lrTexMask);
+	  //imshow("Large Region Texture", lrTexMask);
 
     if(waitKey(30) == 'q') break;
   }
