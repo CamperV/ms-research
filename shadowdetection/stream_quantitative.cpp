@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <unistd.h>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include <opencv2/video/background_segm.hpp>
@@ -57,10 +58,10 @@ int main(int argc, char** argv) {
   MOG.set("detectShadows", 0);
   MOG.set("nmixtures", 5);
 
-  int ft = 0;
-  createTrackbar("ftau", "Foreground", &ft, 100);
+  int lr = 0;
+  createTrackbar("Learning Rate", "Foreground", &lr, 100);
 
-  double _ft;
+  double _lr;
 
 	// create shadow removers
 	ChromacityShadRem chr;
@@ -76,25 +77,25 @@ int main(int argc, char** argv) {
   for(;;) {
 
     capture >> frame;
+    GaussianBlur(frame, frame, Size(5,5), 0, 0);
 
-    _ft = ft/100.0;
-    MOG.set("fTau", 0.65);
+    _lr = lr/100.0;
 
-    MOG(frame, fg);
+    //MOG(frame, fg, _lr);
+    MOG(frame, fg, 0.005);
     MOG.getBackgroundImage(bg);
 
-    erode(fg, fg, Mat(), Point(-1,-1)); 
-    dilate(fg, fg, Mat(), Point(-1,-1), 2); 
-    erode(fg, fg, Mat(), Point(-1,-1)); 
+    erode(fg, fg, Mat(), Point(-1,-1), 1); 
     dilate(fg, fg, Mat(), Point(-1,-1), 1); 
+    //erode(fg, fg, Mat(), Point(-1,-1)); 
 
 
     // remove shadows
-	  chr.removeShadows(frame, fg, bg, chrMask);
-	  phys.removeShadows(frame, fg, bg, physMask);
-	  geo.removeShadows(frame, fg, bg, geoMask);
+	  //chr.removeShadows(frame, fg, bg, chrMask);
+	  //phys.removeShadows(frame, fg, bg, physMask);
+	  //geo.removeShadows(frame, fg, bg, geoMask);
     //srTex.removeShadows(frame, fg, bg, srTexMask);
-    lrTex.removeShadows(frame, fg, bg, lrTexMask);
+    //lrTex.removeShadows(frame, fg, bg, lrTexMask);
 
     /*--------*/
     /* OUTPUT */
@@ -142,7 +143,8 @@ int main(int argc, char** argv) {
 	  //imshow("Small Region Texture", srTexMask);
 	  //imshow("Large Region Texture", lrTexMask);
 
-    if(waitKey(30) == 'q') break;
+
+    if(waitKey(10000000000) == 'q') break;
   }
 	return 0;
 }
