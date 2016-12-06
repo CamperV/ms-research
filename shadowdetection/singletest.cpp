@@ -77,9 +77,9 @@ int main(int argc, char** argv) {
 	Mat chrMask, physMask, geoMask, srTexMask, lrTexMask;
 
   // init windows
-  namedWindow("Chromacity", 1);
-  namedWindow("Geometry", 1);
-  namedWindow("Large Region Texture", 1);
+  namedWindow("Chromacity", CV_WINDOW_NORMAL);
+  namedWindow("Geometry", CV_WINDOW_NORMAL);
+  namedWindow("Large Region Texture", CV_WINDOW_NORMAL);
 
   /* TRACKBARS & PARAMS */
 

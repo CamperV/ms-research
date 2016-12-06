@@ -19,7 +19,7 @@ UTILS=			$(UTILDIR)/GaborFilter.cpp \
 OBJS=$(SOURCES:.cpp=.o)
 OBJS+=$(UTILS:.cpp=.o)
 
-TARGETS=shadowdetect singletest quantitative quantitative2 stream_quantitative
+TARGETS=shadowdetect singletest quantitative quantitative2 stream_quantitative make_fg
 
 $(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
@@ -44,6 +44,9 @@ quantitative2: quantitative2.o $(OBJS)
 
 stream_quantitative: stream_quantitative.o $(OBJS)
 	$(CC) $(CFLAGS) -o stream_quantitative stream_quantitative.o $(OBJS) $(LIBS) $(LIBDIR)
+
+make_fg: make_fg.o $(OBJS)
+	$(CC) $(CFLAGS) -o make_fg make_fg.o $(OBJS) $(LIBS) $(LIBDIR)
 
 .PHONY: clean
 clean: ; rm -rf $(OBJS) $(TARGETS)

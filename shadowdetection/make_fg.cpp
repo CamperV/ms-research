@@ -46,8 +46,6 @@ int main(int argc, char** argv) {
   Mat frame;
   capture >> frame;
 
-  namedWindow("Foreground", 1);
-
   if (!frame.data) { 
     cout << "Capture failed to open." << endl; 
     return -1; 
@@ -57,11 +55,6 @@ int main(int argc, char** argv) {
   BackgroundSubtractorMOG2 MOG = BackgroundSubtractorMOG2();
   MOG.set("detectShadows", 0);
   MOG.set("nmixtures", 5);
-
-  int lr = 0;
-  createTrackbar("Learning Rate", "Foreground", &lr, 100);
-
-  double _lr;
 
 	// create shadow removers
 	ChromacityShadRem chr;
@@ -80,9 +73,6 @@ int main(int argc, char** argv) {
     capture >> frame;
 
     GaussianBlur(frame, frame, Size(5,5), 0, 0);
-
-    _lr = lr/100.0;
-
    
     //MOG(frame, fg);
     //MOG(frame, fg, _lr);
@@ -91,21 +81,22 @@ int main(int argc, char** argv) {
 
     // write stream name
     stringstream ss;
-    ss << "bg/" << setw(5) << setfill('0') << framecounter << ".jpg";
+    ss << "output/PETs1/fg/" << setw(5) << setfill('0') << framecounter << ".jpg";
     cout << ss.str() << endl;
 
     erode(fg, fg, Mat(), Point(-1,-1), 1); 
     dilate(fg, fg, Mat(), Point(-1,-1), 1); 
 
 	  // show results
-	  imshow("Frame", frame);
-    imshow("Foreground", fg);
-    imshow("Background", bg);
+	  //imshow("Frame", frame);
+    //imshow("Foreground", fg);
+    //imshow("Background", bg);
     
-    imwrite(ss.str(), bg);
+    //imwrite(ss.str(), bg);
+    imwrite(ss.str(), fg);
 
     framecounter++;
-    if(waitKey(1000) == 'q') break;
+    if(waitKey(30) == 'q') break;
   }
 	return 0;
 }
