@@ -3,34 +3,37 @@ CFLAGS=-I/usr/include/opencv -I/usr/include/opencv2 -I. -I include
 LIBS=`pkg-config --libs opencv`
 LIBDIR=-L/usr/local/include
 
+BINDIR=bin
+
 UTILDIR=utils
 UTILS=			$(UTILDIR)/GaborFilter.cpp \
 						$(UTILDIR)/ConnComp.cpp $(UTILDIR)/ConnCompGroup.cpp \
 						$(UTILDIR)/GaussianMixtureModel.cpp \
 						$(UTILDIR)/VideoStats.cpp \
 						$(UTILDIR)/Metrics.cpp
-
 OBJS+=$(UTILS:.cpp=.o)
 
-TARGETS=envparams seqparams ccompparams
+SRCDIR=src
+SRC=				$(SRCDIR)/seqparams.cpp \
+						$(SRCDIR)/ccompparams.cpp
+
+TARGETS=$(BINDIR)/seqparams $(BINDIR)/ccompparams
 
 $(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
 
-%.o: %.cpp
+$(BINDIR)/%.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(BINDIR)
 	$(CC) -c -o $@ $^ $(CFLAGS)
 
 .PHONY: all
-all: $(TARGETS)
+all: $(TARGETS) 
 
-envparams: envparams.o
-	$(CC) $(CFLAGS) -o envparams envparams.o $(LIBS) $(LIBDIR)
+$(BINDIR)/seqparams: $(BINDIR)/seqparams.o $(OBJS)
+	$(CC) $(CFLAGS) -o $(BINDIR)/seqparams $(BINDIR)/seqparams.o $(LIBS) $(LIBDIR)
 
-seqparams: seqparams.o
-	$(CC) $(CFLAGS) -o seqparams seqparams.o $(LIBS) $(LIBDIR)
-
-ccompparams: ccompparams.o $(OBJS)
-	$(CC) $(CFLAGS) -o ccompparams ccompparams.o $(OBJS) $(LIBS) $(LIBDIR)
+$(BINDIR)/ccompparams: $(BINDIR)/ccompparams.o $(OBJS)
+	$(CC) $(CFLAGS) -o $(BINDIR)/ccompparams $(BINDIR)/ccompparams.o $(OBJS) $(LIBS) $(LIBDIR)
 
 .PHONY: clean
-clean: ; rm -rf $(OBJS) $(TARGETS)
+clean: ; rm -rf $(OBJS) $(TARGETS) $(BINDIR)
