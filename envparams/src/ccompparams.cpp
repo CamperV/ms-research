@@ -2,6 +2,11 @@
 // Jay Danner
 // ---
 
+/*
+ * NOTE: currently uses generated foreground and calcs ccomps.
+ * Use with cleaned ground truth in the future.
+ **/
+
 #include <iostream>
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
