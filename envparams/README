@@ -1,0 +1,8 @@
+Main dir contains scripts for running analytics on environments.
+
+src/: contains analytics src code
+bin/: contains compiled analytics; run by scripts in main dir
+include/: come on.
+utils/: utils for src/
+samples/: contains samples of datasets - divided into indiviudal frames.
+

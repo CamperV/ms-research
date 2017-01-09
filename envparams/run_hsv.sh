@@ -4,5 +4,5 @@ INDIR=$1
 
 for file in $INDIR/{.,}*;
 do
-  ./seqparams "$file" >> seqparams.csv  # HSV
+  ./hsvparams "$file" >> hsvparams.csv  # HSV
 done

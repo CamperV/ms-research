@@ -17,7 +17,7 @@ SRCDIR=src
 SRC=				$(SRCDIR)/seqparams.cpp \
 						$(SRCDIR)/ccompparams.cpp
 
-TARGETS=$(BINDIR)/seqparams $(BINDIR)/ccompparams
+TARGETS=$(BINDIR)/hsvparams $(BINDIR)/ccompparams
 
 $(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
@@ -29,8 +29,8 @@ $(BINDIR)/%.o: $(SRCDIR)/%.cpp
 .PHONY: all
 all: $(TARGETS) 
 
-$(BINDIR)/seqparams: $(BINDIR)/seqparams.o $(OBJS)
-	$(CC) $(CFLAGS) -o $(BINDIR)/seqparams $(BINDIR)/seqparams.o $(LIBS) $(LIBDIR)
+$(BINDIR)/hsvparams: $(BINDIR)/hsvparams.o $(OBJS)
+	$(CC) $(CFLAGS) -o $(BINDIR)/hsvparams $(BINDIR)/hsvparams.o $(LIBS) $(LIBDIR)
 
 $(BINDIR)/ccompparams: $(BINDIR)/ccompparams.o $(OBJS)
 	$(CC) $(CFLAGS) -o $(BINDIR)/ccompparams $(BINDIR)/ccompparams.o $(OBJS) $(LIBS) $(LIBDIR)
