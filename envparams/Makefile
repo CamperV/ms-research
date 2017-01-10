@@ -15,9 +15,10 @@ OBJS+=$(UTILS:.cpp=.o)
 
 SRCDIR=src
 SRC=				$(SRCDIR)/seqparams.cpp \
-						$(SRCDIR)/ccompparams.cpp
+						$(SRCDIR)/ccompparams.cpp \
+						$(SRCDIR)/siftparams.cpp
 
-TARGETS=$(BINDIR)/hsvparams $(BINDIR)/ccompparams
+TARGETS=$(BINDIR)/hsvparams $(BINDIR)/ccompparams $(BINDIR)/siftparams
 
 $(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
@@ -34,6 +35,9 @@ $(BINDIR)/hsvparams: $(BINDIR)/hsvparams.o $(OBJS)
 
 $(BINDIR)/ccompparams: $(BINDIR)/ccompparams.o $(OBJS)
 	$(CC) $(CFLAGS) -o $(BINDIR)/ccompparams $(BINDIR)/ccompparams.o $(OBJS) $(LIBS) $(LIBDIR)
+
+$(BINDIR)/siftparams: $(BINDIR)/siftparams.o $(OBJS)
+	$(CC) $(CFLAGS) -o $(BINDIR)/siftparams $(BINDIR)/siftparams.o $(OBJS) $(LIBS) $(LIBDIR)
 
 .PHONY: clean
 clean: ; rm -rf $(OBJS) $(TARGETS) $(BINDIR)
