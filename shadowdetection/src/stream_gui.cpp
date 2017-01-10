@@ -10,6 +10,8 @@
 //
 // ---
 // Jay Danner
+// Takes in a stream and shows shadow detection efficacy given tamperable parameters.
+// ('space' to pause)
 // ---
 
 #include <iostream>

@@ -1,15 +1,6 @@
-// Copyright (C) 2011 NICTA (www.nicta.com.au)
-// Copyright (C) 2011 Andres Sanin
-//
-// This file is provided without any warranty of fitness for any purpose.
-// You can redistribute this file and/or modify it under the terms of
-// the GNU General Public License (GPL) as published by the
-// Free Software Foundation, either version 3 of the License
-// or (at your option) any later version.
-// (see http://www.opensource.org/licenses for more info)
-//
 // ---
 // Jay Danner
+// Takes in an mp4 stream and outputs foreground frames.
 // ---
 
 #include <iostream>
@@ -74,8 +65,6 @@ int main(int argc, char** argv) {
 
     GaussianBlur(frame, frame, Size(5,5), 0, 0);
    
-    //MOG(frame, fg);
-    //MOG(frame, fg, _lr);
     MOG(frame, fg, 0.005);
     MOG.getBackgroundImage(bg);
 
@@ -87,16 +76,10 @@ int main(int argc, char** argv) {
     erode(fg, fg, Mat(), Point(-1,-1), 1); 
     dilate(fg, fg, Mat(), Point(-1,-1), 1); 
 
-	  // show results
-	  //imshow("Frame", frame);
-    //imshow("Foreground", fg);
-    //imshow("Background", bg);
-    
-    //imwrite(ss.str(), bg);
+    // write out frames
     imwrite(ss.str(), fg);
 
     framecounter++;
-    if(waitKey(30) == 'q') break;
   }
 	return 0;
 }

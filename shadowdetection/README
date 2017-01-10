@@ -16,3 +16,10 @@ Detection rate - correctly label the most shadow pixels
 Discrimination rate - preserving foreground pixels
 
 stream_quantitative: maker of MOG foregrounds.
+
+NOTE: The src code originally provided by Sanin et al. in lr/ is modified to accept .ini changes for maximum rapid customizability.
+
+testinimod.py
+---
+if 'gradMagThresh' in open('params.ini').read():
+  print "true"
