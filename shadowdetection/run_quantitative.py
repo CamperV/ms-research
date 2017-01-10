@@ -22,7 +22,7 @@ srDiscrim = 0
 lrDetect = 0
 lrDiscrim = 0
 
-process = subprocess.Popen(["./quantitative", filename, bgs, shadows], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+process = subprocess.Popen(["./bin/quantitative", filename, bgs, shadows], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 for line in process.stderr:
   splitline = line.strip("\n").split(",")
