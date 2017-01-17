@@ -1,0 +1,31 @@
+#!/bin/bash
+
+INDIR=$1
+SD=shadows
+BG=bgs
+FR=frames
+
+BINDIR=bin
+RESULTSDIR=results
+INDIR=$1
+
+TRIM=${@%/}
+TRIM=${TRIM##*/}
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: /bin/bash run_hsvobj.sh [samples]"
+  exit 1
+fi
+
+for file in $INDIR/$FR/{.,}*;
+do
+  if [ $(basename "$file") == "." ] || [ $(basename "$file") == ".." ]; then 
+    continue;
+  fi
+
+  filename=$(basename "$file") 
+  filename="${filename%.*}"
+
+  mkdir -p $RESULTSDIR/$TRIM
+  $BINDIR/hsvobjparams $file $INDIR/$BG/$filename.* $INDIR/$SD/$filename.* >> $RESULTSDIR/$TRIM/hsvobjparams.csv
+done
