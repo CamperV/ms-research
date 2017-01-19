@@ -17,7 +17,6 @@ echo "---"
 echo "NOTE: Be mindful of what GIST parameters you are looking for. Otherwise, information overload."
 echo "---"
 echo ""
-echo ""
 echo "---"
 echo "NOTE II - The Quickening: gistparams is a symlink to a binary made (via cmake). Make sure to build C++ wrapper LibGIST first. (https://github.com/tgsong/LibGIST)"
 echo "---"
@@ -26,8 +25,14 @@ echo "Using $1..."
 
 for file in $INDIR/{.,}*;
 do
+
+  if [ $(basename "$file") == "." ] || [ $(basename "$file") == ".." ]; then 
+    continue;
+  fi
+
   mkdir -p $RESULTSDIR/$TRIM
   $BINDIR/gistparams "$file" >> $RESULTSDIR/$TRIM/gistparams.csv  # GIST params
+  break
 done
 
 echo "Wrote to $RESULTSDIR/$TRIM/gistparams.csv"
