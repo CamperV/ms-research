@@ -37,8 +37,12 @@ int main(int argc, char** argv) {
   // start SIFT analysis
   int numSIFT;
   SiftFeatureDetector detector;
+
   vector<KeyPoint> keypoints;
   detector.detect(img, keypoints);
+
+  Mat descriptors;
+  detector.compute(img, keypoints, descriptors);
 
   numSIFT = keypoints.size();
 
