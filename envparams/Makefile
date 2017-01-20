@@ -18,13 +18,15 @@ SRC=				$(SRCDIR)/seqparams.cpp \
 						$(SRCDIR)/ccompparams.cpp \
 						$(SRCDIR)/siftparams.cpp \
 						$(SRCDIR)/hsvobjparams.cpp \
-						$(SRCDIR)/avgattenparams.cpp
+						$(SRCDIR)/avgattenparams.cpp \
+						$(SRCDIR)/bowparams.cpp
 
 TARGETS=$(BINDIR)/hsvparams \
 				$(BINDIR)/ccompparams \
 				$(BINDIR)/siftparams \
 				$(BINDIR)/hsvobjparams \
-				$(BINDIR)/avgattenparams
+				$(BINDIR)/avgattenparams \
+				$(BINDIR)/bowparams
 
 $(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
@@ -50,6 +52,9 @@ $(BINDIR)/hsvobjparams: $(BINDIR)/hsvobjparams.o $(OBJS)
 
 $(BINDIR)/avgattenparams: $(BINDIR)/avgattenparams.o $(OBJS)
 	$(CC) $(CFLAGS) -o $(BINDIR)/avgattenparams $(BINDIR)/avgattenparams.o $(OBJS) $(LIBS) $(LIBDIR)
+
+$(BINDIR)/bowparams: $(BINDIR)/bowparams.o $(OBJS)
+	$(CC) $(CFLAGS) -o $(BINDIR)/bowparams $(BINDIR)/bowparams.o $(OBJS) $(LIBS) $(LIBDIR)
 
 .PHONY: clean
 clean: ; rm -rf $(OBJS) $(TARGETS) $(BINDIR)
