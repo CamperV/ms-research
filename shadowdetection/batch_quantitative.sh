@@ -1,5 +1,6 @@
 #!/bin/bash
 
+RESULTSDIR=results
 INDIR=$1
 SD=shadows
 BG=bgs
@@ -23,6 +24,18 @@ if [ "$#" -ne 1 ]; then
   exit 1
 fi
 
+TRIM=${@%/}
+TRIM=${TRIM##*/}
+
+[ -e $RESULTSDIR/$TRIM/shadowdetection.csv ] && rm $RESULTSDIR/$TRIM/shadowdetection.csv
+
+echo ""
+echo "---"
+echo "NOTE: Run with shadowdetection/samples!"
+echo "---"
+echo ""
+echo "Using $1..."
+
 for file in $INDIR/$FR/{.,}*;
 do
   if [ $(basename "$file") == "." ] || [ $(basename "$file") == ".." ]; then 
@@ -32,9 +45,9 @@ do
   filename=$(basename "$file") 
   filename="${filename%.*}"
 
-  #./quantitative $file $INDIR/$BG/$filename.* $INDIR/$SD/$filename.*
+  mkdir -p $RESULTSDIR/$TRIM
   array=(`python run_quantitative.py $file $INDIR/$BG/$filename.* $INDIR/$SD/$filename.*`)
-  echo ${array[@]}
+  echo ${array[@]} >> $RESULTSDIR/$TRIM/shadowdetection.csv
 
   counter=$((++counter))
 
@@ -56,6 +69,7 @@ do
 done
 
 echo ""
+echo "Averages:"
 echo -n "C $(bc <<< "scale=4;$cDetect/$counter") $(bc <<< "scale=4;$cDiscrim/$counter") "
 echo -n "P $(bc <<< "scale=4;$pDetect/$counter") $(bc <<< "scale=4;$pDiscrim/$counter") "
 echo -n "G $(bc <<< "scale=4;$gDetect/$counter") $(bc <<< "scale=4;$gDiscrim/$counter") "

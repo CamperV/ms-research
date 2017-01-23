@@ -12,6 +12,8 @@ INDIR=$1
 TRIM=${@%/}
 TRIM=${TRIM##*/}
 
+[ -e $RESULTSDIR/$TRIM/hsvobjparams.csv ] && rm $RESULTSDIR/$TRIM/hsvobjparams.csv
+
 if [ "$#" -ne 1 ]; then
   echo "Usage: /bin/bash run_hsvobj.sh [samples]"
   exit 1
@@ -27,6 +29,10 @@ echo "Using $1..."
 for file in $INDIR/$FR/{.,}*;
 do
   if [ $(basename "$file") == "." ] || [ $(basename "$file") == ".." ]; then 
+    continue;
+  fi
+
+  if [ $(basename "$file") == "fg" ] || [ $(basename "$file") == "bgs" ]; then 
     continue;
   fi
 
