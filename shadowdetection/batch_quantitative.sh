@@ -34,6 +34,10 @@ echo "---"
 echo "NOTE: Run with shadowdetection/samples!"
 echo "---"
 echo ""
+echo "---"
+echo "NOTE II - The Quickening: Order in CSV is: Chromacity (C), Physical (P), Geometry (G), Small Region (SR), Large Region (LR)"
+echo "---"
+echo ""
 echo "Using $1..."
 
 for file in $INDIR/$FR/{.,}*;
@@ -46,25 +50,26 @@ do
   filename="${filename%.*}"
 
   mkdir -p $RESULTSDIR/$TRIM
-  array=(`python run_quantitative.py $file $INDIR/$BG/$filename.* $INDIR/$SD/$filename.*`)
+  #array=(`python run_quantitative.py $file $INDIR/$BG/$filename.* $INDIR/$SD/$filename.*`)
+  array=($(python run_quantitative.py $file $INDIR/$BG/$filename.* $INDIR/$SD/$filename.*))
   echo ${array[@]} >> $RESULTSDIR/$TRIM/shadowdetection.csv
 
   counter=$((++counter))
 
-  cDetect=$(bc <<< "$cDetect+${array[1]}")
-  cDiscrim=$(bc <<< "$cDiscrim+${array[2]}")
+  cDetect=$(bc <<< "$cDetect+${array[0]}")
+  cDiscrim=$(bc <<< "$cDiscrim+${array[1]}")
 
-  pDetect=$(bc <<< "$pDetect+${array[4]}")
-  pDiscrim=$(bc <<< "$pDiscrim+${array[5]}")
+  pDetect=$(bc <<< "$pDetect+${array[2]}")
+  pDiscrim=$(bc <<< "$pDiscrim+${array[3]}")
 
-  gDetect=$(bc <<< "$gDetect+${array[7]}")
-  gDiscrim=$(bc <<< "$gDiscrim+${array[8]}")
+  gDetect=$(bc <<< "$gDetect+${array[4]}")
+  gDiscrim=$(bc <<< "$gDiscrim+${array[5]}")
 
-  srDetect=$(bc <<< "$srDetect+${array[10]}")
-  srDiscrim=$(bc <<< "$srDiscrim+${array[11]}")
+  srDetect=$(bc <<< "$srDetect+${array[6]}")
+  srDiscrim=$(bc <<< "$srDiscrim+${array[7]}")
 
-  lrDetect=$(bc <<< "$lrDetect+${array[13]}")
-  lrDiscrim=$(bc <<< "$lrDiscrim+${array[14]}")
+  lrDetect=$(bc <<< "$lrDetect+${array[8]}")
+  lrDiscrim=$(bc <<< "$lrDiscrim+${array[9]}")
 
 done
 

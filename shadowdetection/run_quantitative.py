@@ -27,7 +27,8 @@ process = subprocess.Popen(["./bin/quantitative", filename, bgs, shadows], stdou
 for line in process.stderr:
   splitline = line.strip("\n").split(",")
 
-  print splitline[0] + " " + splitline[1] + " " + splitline[2]
+  #print splitline[0] + "," + splitline[1] + ";" + splitline[2]
+  print splitline[1] + " " + splitline[2]
 
   if(splitline[0] == "C"):
     cDetect += float(splitline[1])
