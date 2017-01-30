@@ -38,6 +38,9 @@ echo "---"
 echo "NOTE II - The Quickening: Order in CSV is: Chromacity (C), Physical (P), Geometry (G), Small Region (SR), Large Region (LR)"
 echo "---"
 echo ""
+echo "---"
+echo "NOTE III - The Sorcerer: This is the only use for run_quantitative.py."
+echo "---"
 echo "Using $1..."
 
 for file in $INDIR/$FR/{.,}*;

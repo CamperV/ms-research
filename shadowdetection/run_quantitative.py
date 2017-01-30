@@ -1,3 +1,4 @@
+# Not to be used outside of ./batch_quantitative.sh
 # a python script for running and collecting the outputs of C++ program 'quantitative.'
 
 import sys
