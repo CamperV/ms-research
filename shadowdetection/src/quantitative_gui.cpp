@@ -77,9 +77,10 @@ int main(int argc, char** argv) {
 	Mat chrMask, physMask, geoMask, srTexMask, lrTexMask;
 
   // init windows
-  namedWindow("Chromacity", CV_WINDOW_NORMAL);
-  namedWindow("Geometry", CV_WINDOW_NORMAL);
-  namedWindow("Large Region Texture", CV_WINDOW_NORMAL);
+  //namedWindow("Chromacity", CV_WINDOW_NORMAL);
+  namedWindow("Physical", CV_WINDOW_NORMAL);
+  //namedWindow("Geometry", CV_WINDOW_NORMAL);
+  //namedWindow("Large Region Texture", CV_WINDOW_NORMAL);
 
   /* TRACKBARS & PARAMS */
 
@@ -91,6 +92,29 @@ int main(int argc, char** argv) {
   createTrackbar("sThresh", "Chromacity", &chr.params.sThresh, 255);
   createTrackbar("vThreshUpper", "Chromacity", &vThreshUpperInt, 100);
   createTrackbar("vThreshLower", "Chromacity", &vThreshLowerInt, 100);
+
+  // Physical
+  int coneAngleInt = 157;             // /1000 (0.15707963267)
+  int coneR1Int = 300;                // /1000 (0.3)
+  int coneR2Int = 1000;               // /1000 (1.0)
+  int gmmLearningRateInt = 100;       // /1000 (0.1)
+  int gmmAccumWeightThreshInt = 700;  // /1000 (0.7)
+  int postThreshInt = 150;            // /1000 (.15)
+
+  int weightSmootTermInt = 4;
+  int gmmInitVarInt = 30;
+  int gmmStdThresholdInt = 2;
+
+  createTrackbar("coneAngle", "Physical", &coneAngleInt, round(CV_PI*1000));
+  createTrackbar("coneR1", "Physical", &coneR1Int, 1000);
+  createTrackbar("coneR2", "Physical", &coneR2Int, 2000);
+  createTrackbar("weightSmootTerm", "Physical", &weightSmootTermInt, 8); // (=4)
+  createTrackbar("gmmGaussians", "Physical", &phys.params.gmmGaussians, 10); // (=5)
+  createTrackbar("gmmInitVar", "Physical", &gmmInitVarInt, 60); // (=30)
+  createTrackbar("gmmStdThreshold", "Physical", &gmmStdThresholdInt, 10); // (=2)
+  createTrackbar("gmmLearningRate", "Physical", &gmmLearningRateInt, 1000);
+  createTrackbar("gmmAccumWeightThresh", "Physical", &gmmAccumWeightThreshInt, 1000);
+  createTrackbar("postThresh", "Physical", &postThreshInt, 1000);
 
   // Geometry
   int gWeightInt = 70;
@@ -168,6 +192,16 @@ int main(int argc, char** argv) {
     chr.params.vThreshUpper = (float)vThreshUpperInt / 100.0;
     chr.params.vThreshLower = (float)vThreshLowerInt / 100.0;
 
+    phys.params.coneAngle = (float)coneAngleInt / 1000.0;
+    phys.params.coneR1 = (float)coneR1Int / 1000.0;
+    phys.params.coneR2 = (float)coneR2Int / 1000.0;
+    phys.params.weightSmootTerm = (float)weightSmootTermInt;
+    phys.params.gmmInitVar = (float)gmmInitVarInt;
+    phys.params.gmmLearningRate = (float)gmmLearningRateInt / 1000.0;
+    phys.params.gmmAccumWeightThresh = (float)gmmAccumWeightThreshInt / 1000.0;
+    phys.params.postThresh = (float)postThreshInt / 1000.0;
+    phys.params.gmmStdThreshold = (float)gmmStdThresholdInt;
+
     lrTex.params.avgSatThresh = (float)avgSatThreshInt;
     lrTex.params.avgAttenThresh = (float)avgAttenThreshInt / 100.0;
     lrTex.params.vThreshUpperLowAtten = (float)vThreshUpperLowAttenInt / 100.0;
@@ -196,6 +230,7 @@ int main(int argc, char** argv) {
 	  lrTex.removeShadows(frame, fg, bg, lrTexMask, shadowMask);
 #else
 	  chr.removeShadows(frame, fg, bg, chrMask);
+    phys.removeShadows(frame, fg, bg, physMask);
 	  lrTex.removeShadows(frame, fg, bg, lrTexMask);
     geo.removeShadows(frame, fg, bg, geoMask);
 #endif
@@ -204,21 +239,22 @@ int main(int argc, char** argv) {
 
     stringstream str;
 
-    str << "Detection Rate: " << 100*calcDetectRate(geoMask, shadows);
-    putText(geoMask, str.str(), Point(10,25), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+    str << "Detection Rate: " << 100*calcDetectRate(physMask, shadows);
+    putText(physMask, str.str(), Point(10,25), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
             Scalar(50,50,200), 1, CV_AA);
 
     str.str("");
-    str << "Discrimination Rate: " << 100*calcDiscrimRate(geoMask, shadows);
-    putText(geoMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+    str << "Discrimination Rate: " << 100*calcDiscrimRate(physMask, shadows);
+    putText(physMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
             Scalar(50,50,200), 1, CV_AA);
 
 	  // show results
 	  imshow("Frame", frame);
     imshow("Ground Truth", shadows);
-	  imshow("Chromacity", chrMask);
-    imshow("Geometry", geoMask);
-	  imshow("Large Region Texture", lrTexMask);
+	  //imshow("Chromacity", chrMask);
+	  imshow("Physical", physMask);
+    //imshow("Geometry", geoMask);
+	  //imshow("Large Region Texture", lrTexMask);
 
 
     if(waitKey(30) == 'q') break;

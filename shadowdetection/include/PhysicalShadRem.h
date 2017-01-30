@@ -31,10 +31,13 @@ class PhysicalShadRem {
 
 		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
 
+    // made public for trackbars
+		PhysicalShadRemParams params;
+
 	private:
 		static const float BGR2GRAY[];
 
-		PhysicalShadRemParams params;
+		//PhysicalShadRemParams params;
 
 		GaussianMixtureModel gmm;
 		cv::Mat features;
