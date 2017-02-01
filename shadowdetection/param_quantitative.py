@@ -35,9 +35,11 @@ try:
   rangeline = sys.argv[3].split(",")
   upperrange = rangeline[0]
   step = rangeline[1]
+
+  mode = sys.argv[4]
 except:
-  print "usage: python param_quantitative.py [indir] [method,.ini param] [range ceil,step]"
-  print "ex: python param_quantitative.py ./samples/PETs1 P,coneAngle 3.5,0.1"
+  print "usage: python param_quantitative.py [indir] [method,.ini param] [range ceil,step] [mode (graph/optimal)]"
+  print "ex: python param_quantitative.py ./samples/PETs1 P,coneAngle 3.5,0.1, graph"
   sys.exit(0)
 
 # build paths
@@ -73,18 +75,39 @@ config = ConfigParser()
 config.optionxform = str  # make sure to not strip capitals
 config.read('default.ini')
 
+# init axes for mode = 'graph'
 xaxis = []
 yaxis = list(frange(0, float(upperrange), float(step)))
 zaxis = []
 
-print "Processing..."
-
-# processing
+# init listdir
 listing = os.listdir(frames_path)
+
+# init vars for mode = 'optimal'
+# don't need to store score
+opt = [0]*len(listing)
+dd = [0]*len(listing)
+prev_opt = opt
+prev_prev_opt = prev_opt
+
+# score init
+dd_score = 0
+prev_dd_score = dd_score
+
+# for iterating within the opt[] list
+counter = 0
+
+print "Processing..."
+# processing
 for infile in sorted(listing):
   fr = frames_path+infile
   bg = bgs_path+infile
   sh = shadows_path+infile
+
+  prev_prev_opt = prev_opt
+  prev_opt = opt
+
+  prev_dd_score = dd_score
 
   # store filename (x-axis)
   xaxis.append(int(infile.split('.')[0]))
@@ -104,22 +127,37 @@ for infile in sorted(listing):
   
     for line in process.stderr:
       splitline = line.strip("\n").split(",")
-  
       if(splitline[0] == section):
         zaxis.append(float(splitline[1])) # detection
 
+        # calculate score here
+        dd_score = float(splitline[1]) + float(splitline[2])
+        print val
+        print dd_score
+
+        # 'more optimal'
+        if(dd_score >= prev_dd_score):
+          opt[counter] = val
+          dd[counter] = dd_score
+
+  counter += 1
+
+print opt
+print dd
+
 # plot here
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-
-xs = np.array(xaxis)
-ys = np.array(yaxis)
-zs = np.array(zaxis).reshape(ys.size,xs.size)
-
-xs, ys = np.meshgrid(xs, ys)
-
-# surface graph
-ax.plot_surface(xs, ys, zs)
-
-plt.show()
+if(mode == "graph"):
+  fig = plt.figure()
+  ax = fig.gca(projection='3d')
+  
+  xs = np.array(xaxis)
+  ys = np.array(yaxis)
+  zs = np.array(zaxis).reshape(ys.size,xs.size)
+  
+  xs, ys = np.meshgrid(xs, ys)
+  
+  # surface graph
+  ax.plot_surface(xs, ys, zs)
+  
+  plt.show()
       
