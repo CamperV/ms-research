@@ -254,8 +254,8 @@ int main(int argc, char** argv) {
             Scalar(50,50,200), 1, CV_AA);
 
 	  // show results
-	  imshow("Frame", frame);
-    imshow("Ground Truth", shadows);
+	  //imshow("Frame", frame);
+    //imshow("Ground Truth", shadows);
 	  //imshow("Chromacity", chrMask);
 	  imshow("Physical", physMask);
     //imshow("Geometry", geoMask);
