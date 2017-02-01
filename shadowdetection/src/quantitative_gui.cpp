@@ -248,6 +248,11 @@ int main(int argc, char** argv) {
     putText(physMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
             Scalar(50,50,200), 1, CV_AA);
 
+    str.str("");
+    str << "Score: " << 100*calcDiscrimRate(physMask, shadows) + 100*calcDetectRate(physMask, shadows);
+    putText(physMask, str.str(), Point(10,65), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+            Scalar(50,50,200), 1, CV_AA);
+
 	  // show results
 	  imshow("Frame", frame);
     imshow("Ground Truth", shadows);
