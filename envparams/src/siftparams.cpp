@@ -36,21 +36,32 @@ int main(int argc, char** argv) {
 
   // start SIFT analysis
   int numSIFT;
+  int numSIFT_lowc;
   SiftFeatureDetector detector;
+  SiftFeatureDetector detector_lowc(0,3,0.01,10,1.6);
 
   vector<KeyPoint> keypoints;
   detector.detect(img, keypoints);
+
+  vector<KeyPoint> keypoints_lowc;
+  detector_lowc.detect(img, keypoints_lowc);
 
   Mat descriptors;
   detector.compute(img, keypoints, descriptors);
 
   numSIFT = keypoints.size();
 
+  Mat descriptors_lowc;
+  detector_lowc.compute(img, keypoints_lowc, descriptors_lowc);
+
+  numSIFT_lowc = keypoints_lowc.size();
+
 #ifdef DEBUG
   cout << "Number of SIFT features: " << numSIFT << endl;
 #endif
 #ifndef DEBUG
-  cout << numSIFT << endl;
+  cout << numSIFT << "," << numSIFT_lowc << "," 
+       << numSIFT_lowc-numSIFT << "," << (float)numSIFT/(float)numSIFT_lowc << endl;
 #endif
 	return 0;
 }
