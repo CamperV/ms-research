@@ -70,6 +70,9 @@ for line in open('default.ini'):
     param_val = float(splitline[-1])
     print "Init val of " + param + ": " + str(param_val)
 
+print "\n"
+print indir + "," + str(paramline) + "," + str(rangeline)
+
 # ConfigParser impl
 config = ConfigParser()
 config.optionxform = str  # make sure to not strip capitals
@@ -86,13 +89,11 @@ listing = os.listdir(frames_path)
 # init vars for mode = 'optimal'
 # don't need to store score
 opt = [0]*len(listing)
-dd = [0]*len(listing)
 prev_opt = opt
 prev_prev_opt = prev_opt
 
 # score init
-dd_score = 0
-prev_dd_score = dd_score
+dd = [0]*len(listing)
 
 # for iterating within the opt[] list
 counter = 0
@@ -103,11 +104,6 @@ for infile in sorted(listing):
   fr = frames_path+infile
   bg = bgs_path+infile
   sh = shadows_path+infile
-
-  prev_prev_opt = prev_opt
-  prev_opt = opt
-
-  prev_dd_score = dd_score
 
   # store filename (x-axis)
   xaxis.append(int(infile.split('.')[0]))
@@ -132,18 +128,20 @@ for infile in sorted(listing):
 
         # calculate score here
         dd_score = float(splitline[1]) + float(splitline[2])
-        print val
-        print dd_score
 
         # 'more optimal'
-        if(dd_score >= prev_dd_score):
+        if(dd_score >= dd[counter]):
+          prev_prev_opt[counter] = prev_opt[counter]
+          prev_opt[counter] = opt[counter]
           opt[counter] = val
           dd[counter] = dd_score
 
   counter += 1
 
-print opt
-print dd
+print "opt: " + str(opt)
+print "prev_opt: " + str(prev_opt)
+print "prev_prev_opt: " + str(prev_prev_opt)
+print "dd: " + str(dd)
 
 # plot here
 if(mode == "graph"):
