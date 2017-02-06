@@ -17,6 +17,7 @@ SRCDIR=src
 SRC=				$(SRCDIR)/seqparams.cpp \
 						$(SRCDIR)/ccompparams.cpp \
 						$(SRCDIR)/siftparams.cpp \
+						$(SRCDIR)/bgsiftparams.cpp \
 						$(SRCDIR)/hsvobjparams.cpp \
 						$(SRCDIR)/avgattenparams.cpp \
 						$(SRCDIR)/bowparams.cpp
@@ -24,6 +25,7 @@ SRC=				$(SRCDIR)/seqparams.cpp \
 TARGETS=$(BINDIR)/hsvparams \
 				$(BINDIR)/ccompparams \
 				$(BINDIR)/siftparams \
+				$(BINDIR)/bgsiftparams \
 				$(BINDIR)/hsvobjparams \
 				$(BINDIR)/avgattenparams \
 				$(BINDIR)/bowparams
@@ -36,7 +38,7 @@ $(BINDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
 
 .PHONY: all
-all: $(TARGETS) 
+all: $(TARGETS)
 
 $(BINDIR)/hsvparams: $(BINDIR)/hsvparams.o $(OBJS)
 	$(CC) $(CFLAGS) -o $(BINDIR)/hsvparams $(BINDIR)/hsvparams.o $(LIBS) $(LIBDIR)
@@ -46,6 +48,9 @@ $(BINDIR)/ccompparams: $(BINDIR)/ccompparams.o $(OBJS)
 
 $(BINDIR)/siftparams: $(BINDIR)/siftparams.o $(OBJS)
 	$(CC) $(CFLAGS) -o $(BINDIR)/siftparams $(BINDIR)/siftparams.o $(OBJS) $(LIBS) $(LIBDIR)
+
+$(BINDIR)/bgsiftparams: $(BINDIR)/bgsiftparams.o $(OBJS)
+	$(CC) $(CFLAGS) -o $(BINDIR)/bgsiftparams $(BINDIR)/bgsiftparams.o $(OBJS) $(LIBS) $(LIBDIR)
 
 $(BINDIR)/hsvobjparams: $(BINDIR)/hsvobjparams.o $(OBJS)
 	$(CC) $(CFLAGS) -o $(BINDIR)/hsvobjparams $(BINDIR)/hsvobjparams.o $(OBJS) $(LIBS) $(LIBDIR)

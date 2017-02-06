@@ -23,11 +23,11 @@ echo "Using $1..."
 
 for file in $INDIR/{.,}*;
 do
-  if [ $(basename "$file") == "." ] || [ $(basename "$file") == ".." ]; then 
+  if [ $(basename "$file") == "." ] || [ $(basename "$file") == ".." ]; then
     continue;
   fi
 
-  if [ $(basename "$file") == "fg" ] || [ $(basename "$file") == "bgs" ]; then 
+  if [ $(basename "$file") == "fg" ] || [ $(basename "$file") == "bgs" ]; then
     continue;
   fi
 
