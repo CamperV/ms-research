@@ -13,6 +13,7 @@ using namespace std;
 using namespace cv;
 
 float frameAvgAttenuation(const cv::Mat& hsvFrame, const cv::Mat& hsvBg, const cv::Mat& fg);
+float frameAvgAttenuationAll(const cv::Mat& hsvFrame, const cv::Mat& hsvBg, const cv::Mat& fg);
 
 int main(int argc, char** argv) {
 
@@ -33,9 +34,9 @@ int main(int argc, char** argv) {
   Mat bg = imread(argv[2]);
   Mat shadows = imread(argv[3], CV_LOAD_IMAGE_GRAYSCALE);
 
-  if (!img.data) { 
-    cout << "Image failed to open." << endl; 
-    return -1; 
+  if (!img.data) {
+    cout << "Image failed to open." << endl;
+    return -1;
   }
 
   // thresh shadows to fg objects
@@ -48,12 +49,13 @@ int main(int argc, char** argv) {
   /* PROCESSING */
 
   float avgatten = frameAvgAttenuation(imgHSV, bgHSV, shadows);
+  float avgattenall = frameAvgAttenuationAll(imgHSV, bgHSV, shadows);
 
 #ifdef DEBUG
-  cout << "Avg Atten: " << avgatten << endl;
+  cout << "Avg Atten: " << avgatten << "," << avgattenall << endl;
 #endif
 #ifndef DEBUG
-  cout << avgatten << endl;
+  cout << avgatten << "," << avgattenall << endl;
 #endif
 
 	return 0;
@@ -82,6 +84,30 @@ float frameAvgAttenuation(const cv::Mat& hsvFrame, const cv::Mat& hsvBg, const c
 					avgAtten += atten;
 					++count;
 				}
+			}
+		}
+	}
+
+	if (count > 0) {
+		avgAtten /= count;
+	}
+
+	return avgAtten;
+}
+
+float frameAvgAttenuationAll(const cv::Mat& hsvFrame, const cv::Mat& hsvBg, const cv::Mat& fg) {
+	float avgAtten = 0;
+	int count = 0;
+	for (int y = 0; y < hsvFrame.rows; ++y) {
+		const uchar* fgPtr = fg.ptr(y);
+		const uchar* framePtr = hsvFrame.ptr(y);
+		const uchar* bgPtr = hsvBg.ptr(y);
+
+		for (int x = 0; x < hsvFrame.cols; ++x) {
+			if (fgPtr[x] > 0) {
+				float atten = (float) (10 + bgPtr[x * 3 + 2]) / (10 + framePtr[x * 3 + 2]);
+				avgAtten += atten;
+				++count;
 			}
 		}
 	}

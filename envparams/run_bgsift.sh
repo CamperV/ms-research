@@ -40,7 +40,7 @@ do
   filename="${filename%.*}"
 
   mkdir -p $RESULTSDIR/$TRIM
-  $BINDIR/avgattenparams $file $INDIR/$BG/$filename.* >> $RESULTSDIR/$TRIM/bgsiftparams.csv
+  $BINDIR/bgsiftparams $file $INDIR/$BG/$filename.* 0 >> $RESULTSDIR/$TRIM/bgsiftparams.csv
 done
 
 echo "Wrote to $RESULTSDIR/$TRIM/bgsiftparams.csv"

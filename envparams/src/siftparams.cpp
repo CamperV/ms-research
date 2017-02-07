@@ -56,24 +56,28 @@ int main(int argc, char** argv) {
   vector<KeyPoint> keypoints_lowc;
   Mat descriptors_lowc;
   ///
+  keypoints_lowc.clear();
   detector_lowc0.detect(img, keypoints_lowc);
   detector_lowc0.compute(img, keypoints_lowc, descriptors_lowc);
   ///
   numSIFT_lowc0 = keypoints_lowc.size();
 
   ///
+  keypoints_lowc.clear();
   detector_lowc1.detect(img, keypoints_lowc);
   detector_lowc1.compute(img, keypoints_lowc, descriptors_lowc);
   ///
   numSIFT_lowc1 = keypoints_lowc.size();
 
   ///
+  keypoints_lowc.clear();
   detector_lowc2.detect(img, keypoints_lowc);
   detector_lowc2.compute(img, keypoints_lowc, descriptors_lowc);
   ///
   numSIFT_lowc2 = keypoints_lowc.size();
 
   ///
+  keypoints_lowc.clear();
   detector_lowc3.detect(img, keypoints_lowc);
   detector_lowc3.compute(img, keypoints_lowc, descriptors_lowc);
   ///
