@@ -26,3 +26,13 @@
 *.exe
 *.out
 *.app
+
+# specfic symlinks
+datasets
+lrtex
+images
+
+#specific build directories
+envparams/LibGIST/build
+envparams/bin
+shadowdetection/bin
