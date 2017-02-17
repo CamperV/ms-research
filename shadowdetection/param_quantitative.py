@@ -94,6 +94,8 @@ prev_prev_opt = prev_opt
 
 # score init
 dd = [0]*len(listing)
+det = [0]*len(listing)
+dis = [0]*len(listing)
 
 # for iterating within the opt[] list
 counter = 0
@@ -135,13 +137,17 @@ for infile in sorted(listing):
           prev_opt[counter] = opt[counter]
           opt[counter] = val
           dd[counter] = dd_score
+          det[counter] = float(splitline[1])
+          dis[counter] = float(splitline[2])
 
   counter += 1
 
 print "opt: " + str(opt)
-print "prev_opt: " + str(prev_opt)
-print "prev_prev_opt: " + str(prev_prev_opt)
+#print "prev_opt: " + str(prev_opt)
+#print "prev_prev_opt: " + str(prev_prev_opt)
 print "dd: " + str(dd)
+print "det: " + str(det)
+print "dis: " + str(dis)
 
 # plot here
 if(mode == "graph"):
