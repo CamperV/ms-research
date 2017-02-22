@@ -5,6 +5,8 @@ SD=shadows
 BG=bgs
 FR=frames
 
+EXT=jpg
+
 if [ "$#" -ne 1 ]; then
   echo "Usage: /bin/bash rename_files.sh [samples]"
   exit 1
@@ -24,8 +26,8 @@ do
   filename_ext="${filename#*.}"
   filename_num="${filename_str##*_}"
 
-  echo "$file  ->  $INDIR/$FR/$filename_num.$filename_ext"
-  mv $file $INDIR/$FR/$filename_num.$filename_ext
+  echo "$file  ->  $INDIR/$FR/$filename_num.$EXT"
+  mv $file $INDIR/$FR/$filename_num.$EXT
 
 done
 
@@ -40,8 +42,8 @@ do
   filename_ext="${filename#*.}"
   filename_num="${filename_str##*_}"
 
-  echo "$file  ->  $INDIR/$BG/$filename_num.$filename_ext"
-  mv $file $INDIR/$BG/$filename_num.$filename_ext
+  echo "$file  ->  $INDIR/$BG/$filename_num.$EXT"
+  mv $file $INDIR/$BG/$filename_num.$EXT
 
 done
 
@@ -56,7 +58,7 @@ do
   filename_ext="${filename#*.}"
   filename_num="${filename_str##*_}"
 
-  echo "$file  ->  $INDIR/$SD/$filename_num.$filename_ext"
-  mv $file $INDIR/$SD/$filename_num.$filename_ext
+  echo "$file  ->  $INDIR/$SD/$filename_num.$EXT"
+  mv $file $INDIR/$SD/$filename_num.$EXT
 
 done
