@@ -32,7 +32,6 @@ do
 
   mkdir -p $RESULTSDIR/$TRIM
   $BINDIR/gistparams "$file" >> $RESULTSDIR/$TRIM/gistparams.csv  # GIST params
-  break
 done
 
 echo "Wrote to $RESULTSDIR/$TRIM/gistparams.csv"
