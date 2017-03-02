@@ -39,8 +39,10 @@ for infile in sorted(listing):
   fr_img = cv2.imread(fr)
   bg_img = cv2.imread(bg)
   rows,cols,channels = fr_img.shape
-  roi_w = cols/10   # 64 px
-  roi_h = rows/10   # 48 px
+  roi_w = cols/20   # 64 px
+  roi_h = rows/20   # 48 px
+  #roi_w = cols   # 64 px
+  #roi_h = rows   # 48 px
 
   # mask for visualizing gistance
   intensity_mask = np.zeros((rows,cols,channels), np.uint8)
@@ -54,6 +56,7 @@ for infile in sorted(listing):
 
           fr_sstream = "fr_"+str(x)+"_"+str(y)+".jpg"
           bg_sstream = "bg_"+str(x)+"_"+str(y)+".jpg"
+          #bg_sstream = "gist_3.jpg"
 
           cv2.imwrite(fr_sstream, roi_fr)
           cv2.imwrite(bg_sstream, roi_bg)
@@ -75,7 +78,7 @@ for infile in sorted(listing):
 
           # find Euclidean distance between the two GIST descriptors
           gistance = np.linalg.norm(fr_gist-bg_gist)
-          #print gistance
+          #print bg_sstream + " " + str(gistance)
 
           os.remove(fr_sstream)
           os.remove(bg_sstream)
