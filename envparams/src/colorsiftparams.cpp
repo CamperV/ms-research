@@ -69,19 +69,20 @@ int main(int argc, char** argv) {
   float bgrS = ratioSIFT(hsv_bg_channels[1], 0.01);
   float bgrV = ratioSIFT(hsv_bg_channels[2], 0.01);
 
-//  cout  << ratio << ","
-//        << bg_ratio << ","
-//        << ratio-bg_ratio << ","
-//        << rH << ","
-//        << rS << ","
-//        << rV << ","
-//        << bgrH << ","
-//        << bgrS << ","
-//        << bgrV
-//        << endl;
+  //cout  << ratio << ","
+  //      << bg_ratio << ","
+  //      << ratio-bg_ratio << ","
+  //      << rH << ","
+  cout << rS << ","
+  //      << rV << ","
+  //      << bgrH << ","
+        << bgrS << ","
+        << (float)rS/(float)bgrS
+  //      << bgrV
+        << endl;
 
   // for aArS
-  cout << (float)rS/(float)bgrS << endl;
+  //cout << (float)rS/(float)bgrS << endl;
 
   // only for visualization
   if(view) {
@@ -114,12 +115,12 @@ int main(int argc, char** argv) {
 
     //imshow("kpImg", kpImg);
     //imshow("kpImg_bg", kpImg_bg);
-    //imshow("kpH", kpH);
+    imshow("kpH", kpH);
     imshow("kpS", kpS);
-    //imshow("kpV", kpV);
-    //imshow("kpbgH", kpbgH);
+    imshow("kpV", kpV);
+    imshow("kpbgH", kpbgH);
     imshow("kpbgS", kpbgS);
-    //imshow("kpbgV", kpbgV);
+    imshow("kpbgV", kpbgV);
   }
 
   waitKey(0);
@@ -132,7 +133,7 @@ vector<KeyPoint> vectorSIFT(Mat img) {
   int numSIFT_lowc;
 
   // default is 0.04 for contrast threshold
-  SiftFeatureDetector detector;
+  SiftFeatureDetector detector(0,3,0.04,10,1.6);
   SiftFeatureDetector detector_lowc(0,3,0.01,10,1.6);
 
   vector<KeyPoint> keypoints;
@@ -207,7 +208,7 @@ void showHSV(Mat in, vector<Mat>& channels){
 	// Color Range => H: 0 to 179, S: 0 to 255, V: 0 to 255
 	std::string hsv_labels[3] = {"[H]ue", "[S]aturation", "[V]alue"};
 	double std_values[3][3] = {{1, 255, 255}, {179, 1, 255}, {179, 0, 1}};
-	showChannels(in, channels, hsv_labels, std_values, COLOR_HSV2BGR);
+	//showChannels(in, channels, hsv_labels, std_values, COLOR_HSV2BGR);
 }
 
 void showChannels(Mat in, vector<Mat>& channel, std::string labels[], double scalar[][3], int convertBack){
