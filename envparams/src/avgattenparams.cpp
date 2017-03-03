@@ -73,9 +73,9 @@ int main(int argc, char** argv) {
   //float avgattenhsl = frameAvgAttenuationHSL(img, bg, shadows);
   //float avgattenluma = frameAvgAttenuationLuma(img, bg, shadows);
   //float avgattenw3c = frameAvgAttenuationW3C(img, bg, shadows);
-  float avgattennorm = frameAvgAttenuationNorm(img, bg, shadows);
+  //float avgattennorm = frameAvgAttenuationNorm(img, bg, shadows);
 
-  //float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
+  float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
   //float avgattenHSP_RGB = frameAvgAttenuationHSP_RGB(img, bg, shadows);
   //float avgattenHSI_RGB = frameAvgAttenuationHSI_RGB(img, bg, shadows);
   //float avgattenHSL_RGB = frameAvgAttenuationHSL_RGB(img, bg, shadows);
@@ -83,7 +83,7 @@ int main(int argc, char** argv) {
   //float avgattenw3c_RGB = frameAvgAttenuationW3C_RGB(img, bg, shadows);
   //float avgattennorm_RGB = frameAvgAttenuationNorm_RGB(img, bg, shadows);
 
-  cout << avgattennorm << endl;
+  cout << avgattenHSV_RGB << endl;
 
 	return 0;
 }
@@ -444,11 +444,16 @@ float frameAvgAttenuationHSV_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
                         bgPtr[x*3+1],
                         bgPtr[x*3+2]);
 
-			double frBrightness = max((double)frToBgVec[0], (double)frToBgVec[1]);
-			frBrightness = max((double)frToBgVec[2], frBrightness);
 
-			//double frBrightness = max((double)frVec[0], (double)frVec[1]);
-			//frBrightness = max((double)frVec[2], frBrightness);
+			//double frBrightness = max((double)abs(frToBgVec[0]), (double)abs(frToBgVec[1]));
+			//frBrightness = max((double)abs(frToBgVec[2]), abs(frBrightness));
+
+      double frBrightness;
+
+      // this should retain signs
+      if( (double)abs(frToBgVec[0]) > (double)abs(frToBgVec[1]) ) frBrightness = frToBgVec[0];
+      else frBrightness = frToBgVec[1];
+      if( (double)abs(frToBgVec[2]) > (double)abs(frBrightness) ) frBrightness = frToBgVec[2];
 
 			double bgBrightness = max((double)bgVec[0], (double)bgVec[1]);
 			bgBrightness = max((double)bgVec[2], bgBrightness);
@@ -573,10 +578,22 @@ float frameAvgAttenuationHSL_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
                         bgPtr[x*3+1],
                         bgPtr[x*3+2]);
 
-			double frBrightnessMax = max((double)frToBgVec[0], (double)frToBgVec[1]);
-			frBrightnessMax = max((double)frToBgVec[2], frBrightnessMax);
-			double frBrightnessMin = min((double)frToBgVec[0], (double)frToBgVec[1]);
-			frBrightnessMin = min((double)frToBgVec[2], frBrightnessMin);
+			//double frBrightnessMax = max((double)frToBgVec[0], (double)frToBgVec[1]);
+			//frBrightnessMax = max((double)frToBgVec[2], frBrightnessMax);
+			//double frBrightnessMin = min((double)frToBgVec[0], (double)frToBgVec[1]);
+			//frBrightnessMin = min((double)frToBgVec[2], frBrightnessMin);
+      //double frBrightness = (frBrightnessMax + frBrightnessMin) / 2.0;
+
+      double frBrightnessMax, frBrightnessMin;
+      // this should retain signs
+      // max
+      if( (double)abs(frToBgVec[0]) > (double)abs(frToBgVec[1]) ) frBrightnessMax = frToBgVec[0];
+      else frBrightnessMax = frToBgVec[1];
+      if( (double)abs(frToBgVec[2]) > (double)abs(frBrightnessMax) ) frBrightnessMax = frToBgVec[2];
+      // min
+      if( (double)abs(frToBgVec[0]) < (double)abs(frToBgVec[1]) ) frBrightnessMin = frToBgVec[0];
+      else frBrightnessMin = frToBgVec[1];
+      if( (double)abs(frToBgVec[2]) < (double)abs(frBrightnessMin) ) frBrightnessMin = frToBgVec[2];
       double frBrightness = (frBrightnessMax + frBrightnessMin) / 2.0;
 
 			double bgBrightnessMax = max((double)bgVec[0], (double)bgVec[1]);
