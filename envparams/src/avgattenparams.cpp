@@ -78,12 +78,12 @@ int main(int argc, char** argv) {
   float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
   //float avgattenHSP_RGB = frameAvgAttenuationHSP_RGB(img, bg, shadows);
   //float avgattenHSI_RGB = frameAvgAttenuationHSI_RGB(img, bg, shadows);
-  //float avgattenHSL_RGB = frameAvgAttenuationHSL_RGB(img, bg, shadows);
+  float avgattenHSL_RGB = frameAvgAttenuationHSL_RGB(img, bg, shadows);
   //float avgattenluma_RGB = frameAvgAttenuationLuma_RGB(img, bg, shadows);
   //float avgattenw3c_RGB = frameAvgAttenuationW3C_RGB(img, bg, shadows);
   //float avgattennorm_RGB = frameAvgAttenuationNorm_RGB(img, bg, shadows);
 
-  cout << avgattenHSV_RGB << endl;
+  cout << avgattenHSV_RGB << "," << avgattenHSL_RGB << endl;
 
 	return 0;
 }
