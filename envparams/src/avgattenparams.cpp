@@ -67,30 +67,30 @@ int main(int argc, char** argv) {
   //float avgatten = frameAvgAttenuation(imgHSV, bgHSV, shadows);
   //float avgattenall = frameAvgAttenuationAll(imgHSV, bgHSV, shadows);
 //
-  float avgattenhsv = frameAvgAttenuationHSV(img, bg, shadows);
-  float avgattenhsp = frameAvgAttenuationHSP(img, bg, shadows);
-  float avgattenhsi = frameAvgAttenuationHSI(img, bg, shadows);
-  float avgattenhsl = frameAvgAttenuationHSL(img, bg, shadows);
-  float avgattenluma = frameAvgAttenuationLuma(img, bg, shadows);
-  float avgattenw3c = frameAvgAttenuationW3C(img, bg, shadows);
-  float avgattennorm = frameAvgAttenuationNorm(img, bg, shadows);
+  //float avgattenhsv = frameAvgAttenuationHSV(img, bg, shadows);
+  //float avgattenhsp = frameAvgAttenuationHSP(img, bg, shadows);
+  //float avgattenhsi = frameAvgAttenuationHSI(img, bg, shadows);
+  //float avgattenhsl = frameAvgAttenuationHSL(img, bg, shadows);
+  //float avgattenluma = frameAvgAttenuationLuma(img, bg, shadows);
+  //float avgattenw3c = frameAvgAttenuationW3C(img, bg, shadows);
+  //float avgattennorm = frameAvgAttenuationNorm(img, bg, shadows);
 
-  //float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
-  //float avgattenHSP_RGB = frameAvgAttenuationHSP_RGB(img, bg, shadows);
-  //float avgattenHSI_RGB = frameAvgAttenuationHSI_RGB(img, bg, shadows);
-  //float avgattenHSL_RGB = frameAvgAttenuationHSL_RGB(img, bg, shadows);
-  //float avgattenluma_RGB = frameAvgAttenuationLuma_RGB(img, bg, shadows);
-  //float avgattenw3c_RGB = frameAvgAttenuationW3C_RGB(img, bg, shadows);
-  //float avgattennorm_RGB = frameAvgAttenuationNorm_RGB(img, bg, shadows);
+  float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
+  float avgattenHSP_RGB = frameAvgAttenuationHSP_RGB(img, bg, shadows);
+  float avgattenHSI_RGB = frameAvgAttenuationHSI_RGB(img, bg, shadows);
+  float avgattenHSL_RGB = frameAvgAttenuationHSL_RGB(img, bg, shadows);
+  float avgattenluma_RGB = frameAvgAttenuationLuma_RGB(img, bg, shadows);
+  float avgattenw3c_RGB = frameAvgAttenuationW3C_RGB(img, bg, shadows);
+  float avgattennorm_RGB = frameAvgAttenuationNorm_RGB(img, bg, shadows);
 
   //cout << avgattenHSP_RGB << endl;
-  cout << avgattenhsv << ","
-       << avgattenhsp << ","
-       << avgattenhsi << ","
-       << avgattenhsl << ","
-       << avgattenluma << ","
-       << avgattenw3c << ","
-       << avgattennorm
+  cout << avgattenHSV_RGB << ","
+       << avgattenHSP_RGB << ","
+       << avgattenHSI_RGB << ","
+       << avgattenHSL_RGB << ","
+       << avgattenluma_RGB << ","
+       << avgattenw3c_RGB << ","
+       << avgattennorm_RGB
        << endl;
 
 	return 0;
@@ -556,7 +556,8 @@ float frameAvgAttenuationHSI_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
 			double atten = std::min(frBrightness / bgBrightness, 1.0);
 			//double atten = std::min((bgBrightness - frBrightness) / bgBrightness, 1.0);
 
-			if (fgPtr[x] > 0) {
+			//if (fgPtr[x] > 0) {
+			if (fgPtr[x] > 0 && atten > 0.0) {
 				avgAtten += atten;
 				++count;
 			}
@@ -617,7 +618,8 @@ float frameAvgAttenuationHSL_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
 			double atten = std::min(frBrightness / bgBrightness, 1.0);
 			//double atten = std::min((bgBrightness - frBrightness) / bgBrightness, 1.0);
 
-			if (fgPtr[x] > 0) {
+			//if (fgPtr[x] > 0) {
+			if (fgPtr[x] > 0 && atten > 0.0) {
 				avgAtten += atten;
 				++count;
 			}
@@ -657,7 +659,8 @@ float frameAvgAttenuationLuma_RGB(const cv::Mat& frame, const cv::Mat& bg, const
 			//double atten = (10+bgBrightness)/(10+frBrightness);
 			double atten = std::min(frBrightness / bgBrightness, 1.0);
 
-			if (fgPtr[x] > 0) {
+			//if (fgPtr[x] > 0) {
+			if (fgPtr[x] > 0 && atten > 0.0) {
 				avgAtten += atten;
 				++count;
 			}
@@ -701,6 +704,7 @@ float frameAvgAttenuationW3C_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
 			double atten = rDiff + gDiff + bDiff;
 
 			if (fgPtr[x] > 0) {
+			//if (fgPtr[x] > 0 && atten > 0.0) {
 				avgAtten += atten;
 				++count;
 			}
@@ -740,7 +744,8 @@ float frameAvgAttenuationNorm_RGB(const cv::Mat& frame, const cv::Mat& bg, const
 			double atten = std::min(frBrightness / bgBrightness, 1.0);
       //double atten = (10+bgBrightness)/(10+frBrightness);
 
-			if (fgPtr[x] > 0) {
+			//if (fgPtr[x] > 0) {
+			if (fgPtr[x] > 0 && atten > 0.0) {
 				avgAtten += atten;
 				++count;
 			}
