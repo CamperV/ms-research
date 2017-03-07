@@ -36,13 +36,11 @@ Scalar frameAvgColorShift(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat
 int main(int argc, char** argv) {
 
   if(argc > 3) {
-#ifdef DEBUG
     cout << "\n'Oak's words echoed... there is a time and a place for everything!' Run with $shadowdetection samples!" << endl;
     cout << "\n---" << endl;
     cout << "> Opening image " << argv[1] << "..." << endl;
     cout << "> Opening background " << argv[2] << "..." << endl;
     cout << "> Opening shadows " << argv[3] << "..." << endl;
-#endif
   } else {
     cout << "Not enough inputs specified: exiting" << endl;
     exit(0);
@@ -70,7 +68,7 @@ int main(int argc, char** argv) {
 
   //float avgatten = frameAvgAttenuation(imgHSV, bgHSV, shadows);
   //float avgattenall = frameAvgAttenuationAll(imgHSV, bgHSV, shadows);
-//
+
   //float avgattenhsv = frameAvgAttenuationHSV(img, bg, shadows);
   //float avgattenhsp = frameAvgAttenuationHSP(img, bg, shadows);
   //float avgattenhsi = frameAvgAttenuationHSI(img, bg, shadows);
@@ -79,7 +77,7 @@ int main(int argc, char** argv) {
   //float avgattenw3c = frameAvgAttenuationW3C(img, bg, shadows);
   //float avgattennorm = frameAvgAttenuationNorm(img, bg, shadows);
 
-  //float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
+  float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
   //float avgattenHSP_RGB = frameAvgAttenuationHSP_RGB(img, bg, shadows);
   //float avgattenHSI_RGB = frameAvgAttenuationHSI_RGB(img, bg, shadows);
   //float avgattenHSL_RGB = frameAvgAttenuationHSL_RGB(img, bg, shadows);
@@ -87,9 +85,11 @@ int main(int argc, char** argv) {
   //float avgattenw3c_RGB = frameAvgAttenuationW3C_RGB(img, bg, shadows);
   //float avgattennorm_RGB = frameAvgAttenuationNorm_RGB(img, bg, shadows);
 
-  Scalar rgbShift = frameAvgColorShift(img, bg, orig_shadows);
+  //Scalar rgbShift = frameAvgColorShift(img, bg, orig_shadows);
 
-  //cout << avgattenHSP_RGB << endl;
+  //cerr << 1.0/(float)avgattenhsv << endl;
+  //cerr << 1.0-(float)avgattenHSV_RGB << endl;
+  cerr << (float)avgattenHSV_RGB << endl;
   //cout << avgattenHSV_RGB << ","
   //     << avgattenHSP_RGB << ","
   //     << avgattenHSI_RGB << ","
@@ -99,7 +99,7 @@ int main(int argc, char** argv) {
   //     << avgattennorm_RGB
   //     << endl;
 
-  cout << rgbShift[0] << "," << rgbShift[1] << "," << rgbShift[2] << endl;
+  //cout << rgbShift[0] << "," << rgbShift[1] << "," << rgbShift[2] << endl;
 
 	return 0;
 }
@@ -164,7 +164,8 @@ float frameAvgAttenuationAll(const cv::Mat& hsvFrame, const cv::Mat& hsvBg, cons
 
 float frameAvgAttenuationHSV(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {
 	float avgAtten = 0;
-	int count = 0;
+  float stdDev = 0;
+  vector<float> data;
 
 	for (int y = 0; y < frame.rows; ++y) {
 		const uchar* fgPtr = fg.ptr(y);
@@ -188,17 +189,29 @@ float frameAvgAttenuationHSV(const cv::Mat& frame, const cv::Mat& bg, const cv::
 			double atten = (10+bgBrightness)/(10+frBrightness);
 
 			if (fgPtr[x] > 0 && atten > 1.0) {
-				avgAtten += atten;
-				++count;
+        data.push_back(atten);
 			}
 		}
 	}
 
-	if (count > 0) {
-		avgAtten /= count;
-	}
+  // calculate mean
+  for(int i = 0; i < data.size(); i++) {
+    avgAtten += data[i];
+  }
+  avgAtten /= data.size();
+
+  // calculate stddev
+  for(int i = 0; i < data.size(); i++) {
+    stdDev += pow(data[i]-avgAtten, 2);
+  }
+  stdDev = sqrt(stdDev/(float)data.size());
+
+  //float diff = stdDev/avgAtten;
+  //diff = 1 - diff;
+  //float chunk = diff*avgAtten;
 
 	return avgAtten;
+  //return avgAtten+chunk;
 }
 
 float frameAvgAttenuationHSP(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {
@@ -446,7 +459,10 @@ float frameAvgAttenuationNorm(const cv::Mat& frame, const cv::Mat& bg, const cv:
 
 float frameAvgAttenuationHSV_RGB(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {
 	float avgAtten = 0;
-	int count = 0;
+  float magdiff = 0;
+  float stdDev = 0;
+  vector<float> data;
+  vector<float> data_rgb;
 
 	for (int y = 0; y < frame.rows; ++y) {
 		const uchar* fgPtr = fg.ptr(y);
@@ -479,20 +495,38 @@ float frameAvgAttenuationHSV_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
 			bgBrightness = max((double)bgVec[2], bgBrightness);
 
 			double atten = std::min(frBrightness / bgBrightness, 1.0);
-			//double atten = std::min((bgBrightness - frBrightness) / bgBrightness, 1.0);
 
 			if (fgPtr[x] > 0 && atten > 0.0) {
-				avgAtten += atten;
-				++count;
+        data.push_back(atten);
+        data_rgb.push_back(frBrightness/255.0);
 			}
 		}
 	}
 
-	if (count > 0) {
-		avgAtten /= count;
-	}
+  // calculate mean
+  for(int i = 0; i < data.size(); i++) {
+    avgAtten += data[i];
+  }
+  avgAtten /= data.size();
 
-	return avgAtten;
+  // calculate mean rgb diff
+  for(int i = 0; i < data_rgb.size(); i++) {
+    magdiff += data_rgb[i];
+  }
+  magdiff /= data_rgb.size();
+
+  // calculate stddev
+  for(int i = 0; i < data.size(); i++) {
+    stdDev += pow(data[i]-avgAtten, 2);
+  }
+  stdDev = sqrt(stdDev/(float)data.size());
+
+  //avgAtten = 1.0 - avgAtten;
+  //magdiff = 1.0 - magdiff;
+
+  //return magdiff*avgAtten;
+	return 1.0-avgAtten;
+
 }
 
 float frameAvgAttenuationHSP_RGB(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {

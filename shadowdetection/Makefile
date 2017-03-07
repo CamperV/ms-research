@@ -24,12 +24,13 @@ SRC=				$(SRCDIR)/stream_gui.cpp \
 						$(SRCDIR)/quantitative_gui.cpp \
 						$(SRCDIR)/quantitative.cpp \
 						$(SRCDIR)/make_bg.cpp \
-						$(SRCDIR)/make_fg.cpp
+						$(SRCDIR)/make_fg.cpp \
+						$(SRCDIR)/avgattenmodel.cpp
 
 OBJS=$(LRSRC:.cpp=.o)
 OBJS+=$(UTILS:.cpp=.o)
 
-TARGETS=$(BINDIR)/stream_gui $(BINDIR)/quantitative_gui $(BINDIR)/quantitative $(BINDIR)/make_bg $(BINDIR)/make_fg
+TARGETS=$(BINDIR)/stream_gui $(BINDIR)/quantitative_gui $(BINDIR)/quantitative $(BINDIR)/make_bg $(BINDIR)/make_fg $(BINDIR)/avgattenmodel
 
 $(UTILDIR)/%.o: $(UTILDIR)/%.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
@@ -58,6 +59,9 @@ $(BINDIR)/make_bg: $(BINDIR)/make_bg.o $(OBJS)
 
 $(BINDIR)/make_fg: $(BINDIR)/make_fg.o $(OBJS)
 	$(CC) $(CFLAGS) -o $(BINDIR)/make_fg $(BINDIR)/make_fg.o $(OBJS) $(LIBS) $(LIBDIR)
+
+$(BINDIR)/avgattenmodel: $(BINDIR)/avgattenmodel.o $(OBJS)
+	$(CC) $(CFLAGS) -o $(BINDIR)/avgattenmodel $(BINDIR)/avgattenmodel.o $(OBJS) $(LIBS) $(LIBDIR)
 
 .PHONY: clean
 clean: ; rm -rf $(OBJS) $(TARGETS) $(BINDIR)
