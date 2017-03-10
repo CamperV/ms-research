@@ -32,6 +32,7 @@ float frameAvgAttenuationW3C_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
 float frameAvgAttenuationNorm_RGB(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg);
 
 Scalar frameAvgColorShift(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& shadows);
+float frameAvgRGShift(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& shadows);
 
 int main(int argc, char** argv) {
 
@@ -69,7 +70,7 @@ int main(int argc, char** argv) {
   //float avgatten = frameAvgAttenuation(imgHSV, bgHSV, shadows);
   //float avgattenall = frameAvgAttenuationAll(imgHSV, bgHSV, shadows);
 
-  //float avgattenhsv = frameAvgAttenuationHSV(img, bg, shadows);
+  float avgattenhsv = frameAvgAttenuationHSV(img, bg, shadows);
   //float avgattenhsp = frameAvgAttenuationHSP(img, bg, shadows);
   //float avgattenhsi = frameAvgAttenuationHSI(img, bg, shadows);
   //float avgattenhsl = frameAvgAttenuationHSL(img, bg, shadows);
@@ -77,7 +78,7 @@ int main(int argc, char** argv) {
   //float avgattenw3c = frameAvgAttenuationW3C(img, bg, shadows);
   //float avgattennorm = frameAvgAttenuationNorm(img, bg, shadows);
 
-  float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
+  //float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
   //float avgattenHSP_RGB = frameAvgAttenuationHSP_RGB(img, bg, shadows);
   //float avgattenHSI_RGB = frameAvgAttenuationHSI_RGB(img, bg, shadows);
   //float avgattenHSL_RGB = frameAvgAttenuationHSL_RGB(img, bg, shadows);
@@ -85,11 +86,14 @@ int main(int argc, char** argv) {
   //float avgattenw3c_RGB = frameAvgAttenuationW3C_RGB(img, bg, shadows);
   //float avgattennorm_RGB = frameAvgAttenuationNorm_RGB(img, bg, shadows);
 
-  //Scalar rgbShift = frameAvgColorShift(img, bg, orig_shadows);
+  Scalar rgbShift = frameAvgColorShift(img, bg, orig_shadows);
+  float rgShift = frameAvgRGShift(img, bg, orig_shadows);
 
   //cerr << 1.0/(float)avgattenhsv << endl;
+  cerr << (float)avgattenhsv << endl;
   //cerr << 1.0-(float)avgattenHSV_RGB << endl;
-  cerr << (float)avgattenHSV_RGB << endl;
+  //cerr << (float)avgattenHSV_RGB << endl;
+  //cerr << (float)avgattenHSP_RGB << "," << rgShift - (float)rgbShift[0] << endl;
   //cout << avgattenHSV_RGB << ","
   //     << avgattenHSP_RGB << ","
   //     << avgattenHSI_RGB << ","
@@ -100,6 +104,7 @@ int main(int argc, char** argv) {
   //     << endl;
 
   //cout << rgbShift[0] << "," << rgbShift[1] << "," << rgbShift[2] << endl;
+  //cout << rgShift << "," << rgbShift[0] << endl;
 
 	return 0;
 }
@@ -165,7 +170,9 @@ float frameAvgAttenuationAll(const cv::Mat& hsvFrame, const cv::Mat& hsvBg, cons
 float frameAvgAttenuationHSV(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {
 	float avgAtten = 0;
   float stdDev = 0;
+  float magdiff = 0;
   vector<float> data;
+  vector<float> data_rgb;
 
 	for (int y = 0; y < frame.rows; ++y) {
 		const uchar* fgPtr = fg.ptr(y);
@@ -189,7 +196,8 @@ float frameAvgAttenuationHSV(const cv::Mat& frame, const cv::Mat& bg, const cv::
 			double atten = (10+bgBrightness)/(10+frBrightness);
 
 			if (fgPtr[x] > 0 && atten > 1.0) {
-        data.push_back(atten);
+        data.push_back(1.0/(double)atten);
+        data_rgb.push_back(frBrightness/255.0);
 			}
 		}
 	}
@@ -200,18 +208,34 @@ float frameAvgAttenuationHSV(const cv::Mat& frame, const cv::Mat& bg, const cv::
   }
   avgAtten /= data.size();
 
+  // calculate mean rgb diff
+  // %rgb shift (x param)
+  for(int i = 0; i < data_rgb.size(); i++) {
+    magdiff += data_rgb[i];
+  }
+  magdiff /= data_rgb.size();
+
   // calculate stddev
   for(int i = 0; i < data.size(); i++) {
     stdDev += pow(data[i]-avgAtten, 2);
   }
   stdDev = sqrt(stdDev/(float)data.size());
 
-  //float diff = stdDev/avgAtten;
-  //diff = 1 - diff;
-  //float chunk = diff*avgAtten;
+  // 1-%hsv shift (y param)
+  float invAvgAtten = 1.0 - avgAtten;
+  float invStdDev = 1.0 - stdDev;
+  float invMagdiff = 1.0 - magdiff;
 
-	return avgAtten;
-  //return avgAtten+chunk;
+  // relating equation (coneR1_brightness.ods)
+  double shift_amount = (-0.1130769139)*log(magdiff) - (0.1883942004);
+
+  //return magdiff*avgAtten;
+	//return 1.0-avgAtten;
+  //return invAvgAtten + shift_amount;
+  //return invMagdiff*(invAvgAtten + shift_amount);
+  return (invMagdiff*invAvgAtten) + shift_amount;
+  //return invAvgAtten + (shift_amount / invMagdiff);
+  //return invAvgAtten + (shift_amount / magdiff);
 }
 
 float frameAvgAttenuationHSP(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {
@@ -510,6 +534,7 @@ float frameAvgAttenuationHSV_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
   avgAtten /= data.size();
 
   // calculate mean rgb diff
+  // %rgb shift (x param)
   for(int i = 0; i < data_rgb.size(); i++) {
     magdiff += data_rgb[i];
   }
@@ -521,17 +546,30 @@ float frameAvgAttenuationHSV_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
   }
   stdDev = sqrt(stdDev/(float)data.size());
 
-  //avgAtten = 1.0 - avgAtten;
-  //magdiff = 1.0 - magdiff;
+  // 1-%hsv shift (y param)
+  float invAvgAtten = 1.0 - avgAtten;
+  float invStdDev = 1.0 - stdDev;
+  float invMagdiff = 1.0 - magdiff;
+
+  // relating equation (coneR1_brightness.ods)
+  double shift_amount = (-0.0758149245)*log(magdiff) - (0.149215643);
 
   //return magdiff*avgAtten;
-	return 1.0-avgAtten;
+	//return 1.0-avgAtten;
+  //return invAvgAtten + shift_amount;
+  //return invMagdiff*(invAvgAtten + shift_amount);
+  return (invMagdiff*invAvgAtten) + shift_amount;
+  //return invAvgAtten + (shift_amount / invMagdiff);
+  //return invAvgAtten + (shift_amount / magdiff);
 
 }
 
 float frameAvgAttenuationHSP_RGB(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {
 	float avgAtten = 0;
-	int count = 0;
+  float magdiff = 0;
+  float stdDev = 0;
+  vector<float> data;
+  vector<float> data_rgb;
 
 	for (int y = 0; y < frame.rows; ++y) {
 		const uchar* fgPtr = fg.ptr(y);
@@ -549,33 +587,56 @@ float frameAvgAttenuationHSP_RGB(const cv::Mat& frame, const cv::Mat& bg, const 
                         bgPtr[x*3+1],
                         bgPtr[x*3+2]);
 
-			double frBrightness = sqrt( .241*frToBgVec[0]*frToBgVec[0] +
-                                  .691*frToBgVec[1]*frToBgVec[1] +
-                                  .068*frToBgVec[2]*frToBgVec[2]  );
-			double bgBrightness = sqrt( .241*bgVec[0]*bgVec[0] +
-                                  .691*bgVec[1]*bgVec[1] +
-                                  .068*bgVec[2]*bgVec[2]  );
-			//double frBrightness = sqrt( .299*frToBgVec[0]*frToBgVec[0] +
-   //                               .587*frToBgVec[1]*frToBgVec[1] +
-   //                               .114*frToBgVec[2]*frToBgVec[2]  );
-			//double bgBrightness = sqrt( .299*bgVec[0]*bgVec[0] +
-   //                               .587*bgVec[1]*bgVec[1] +
-   //                               .114*bgVec[2]*bgVec[2]  );
+			//double frBrightness = sqrt( .241*frToBgVec[0]*frToBgVec[0] +
+      //                            .691*frToBgVec[1]*frToBgVec[1] +
+      //                            .068*frToBgVec[2]*frToBgVec[2]  );
+			//double bgBrightness = sqrt( .241*bgVec[0]*bgVec[0] +
+      //                            .691*bgVec[1]*bgVec[1] +
+      //                            .068*bgVec[2]*bgVec[2]  );
+			double frBrightness = sqrt( .299*frToBgVec[0]*frToBgVec[0] +
+                                  .587*frToBgVec[1]*frToBgVec[1] +
+                                  .114*frToBgVec[2]*frToBgVec[2]  );
+			double bgBrightness = sqrt( .299*bgVec[0]*bgVec[0] +
+                                  .587*bgVec[1]*bgVec[1] +
+                                  .114*bgVec[2]*bgVec[2]  );
 
 			double atten = std::min(frBrightness / bgBrightness, 1.0);
 
 			if (fgPtr[x] > 0 && atten > 0.0) {
-				avgAtten += atten;
-				++count;
+        data.push_back(atten);
+        data_rgb.push_back(frBrightness/255.0);
 			}
 		}
 	}
 
-	if (count > 0) {
-		avgAtten /= count;
-	}
+  // calculate mean
+  for(int i = 0; i < data.size(); i++) {
+    avgAtten += data[i];
+  }
+  avgAtten /= data.size();
 
-	return avgAtten;
+  // calculate mean rgb diff
+  // %rgb shift (x param)
+  for(int i = 0; i < data_rgb.size(); i++) {
+    magdiff += data_rgb[i];
+  }
+  magdiff /= data_rgb.size();
+
+  // calculate stddev
+  for(int i = 0; i < data.size(); i++) {
+    stdDev += pow(data[i]-avgAtten, 2);
+  }
+  stdDev = sqrt(stdDev/(float)data.size());
+
+  // 1-%hsv shift (y param)
+  float invAvgAtten = 1.0 - avgAtten;
+  float invStdDev = 1.0 - stdDev;
+  float invMagdiff = 1.0 - magdiff;
+
+  // relating equation (coneR1_brightness.ods)
+  double shift_amount = (-0.0985820328)*log(magdiff) - (0.2116566443);
+
+  return (invMagdiff*invAvgAtten) + shift_amount;
 }
 
 float frameAvgAttenuationHSI_RGB(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {
@@ -839,4 +900,41 @@ Scalar frameAvgColorShift(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat
 	}
 
 	return rgbShift;
+}
+
+float frameAvgRGShift(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& shadows) {
+  Scalar rgbShift = Scalar(0,0,0);
+	int count = 0;
+
+	for (int y = 0; y < frame.rows; ++y) {
+		const uchar* fgPtr = shadows.ptr(y);
+		const uchar* framePtr = frame.ptr(y);
+		const uchar* bgPtr = bg.ptr(y);
+		for (int x = 0; x < frame.cols; ++x) {
+
+			Scalar frVec(     framePtr[x*3],
+                        framePtr[x*3+1],
+                        framePtr[x*3+2]);
+			Scalar frToBgVec( bgPtr[x*3] -   framePtr[x*3],
+                        bgPtr[x*3+1] - framePtr[x*3+1],
+                        bgPtr[x*3+2] - framePtr[x*3+2]);
+			Scalar bgVec(     bgPtr[x*3],
+                        bgPtr[x*3+1],
+                        bgPtr[x*3+2]);
+
+      //float rgShift = (frToBgVec[1]+frToBgVec[2])/2.0;
+
+			if (fgPtr[x] == 127) {
+        rgbShift += frToBgVec;
+				++count;
+			}
+		}
+	}
+
+	if (count > 0) {
+		rgbShift /= count;
+	}
+  float rgShift = (rgbShift[1]+rgbShift[2])/2.0;
+
+	return rgShift;
 }

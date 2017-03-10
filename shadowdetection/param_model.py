@@ -100,9 +100,13 @@ for infile in sorted(listing):
   # gets new value for interrogated param ('ex: coneR1')
   new_val = -1
   for line in model_process.stderr:
-    new_val = line.strip("\n")
+    splitline = line.strip("\n").split(",")
+    new_val = splitline[0]
+    #rg_shift = splitline[1]
     readout += new_val
     readout += ","
+    #readout += str(float(rg_shift)/255.0)
+    #readout += ","
 
   # update existing value
   config.set(psection, param, float(new_val))
@@ -123,6 +127,5 @@ for infile in sorted(listing):
       readout += ","
       dd = float(splitline[1]) + float(splitline[2])
       readout += str(dd)
-  
-  print readout
 
+  print readout
