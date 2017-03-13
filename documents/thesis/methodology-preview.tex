@@ -1,0 +1,89 @@
+\documentclass[12pt]{report}
+\usepackage{setspace}  %use this package to set linespacing as desired
+
+\begin{document}
+\doublespacing
+
+\clearpage
+\chapter{Methodology}
+
+\section{Algorithm Assessment}
+
+(NOTE: Explain the differing shadow removal methods in the Background Chapter)
+
+In order to develop a model capable of arbitrarily improving shadow removal, one must first select an algorithm to improve. The algorithm selected must demonstrate sensivity to environmental parameter shifts, from within a single scene as well as from one unique dataset to another. Additionally, the shadow removal method must prove similarly sensitive to parametric shifts: having its removal efficacy linked to one or more hard-coded or curated algorithm parameters. Analysis and assessment of the previously presented shadow removal algorithms (Chromacity, Geometry, Physical, Small-Region Texture, and Large-Region Texture) is conducted using a series of graphical tools in conjucntion with ground truths identifying shadow regions across eight different datasets and seven unique evironments. The graphical tools were developed using functionality from OpenCV and SimpleINI.
+
+\subsection{Data Collection and Analysis}
+
+\subsubsection{Datasets}
+The majority of the datasets chosen to begin this assessment are provided under the Computer Vision and Robotics Research Laboratory (CVRR) in association with the University of San Diego. The datasets were catalogued with the Autonomous Agents for On-Scene Networked Incident Management (ATON) project. In an effort to improve shadow detection, six datasets were manually segmented to identify shadow regions within foreground objects. The datasets are detailed as follows:
+
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+	\hline
+	highway1 & 320x240 & 8 \\ 
+	highway3 & 320x240 & 7 \\ 
+	room & 320x240 & 22 \\ 
+	campus & 320x240 & 53 \\ 
+	hallway & 320x240 & 13 \\ 
+	lab & 320x240 & 14 \\ 
+	\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Graphical Tools}
+\subsubsection{SimpleINI}
+
+\subsection{Selecting an Algorithm}
+\subsubsection{Physical Shadow Removal}
+
+\subsection{Selecting a Parameter}
+\subsubsection{Strong Detectors}
+	\begin{itemize}
+	\item GMM Model \& Weights
+	\end{itemize}
+\subsubsection{Weak Detectors}
+	\begin{itemize}
+	\item coneAngle
+	\item coneR1 \& coneR2
+	\end{itemize}
+
+\section{Environmental Assessment - Environmental Parameters}
+\subsection{Previous Work - LR Texture Model}
+\subsection{Low-contrast SIFT Keypoints}
+\subsection{Brightness Models}
+
+Can I take images from Wikipedia for use? Surely they have another legitimate source.
+
+\subsubsection{HSV}
+\subsubsection{HSI}
+\subsubsection{HSL}
+\subsubsection{Luma Y'}
+\subsubsection{Euclidean Norm}
+\subsubsection{HSP}
+\subsubsection{W3C}
+
+\subsection{Non-linear Attenuation (Yellow-shifting)}
+\subsubsection{Non-linear Attenuation}
+\subsubsection{Observed Yellow-shift in Outdoor Scenes}
+
+\section{Data Collection and Analysis}
+\subsection{Datasets and Ground Truths}
+\subsection{SimpleINI}
+\subsection{Weak Detector Estimation - Creating a Model}
+
+With the coneR1 parameter tuned to optimal performance for a wide variety of datasets, we can begin to model a difference between environmental parameters and the optimal cone range. Normalizing correlative environmental parameters, we model an optimal shift from calculated parameters to the optimal value of the weak detector. While the average attenuation from the foreground to the background provides reasonable correlation to the weak detector's cone angle, said correlation does not indicate accurate magnitude for the environmentally-calculated cone angle parameter. This is due to the nature of the properties of attenuation. The attenuation calculation utilized is a function of brightness shift as a percentage of a background value, e.g., a pair of foreground/background pixels with a value of 50 and 100 produces the same attenuation as a pair valued at 50 and 25, respectively.
+
+To circumvent this dilemma, required magnitude shift can be extrapolated from the magnitude of color shift found from foreground to background. From the color shift we can calculate brightness shift. By plotting the average brightness magnitude difference against the required shift of attenuation to optimal angle, we produce a general relationship between foreground attenuation, brightness magnitude, and the shift required to perform optimally. Using data points from each frame in each dataset, we can produce a best-fit polynomial to generalize a model of attenuation and brightness magnitude shift into a scene-generated cone angle parameter. To avoid overfitting, a paramterized logarithm was chosen to represent the required magnitude shift ($\Delta$ RGB).
+
+\begin{equation}
+a*ln(x) + b
+\end{equation}
+
+The final equation to represent the newly calculated algorithmic parameter can be assembled as:
+
+\begin{equation}
+(1 - \Delta RGB)*(1 - \%fr \rightarrow bg) + Mag. Shift
+\end{equation}
+
+\end{document}
