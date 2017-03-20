@@ -235,7 +235,7 @@ float frameAvgAttenuationHSV(const cv::Mat& frame, const cv::Mat& bg, const cv::
   //return invMagdiff*(invAvgAtten + shift_amount);
   return (invMagdiff*invAvgAtten) + shift_amount;
   //return invAvgAtten + (shift_amount / invMagdiff);
-  //return invAvgAtten + (shift_amount / magdiff);
+  //return invAvgAtten + (shift_amount / magdifon latexf);
 }
 
 float frameAvgAttenuationHSP(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {

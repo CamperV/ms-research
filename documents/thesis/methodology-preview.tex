@@ -1,5 +1,7 @@
 \documentclass[12pt]{report}
 \usepackage{setspace}  %use this package to set linespacing as desired
+\usepackage{array}
+\usepackage{amsmath}
 
 \begin{document}
 \doublespacing
@@ -14,42 +16,150 @@
 In order to develop a model capable of arbitrarily improving shadow removal, one must first select an algorithm to improve. The algorithm selected must demonstrate sensivity to environmental parameter shifts, from within a single scene as well as from one unique dataset to another. Additionally, the shadow removal method must prove similarly sensitive to parametric shifts: having its removal efficacy linked to one or more hard-coded or curated algorithm parameters. Analysis and assessment of the previously presented shadow removal algorithms (Chromacity, Geometry, Physical, Small-Region Texture, and Large-Region Texture) is conducted using a series of graphical tools in conjucntion with ground truths identifying shadow regions across eight different datasets and seven unique evironments. The graphical tools were developed using functionality from OpenCV and SimpleINI.
 
 \subsection{Data Collection and Analysis}
-
 \subsubsection{Datasets}
-The majority of the datasets chosen to begin this assessment are provided under the Computer Vision and Robotics Research Laboratory (CVRR) in association with the University of San Diego. The datasets were catalogued with the Autonomous Agents for On-Scene Networked Incident Management (ATON) project. In an effort to improve shadow detection, six datasets were manually segmented to identify shadow regions within foreground objects. The datasets are detailed as follows:
+The majority of the datasets chosen to begin this assessment are provided under the Computer Vision and Robotics Research Laboratory (CVRR) in association with the University of San Diego. The datasets were catalogued with the Autonomous Agents for On-Scene Networked Incident Management (ATON) project. In an effort to improve shadow detection, six datasets were manually segmented to identify shadow regions (gray) within foreground objects (white). The datasets are detailed as follows:
 
 \begin{center}
 \begin{tabular}{ |c|c|c| }
 	\hline
-	highway1 & 320x240 & 8 \\ 
+	\textbf{Name} & \textbf{Size} & \textbf{\# Samples} \\
+	\hline
+	\hline
+	highway1 & 320x240 & 8 \\
+	\hline 
 	highway3 & 320x240 & 7 \\ 
+	\hline
 	room & 320x240 & 22 \\ 
+	\hline
 	campus & 320x240 & 53 \\ 
-	hallway & 320x240 & 13 \\ 
+	\hline
+	hallway & 320x240 & 13 \\
+	\hline
 	lab & 320x240 & 14 \\ 
 	\hline
 \end{tabular}
 \end{center}
 
+\textit{Insert samples of datasets here.}
+
+The scenes sampled in each dataset represent sufficiently diverse environments for our assessment. While the datasets are representative for orthogonal scene characterization \textbf{(oh God so pretentious, pls change)}, there are no events within any specific dataset that cause environmental transformations, e.g., shifting weather conditions or rapid illumination changes. Therefore we have manually segmented two more datasets from the Performance Evaluation of Tracking and Surveillance (PETS) project. Both included samples feature rapid illumination changes due to cloud cover, darkening, lightening, and blending shadows in accordance with a background model.
+
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+	\hline
+	\textbf{Name} & \textbf{Size} & \textbf{\# Samples} \\
+	\hline
+	\hline
+	PETS1 & 768x576 & 12 \\
+	\hline
+	PETS2 & 768x576 & 11 \\
+	\hline
+\end{tabular}
+\end{center}
+
+\textit{Display example of shifting shadows and slithering sundries.}
+
 \subsubsection{Graphical Tools}
+Graphical tools were used to rapidly assess an algorithmic parameter's affect on shadow removal. Each shadow removal method was modified to accept arbitrary parameter values in real-time. These parameters were then tied to graphical sliders dictating their range and value. Any numerical parameter that has the potential to modify the Detection or Discrimination rates of a shadow removal method is included in the GUI.
+
+\textit{exampleGUIexample.}
+
+While lacking in absolute precision, the graphical tools used enabled rapid evaluation of the sensitivity of an algorithm to change of parameter within specific scenes. The display is updated in real-time with both a visual representation of detected shadow pixels, and a quanitfied display of both the exact Detection and Discrimination rates. The slider GUI is available through OpenCV's highgui library.
+
 \subsubsection{SimpleINI}
+In an early implementation, the shadow removal methods under assessment contained relevant parameters hard-coded into the algorithms, requiring re-compilation to bring any modifications to fruitition (excepting GUI-based binaries). This shortcoming was recitified by extracting each parameter and organizing them into an .ini file. By utilizing \textbf{brofield}'s SimpleINI architecture, hosted on Github, parameters could be either set extemporaneously or altered by an external script. 
+
+\textit{Example SimpleINI file.}
+
+The removal of compilation enables batch jobs run with iterated parameter values. In this style, a Python script was written to meticulously exercise a parameter through a specified range and record its corresponding affect upon Detection/Discrimination rates. This approach culminates in the development of many overnight tests designed to uncover optimal parameter values for each frame in each dataset. The optimal values are used to determine degrees of correlation and set the foundation for a general model of arbitrary shadow removal improvement.
 
 \subsection{Selecting an Algorithm}
-\subsubsection{Physical Shadow Removal}
 
-\subsection{Selecting a Parameter}
-\subsubsection{Strong Detectors}
-	\begin{itemize}
-	\item GMM Model \& Weights
-	\end{itemize}
-\subsubsection{Weak Detectors}
-	\begin{itemize}
-	\item coneAngle
-	\item coneR1 \& coneR2
-	\end{itemize}
+Considering the diversity of shadow removal methods assessed in this research, a wide array of environmental factors potentially may influence an even wider array of algorithmic parameters. The scope of proposed analysis has been therefore been truncated to identifying a suitable algorithm to assess, linking a parameter (endemic to this algorithm) to unique environmental characteristics or shifts, and begin the construction of a general model of shadow removal improvement given parameters of the same nature.
+
+Identifiying an appropriate algorithm for assessment means highlighting a shadow removal method that demonstrates consistently reasonable sensitivity to changes in environmental characteristics. Simultaneously, a candidate for deeper analysis must demonstrate consistency in its detection/discrimination integrity throughout most frames of a dataset, with few sizeable deviations. If the study were not constrained in this manner, the motivation of this research quickly becomes redundant, as the sheer amount of interdependent variables brings the problem to levels generally reserved for unsupervised clustering and other big-data approaches. As this study means to link qualitative environmental characteristics to quantitative tangible improvement, this approach would detour research into a different realm entirely.
+
+Candidate shadow removal algorithms were charted according to their efficacy over time and apparent correlation to qualitative observations attributed to a dataset; e.g., the PETS1 dataset experiences a large illumination change midway through its sampling, which is taken into account when searching for trends among the removal rates of a candidate method.
+
+\textit{Show graphs of shadow removal methods here. Probably many graphs.}
+
+\subsubsection{Evaluation of Methods}
+Both Geometry-based removal and ???'s SR Texture-based removal were shown to behave highly erratically from frame to frame within an environmentally consistent dataset. The Geometry-based removal method remains dependent on the shape and consistency of processed foreground objects, ergo dependent on the consistency of whichever foreground extractor is used for a scene. This irregularity is not contigent on the properties of shadows within an environment, and therefore removed Geometry-based methods from candidacy for further analysis. The Small-Region Texture method is based upon a series of Gabor filters used to characterize textural patches found in shadows, and match them to a corresponding background model. This technique requires that shadows cover textural portions of the background model large enough to perform meaningful analysis. The algorithm carries with it no meaningful contingencies for this limitation. The parameters associated with SR define little avenue for improvement of shadow removal in most cases, and defines no avenue for cases mentioned where the shadows are too small. This dependence on a shadow's area, coupled with no parameters suitable to improve detection, eliminated the SR method from candidacy. 
+
+Sanin et al.'s Large-Region Texture algorithm was also eliminated from the assessment due to its tempermental inter-frame performance, similar to the methods above. Some environments, such as the roadways of aton\_highway3, yielded null detections for all frames. The Large-Region Texture algorithm recognizes the pitfalls of the Small-Region approach, such as overly-small texture regions, and attempts to correct them using hard-coded parameters. Unfortunately, the algorithm as a whole displays an overly large sensitivity to change, both inter and intra-dataset. In a larger scoped study, one may approach this algorithm as an ideal candidate for potential improvement, given its large swath of tunable parameters and variable responses. However, for those reasons it was excluded from the remainder of this study. By selecting an algorithm with more controlled responses to change of environment, we can extend insights gleaned into improvements for other algorithms, including this one.
+
+\textit{LR Example sensivity (one consistent, one inconsisten, one null.}
+
+Finally, both Chromacity-based and Physical-based shadow removal held the qualities ascribed to a suitable algorithm for exploration. In both cases, trends are observed, consistency of detection is within reasonable range, and the modification of parameters produces a scalable and easily observable response.
+
+\textit{Examples of similarity here.}
+
+Chromacity shadow removal leads Physical removal consistency between datasets; the removal algorithm succeeds due to the tendency of shadows within a dataset to remain a consistent darkness when compared to the corresponding background model. However, this simple approach can prove problematic when experiencing illumination changes within a dataset. Physical shadow removal utilizes a similar system of gauging a shadow's darkness compared to a background model - what is referred to as a weak detector [ref Phys] - and implicitly suffers similar breakdowns of detection when presented with significant illumination flux within a dataset. Although they both suffer, Physical shadow removal proves robust than Chromacity removal under these conditions. This increase in sophistication also lends itself to utilizing more malleable parameters during detection. Physical shadow removal demonstrates sensitivity to both parameter changes and environmental changes, within reasonable ranges. In the end, Physical shadow removal was selected as the main experimental framework for this study, triumphing over Chromacity shadow removal in part due to its more sophisticated model. [However, as we will illuminate in the coming section, the study of improving Physical shadow removal parallels any similar study undertaken with Chromacity, and can be applied across the pair of algorithms. \textbf{WISHLIST}]
+
+\subsection{Selecting a Parameter - Physical Shadow Removal}
+
+Physical shadow removal operates in two stages: the weak detector, and the strong detector [ref Phys]. The weak detector typically identifies candidate shadow pixels simply by eliminating impossible pixels, i.e., pixels that are brighter than the background model. These candidate pixels are then provided to the strong detector, which characterizes these pixels as either shadow or foreground. Our assessment of algortihmic parameters explores parameters in both of these detector spaces. Before we can illustrate which parameters were considered for experimentation, we must first understand the paramters' place within the algorithm.
+
+\subsubsection{Weak Detector - Physical Shadow Removal}
+
+The purpose of the weak detector is to eliminate impossible pixels from being fed to the strong detector. The weak detector in Physical shadow removal functions similarly to the Chromacity shadow removal process; the candidate pixel is evaluated by its distance from a corresponding background pixel and sorted accordingly. The weak detector is visually, and technically, a cone projected in an RGB plane indicating the range in which a normalized shadow pixel may lie in respect to a background model. textbf{Normalizing the shadow pixel's position relative to the background model} is accomplished by computing the angular distance between the $\vec{RGB}$ vector of the foreground and the $\vec{RGB}$ vector of the background. The resultant represents the colorspace deviation from foreground to background. This threshold parameter is named \textit{coneAngle} within the Physical shadow removal algorithm. The cone represents two dimensions: color deviation, and intensity (or brightness) deviation. The tolerable brightness range, delimited by parameters named \textit{coneR1} and \textit{coneR2} respectively, is hardcoded within the algorithm to be 0.3 - 1.0. This range is the maximum and minimum that the normalized ratio of foreground to background (multiplied against the cosine of the color deviation) can exist within and still be considered a possible shadow (awkward). From [Phys ref], defined to be:
+
+\textit{show cone figure here.}
+
+\textit{fancy formulae here.}
+
+As previously expressed, the main components of the weak detector are paramtereized within the algorithm to fit a general model, i.e., 0.3 $<$ \textit{x} $<$ 1.0 as an intensity range works reasonably well for many scenes, but there exists an optimal range for any given environment, as well as any given frame within an environment. Similarly, the maximal color angle between foreground and background vectors is dependent on environmental parameters. These parameters, \textit{coneR1}, \textit{coneR2}, and \textit{coneAngle} are therefore considered when looking for correlations with environmental conditions.
+
+\subsubsection{Strong Detector - Physical Shadow Removal}
+
+After the weak detector removes impossible candidates for shadow pixels, a Gaussian Mixture Model (GMM) is used to learn the color features of shadow pixels when compared to background pixels. A GMM learns in an unsupervised way, i.e., 
+
+\textbf{I don't know enough about this. I need to research more into how this works, so that I can explain postThresh and weightSmooth parameters.}
+
+\textbf{Do I need graphs showing how each of these parameters affect detection/discrimination over time?}
+
+\subsubsection{Evaluation of Parameters}
+
+Due to their integral nature to both the weak and strong detectors, the following parameters are evaluated for their effect on shadow removal: \textit{coneR1}, \textit{coneAngle}, \textit{postThresh}, and \textit{weightSmoothTerm}. Each parameter is shown to have a pronounced effect on shadow removal.
+
+\textit{Example graphs of parameters for one dataset.}
+
+\textit{coneR1}'s effect on shadow removal remains consistent and scalable. The parameter is exercised through a large range, with an equally large range of resultant detection and discrimination rates. The wider range and relatively coarse-grained nature of the parameter allows for an easier time identifying trends and correlations with the iterations. 
+
+\textit{coneR2} represents the upper limit of the proverbial cone around a background pixel's color representation. The parameters are inextricably tied; however, \textit{coneR2} was not subjected to as rigourus examination, as \textit{coneR2}'s dependence on the value of \textit{coneR1} creates an exponential field of possible values for each variable. 
+
+The remaining parameters (results included in appendices) inhabit too narrow a range of sensitivty to properly exploit, e.g., \textit{coneAngle} displays erratic variation in the discovered values for optimal shadow removal, yet the optimal values are within millionths of each other. Similarly, the remaining parameters did not provided as large of a general improvement in shadow removal as \textit{coneR1} does. The erratic nature of the optimal parameter values, in combination with both the minimal removal improvement and dimunitive range of sensitive values makes further examination of these parameters difficult. For the duration of the study, environmental feature correlations were sought after only in relation to \textit{coneR1}.
 
 \section{Environmental Assessment - Environmental Parameters}
-\subsection{Previous Work - LR Texture Model}
+
+\subsection{Previous Work - Large Region Texture Removal}
+
+It is a well known phenomenon that different environmental scenes requires different algorithmic parameters (or even different algorithms) to optimally remove shadows [ref Sanin]. In Sanin's Large-Region Texture shadow removal, there are three examples of ambient scene parameters taken into account: average saturation (of foreground pixels), average attenuation (from foreground to background), and average perimeter size of foreground objects. These three global frame properties govern the value of certain algorithm parameters.
+
+As discussed above, Large Region Texture removal is confronted with difficulties when attempting to remove shadows from regions that have small areas. In Sanin's implementation of LRT removal, average foreground perimeter is checked against a predetermined threshold. In a series of ternary statements, average perimeter informs three algorithm parameters controlling the range of area within the light/shadow border to correlate between foreground and background.
+
+LRT removal, like Physical shadow removal, uses a weak detector to retrieve candidate shadow pixels. The candidate shadow pixels must simply fit within a certain range of Hue (H), Saturation (S), and Value (V)(or Brightness) when compared against the background model. There are two definitions of this accetable range: $\Delta$HSV\{76,36,[0.6 - 1.0]\}, and $\Delta$HSV\{62,93,[0.21 - 0.99]\}. If the average saturation of foreground pixels exceeds a predetermined threshold, the higher values of H and S are used as the acceptable range. Similarly, if the average attenuation of the foreground pixels exceeds its threshold, the latter range of [0.21 - 0.99] is used for evaluating brightness. 
+
+This need for adaptability underscores the motivation of this research to discover a scalable and portable solution for parameterization. In the case of Physical shadow removal, foreground object perimeter has no bearing on the efficacy of shadow removal. However, both average saturation of foreground objects and average attentuation were further scrutinized in this study.
+
+\subsection{Attenuation and Saturation}
+
+Attenuation represents the loss of intensity from foreground pixel to background pixel in a frame. Traditionally, brightness attenuation is represented mathematically in decibels (dB) as the ratio of background and foreground brightness.
+
+\begin{equation}
+dB = \dfrac{brightness(\vec{bg}(p))}{brightness(\vec{fg}(p))}
+\end{equation}
+
+\textit{p} represents pixel coordinates. Given this calculation method, shadow pixels trend towards attenuation values of 1.0 $<$ \textit{atten} $<$ 5.0. While this representation adheres most closely to the physical definition of light attenuation within a shadow, dB intensity loss fails to scale with known algorithm parameters. We therefore consider the reciprocal of this model ($1/dB$) of attenuation for correlation.
+
+Alternatively, we consider the \textit{percentage change} (\%$\Delta$) model of light attenuation. This model is defined as:
+
+ \begin{equation}
+\%\Delta = \dfrac{brightness(\vec{bg}(p) - \vec{fg}(p))}{brightness(\vec{bg}(p))}
+\end{equation}
+
+Similar to the dB model
+
 \subsection{Low-contrast SIFT Keypoints}
 \subsection{Brightness Models}
 
@@ -63,21 +173,18 @@ Can I take images from Wikipedia for use? Surely they have another legitimate so
 \subsubsection{HSP}
 \subsubsection{W3C}
 
-\subsection{Non-linear Attenuation (Yellow-shifting)}
+\subsection{Non-linear Attenuation (Blue-shifting)}
 \subsubsection{Non-linear Attenuation}
-\subsubsection{Observed Yellow-shift in Outdoor Scenes}
+\subsubsection{Observed Blue-shift in Outdoor Scenes}
 
-\section{Data Collection and Analysis}
-\subsection{Datasets and Ground Truths}
-\subsection{SimpleINI}
-\subsection{Weak Detector Estimation - Creating a Model}
+\section{Weak Detector Estimation - Creating a Model}
 
 With the coneR1 parameter tuned to optimal performance for a wide variety of datasets, we can begin to model a difference between environmental parameters and the optimal cone range. Normalizing correlative environmental parameters, we model an optimal shift from calculated parameters to the optimal value of the weak detector. While the average attenuation from the foreground to the background provides reasonable correlation to the weak detector's cone angle, said correlation does not indicate accurate magnitude for the environmentally-calculated cone angle parameter. This is due to the nature of the properties of attenuation. The attenuation calculation utilized is a function of brightness shift as a percentage of a background value, e.g., a pair of foreground/background pixels with a value of 50 and 100 produces the same attenuation as a pair valued at 50 and 25, respectively.
 
 To circumvent this dilemma, required magnitude shift can be extrapolated from the magnitude of color shift found from foreground to background. From the color shift we can calculate brightness shift. By plotting the average brightness magnitude difference against the required shift of attenuation to optimal angle, we produce a general relationship between foreground attenuation, brightness magnitude, and the shift required to perform optimally. Using data points from each frame in each dataset, we can produce a best-fit polynomial to generalize a model of attenuation and brightness magnitude shift into a scene-generated cone angle parameter. To avoid overfitting, a paramterized logarithm was chosen to represent the required magnitude shift ($\Delta$ RGB).
 
 \begin{equation}
-a*ln(x) + b
+a*ln(x) + b, {change this!}
 \end{equation}
 
 The final equation to represent the newly calculated algorithmic parameter can be assembled as:
