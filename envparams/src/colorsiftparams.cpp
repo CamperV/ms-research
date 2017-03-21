@@ -115,12 +115,14 @@ int main(int argc, char** argv) {
 
     //imshow("kpImg", kpImg);
     //imshow("kpImg_bg", kpImg_bg);
-    imshow("kpH", kpH);
+    //imshow("kpH", kpH);
     imshow("kpS", kpS);
-    imshow("kpV", kpV);
-    imshow("kpbgH", kpbgH);
+    //imshow("kpV", kpV);
+    //imshow("kpbgH", kpbgH);
     imshow("kpbgS", kpbgS);
-    imshow("kpbgV", kpbgV);
+    //imshow("kpbgV", kpbgV);
+    imshow("sat", hsv_channels[1]);
+    imshow("sat2", hsv_bg_channels[1]);
   }
 
   waitKey(0);

@@ -140,6 +140,8 @@ As discussed above, Large Region Texture removal is confronted with difficulties
 
 LRT removal, like Physical shadow removal, uses a weak detector to retrieve candidate shadow pixels. The candidate shadow pixels must simply fit within a certain range of Hue (H), Saturation (S), and Value (V)(or Brightness) when compared against the background model. There are two definitions of this accetable range: $\Delta$HSV\{76,36,[0.6 - 1.0]\}, and $\Delta$HSV\{62,93,[0.21 - 0.99]\}. If the average saturation of foreground pixels exceeds a predetermined threshold, the higher values of H and S are used as the acceptable range. Similarly, if the average attenuation of the foreground pixels exceeds its threshold, the latter range of [0.21 - 0.99] is used for evaluating brightness. 
 
+\textit{Should we put a cylinder here to contrast against the coneR1R2?}
+
 This need for adaptability underscores the motivation of this research to discover a scalable and portable solution for parameterization. In the case of Physical shadow removal, foreground object perimeter has no bearing on the efficacy of shadow removal. However, both average saturation of foreground objects and average attentuation were further scrutinized in this study.
 
 \subsection{Attenuation and Saturation}
@@ -154,28 +156,114 @@ dB = \dfrac{brightness(\vec{bg}(p))}{brightness(\vec{fg}(p))}
 
 Alternatively, we consider the \textit{percentage change} (\%$\Delta$) model of light attenuation. This model is defined as:
 
- \begin{equation}
+\begin{equation}
 \%\Delta = \dfrac{brightness(\vec{bg}(p) - \vec{fg}(p))}{brightness(\vec{bg}(p))}
 \end{equation}
 
-Similar to the dB model
+Similar to the dB model, $(1 - \%\Delta$) is considered for correlation, representing the percentage of a background pixel's intensity the foreground is valued at (\textbf{awkward?}).
 
-\subsection{Low-contrast SIFT Keypoints}
+\textbf{These attentuation calculation methods differ in the assumptions of linearity, and how it relates to shadows in an environment.}
+
+Saturation is the measurement of 'depth of hue' in a pixel, e.g., a lower saturation means the base hue is less expressed, while a higher saturation means the color of a pixel more closely matches the base hue. The saturation level of a background pixel affects the intensity attenuation a shadow pixel experiences. While the average saturation of foreground objects can be used as a coarse guide for adjusting intensity threholds (see LRT removal), saturation properties are used differently in this study, as seen in section \ref{lowcSIFT}.
+
+\subsection{Non-linear Attenuation and Spectral Properties of Light}
+\subsubsection{Non-linear Attenuation}
+
+\textit{may be able to scrounge a figure from Physical?}
+
+\subsubsection{Observed Blue-shift in Outdoor Scenes}
+
+\textit{Insert comparison of R,G,B shifts in shadowed regions}
+
 \subsection{Brightness Models}
 
-Can I take images from Wikipedia for use? Surely they have another legitimate source.
+Since attenuation is a function of brightness, understanding the myriad methods of calculating the brightness of a pixel is tantamount to accurately modeling attenuation for a scene. Similarly, in response to the spectral differences of light given the light source, the model for brightness used for a scene must adhere to what suits that scene best \textbf{awkward}. Below is a short taxonomy of popular brightness models studied. Each of the brightness models included are tested and analyzed for its affect on the average attenuation model.
 
 \subsubsection{HSV}
-\subsubsection{HSI}
-\subsubsection{HSL}
-\subsubsection{Luma Y'}
-\subsubsection{Euclidean Norm}
-\subsubsection{HSP}
-\subsubsection{W3C}
 
-\subsection{Non-linear Attenuation (Blue-shifting)}
-\subsubsection{Non-linear Attenuation}
-\subsubsection{Observed Blue-shift in Outdoor Scenes}
+Also known as HSB, where Value is substituted for Brightness. Described as a 'hexcone' model, [ref hexcone HSV], brightness in an HSV representation is defined as the maximum value of the pixel represented in the red, green, and blue channels ($\vec{RGB}(p)$).
+
+\begin{equation}
+V = max(R, G, B)
+\end{equation}
+
+HSV can lead to misrepresentation of brightness as it is perceived by the human eye. This is because, as noted in Rec. 709/601 [ref 709], the same intensity of green appears brighter than that of red, which, in turn, appears brighter than the same intensity of blue. In the HSV scheme, green at full intensity ($\hat{RGB} = (0, 1, 0)$) matches the brightness of blue at full intensity ($\hat{RGB} = (0, 0, 1)$). It also minimizes contributions from channels other than the dominant channel, e.g., $\hat{RGB}(0, 1, 0)$ = $\hat{RGB}(.9, 1, .9)$. HSV therefore is best suited for environments characterized by abnormally low saturation, where light attenuation due to shadows is most linear.
+
+\subsubsection{HSI}
+
+HSI represents the most basic understanding of brightness, as \textit{Intensity}. 
+
+\begin{equation}
+I = \dfrac{R + G + B}{3}
+\end{equation}
+
+This understanding of brightness serves most environments properly, as it caters to each channel equally. However, HSI still suffers from the inherent luminance of certain colors, and fails to compensate for them.
+
+\subsubsection{HSL}
+
+HSL, a brightness prepresentation called \textit{Lightness}, is called a 'bi-hexcone' model [ref bihex] Lightness is an average of the primary and tertiary color components:
+
+\begin{equation}
+L = \dfrac{max(R,G,B) + min(R,G,B)}{2}
+\end{equation}
+
+Excluding the secondary color component has the effect of translating the brightness plane described by HSI. While perceptually similar to other brightness models, HSL provides more balanced values when one channel's value is in extrema.
+
+\subsubsection{Relative Luminance (Y)}
+
+Originally issued in 1982, Rec. 601 [ref?] defines 	one of the first standards for converting analog signal into digital video. \textit{Relative Luminance (Y)}, or, when gamma-corrected, \textit{Luma (Y')} is the simplest extrapolation of perceptually-relevant brightness. Luminance is defined as a coefficient-weighted linear combination:
+
+\begin{equation}
+Y = 0.299R + 0.587G + 0.114B
+\end{equation}
+
+Rec. 709 later modified the coefficients to 0.21, 0.72, and 0.07, respectively. For this study's experimental purposes, Rec. 601 coefficients were used. This brightness model highlights the human eye's sensivitiy to green hues, and is therefore particularly relevant when observing outdoor scenes. 
+
+\subsubsection{Euclidean Norm}
+
+Taking the Euclidean norm of an $\vec{RGB}$ vector is measuring the three-dimensional distance from absolute black, $\vec{RGB} = (0,0,0)$. 
+
+\begin{equation}
+Norm = \sqrt{\Delta R^2 + \Delta G^2 + \Delta B^2}
+\end{equation}
+
+While the Euclidean norm does not weight the channels perceptually, as Luminance does, it does represent the most accurate way to determine the color difference between two $\vec{RGB}$ vectors, and therefore proves valuable when comparing foreground pixels to background pixels. 
+
+\subsubsection{HSP}
+
+HSP, or \textit{Perceived Brightness}, combines the three dimensional distance of Euclidean norm, and the perceptually weighted coefficients of Luminance. HSP was introduced by Darel Rex Finley in 2006.
+
+\begin{equation}
+P = \sqrt{0.299\Delta R^2 + 0.587\Delta G^2 + 0.114\Delta B^2}
+\end{equation}
+
+Ideally, HSP provides the most accurate perceptually concious brightness. Environments that experience large saturation shifts due to shadows benefit primarily, as both color distance and weighted coefficients are considered.
+
+\subsection{Low-contrast SIFT Keypoints} \label{lowcSIFT}
+
+An environment typically contains a large set of low-level textural features unique to it. These low-level features have been characterized and quantified in many ways, such as the SIFT, SURF, or FAST feature descriptors [ref for all of these]. These feature descriptors are used for image recognition and retrieval at various scales, rotations, and translations. These algorithms are traditionally performed on intensity images, i.e., grayscale images. However, hue and saturation play a large role in scene characterization; therefore, SIFT implementations were developed to incorporate color information. Popular implementations of a color-SIFT method are HSV-SIFT, RGB-SIFT, HueSIFT, and others [ref colorsift].
+
+Intensity images, while discarding chromatic information, often retain structural and textural information, due to image gradients' invariant basis in intensity. We assume a cast shadow similarly has minimal impact on underlying structures and textures, due to success of Textural shadow removal methods [ref LR, SR, etc]. As a result, SIFT keypoints remain largely harmonic between a frame and its background model in intensity images. Exluding the introduction of non-shadow foreground objects, discrepancies between SIFT keypoints in both foreground and background tend to be caused by the homogenizing effect a background model takes on, and not by the presence of cast shadows. In a traditional understanding of shadow attenutation as a linear process, both the hue and saturation of a pixel remain constant, as the intensity attenuates. Since this study assumes a different, non-linear understanding of light attenuation, we sought for representative changes that shadows bring to the hue and saturation channels of an HSV image. While intensity images are resistant to changes in structure, the saturation channel experiences small localized structure changes within these shadowed regions.
+
+\textit{example ATON\_LAB of shadow-area structural changes.}
+
+We attempt to characterize these localized changes in structure using HSV-SIFT, by detecting SIFT keypoints using only the saturation channels of both a frame and its corresponding background model. It is apparent that foreground objects introduce significant structural changes in any of the three channels, therefore the collection of SIFT descriptors is limited to only those considered \textit{low contrast}. The SIFT algorithm operates in four major stages: scale-space extrema extraction, elimination of low-contrast keypoints, elimination of strong edge responses, and the assignment of orientations. Low-contrast detections are eliminated due to their susceptibilty to noise [ref SIFT]. In our study, we build two matrices: the first containing keypoints of low and normal contrast (still excluding edge responses), and the second containing only normal contrast keypoints. We then extract low-contrast keypoints using an exclusive-or operation. The non-linearity of light attenuation, paired with surface irregularities, make shadowed regions in the saturation channel a hotbed for these low-contrast SIFT keypoints. When drawn onto the source frame, we can see that low-contrast SIFT keypoints align logically with shadowed regions. 
+
+\textit{lowc SIFT keypoints drawn onto ATON\_LAB.}
+
+With shadows partially characterized by low-contrast SIFT keypoints, this study utilizes this insight by attempting to model the proportion of foreground objects to shadows introduced in a given frame. The approximate ratio of shadows introduced to foreground objects in calculated for both the foreground and background frames, using the ratio
+
+\begin{equation}
+\%lowC = 1 - \dfrac{num SIFT(0.04) features}{num SIFT(0.01) features}
+\end{equation}
+
+where \textit{SIFT(0.04)} represents features captured using the default contrast threshold (0.04), and \textit{SIFT(0.01)} represents features captured using a low contrast threshold. We then compare the \%\textit{lowC} ratios of the foreground to the background:
+
+\begin{equation}
+\%lowC(bg \rightarrow fg) = \dfrac{\%lowC(fg)}{\%lowC(bg)}
+\end{equation}
+
+This calculated ratio is used for improving and accentuating correlation of attenuation against algorithm parameters.
 
 \section{Weak Detector Estimation - Creating a Model}
 
