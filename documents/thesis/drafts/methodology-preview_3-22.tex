@@ -153,89 +153,20 @@ Considering the diversity of shadow removal methods assessed in this research, a
 
 Identifying an appropriate algorithm for assessment means highlighting a shadow removal method that demonstrates consistently reasonable sensitivity to changes in environmental characteristics. Simultaneously, a candidate for deeper analysis must demonstrate consistency in its detection/discrimination integrity throughout most frames of a dataset, with few sizable deviations. If the study were not constrained in this manner, the motivation of this research quickly becomes redundant, as the sheer amount of interdependent variables brings the problem to levels generally reserved for unsupervised clustering and other big-data approaches. As this study means to link qualitative environmental characteristics to quantitative tangible improvement, this approach would detour research into a different realm entirely.
 
-Candidate shadow removal algorithms were charted according to their efficacy over time and apparent correlation to qualitative observations attributed to a dataset; e.g., the PETS1 dataset experiences a large illumination change midway through its sampling, which is taken into account when searching for trends among the removal rates of a candidate method. For example, Figure \ref{selectinganalgorithm} charts the efficacy of each shadow removal method against the number of SIFT parameters detected in a frame.
+Candidate shadow removal algorithms were charted according to their efficacy over time and apparent correlation to qualitative observations attributed to a dataset; e.g., the PETS1 dataset experiences a large illumination change midway through its sampling, which is taken into account when searching for trends among the removal rates of a candidate method.
 
-\begin{figure}
-\centering
-\begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/selectinganalgorithm_chromacity.jpg}
-  \caption{Chromacity removal.}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/selectinganalgorithm_physical.jpg}
-  \caption{Physical removal.}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/selectinganalgorithm_geometry.jpg}
-  \caption{Geometry removal.}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/selectinganalgorithm_srt.jpg}
-  \caption{Small-Region Texture removal.}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/selectinganalgorithm_lrt.jpg}
-  \caption{Large-Region Texture removal.}
-\end{subfigure}
-
-\caption{Shadow removal methods and their performance v. number of detected SIFT features in an image (aton\_hallway).}
-\label{fig:selectinganalgorithm}
-\end{figure}
+\textit{Show graphs of shadow removal methods here. Probably a small grid of graphs.}
 
 \subsubsection{Evaluation of Methods}
 Both Geometry-based removal and Leone's Small-Region Texture (SRT, \textbf{I will define these acronyms in their own section)} removal were shown to behave highly erratically from frame to frame within an environmentally consistent dataset. Geometry-based removal remains dependent on the shape and consistency of processed foreground objects, ergo dependent on the consistency of whichever foreground extractor is used for a scene. This irregularity is not contingent on the properties of shadows within an environment, and therefore removed Geometry-based methods from candidacy for further analysis. Small-Region Texture removal is based upon a series of Gabor filters used to characterize textural patches found in shadows, and match them to a corresponding background model. This technique requires that shadows cover textural portions of the background model large enough to perform meaningful analysis. The algorithm carries with it no meaningful contingencies for this limitation. The parameters associated with SRT removal define little avenue for improvement of shadow removal in most cases, and defines no avenue for cases mentioned where the shadows are too small. This dependence on a shadow's area, coupled with no parameters suitable to improve detection, eliminated SRT removal from candidacy. 
 
-Sanin et al.'s Large-Region Texture algorithm was also eliminated from the assessment due to its temperamental inter-frame performance, similar to the methods above. Some environments, such as the roadways of aton\_highway3, yielded null detections for all frames \textbf{NOTE: This specific test needs to be rerun, I know why the NULLs happened. Everything else is fine though}. The Large-Region Texture algorithm recognizes the pitfalls of the Small-Region approach, such as overly-small texture regions, and attempts to correct them using hard-coded parameters. Unfortunately, the algorithm as a whole displays an overly large sensitivity to change, both inter and intra-dataset (see Figure \ref{lrt_sensitivity}). In a larger scoped study, one may approach this algorithm as an ideal candidate for potential improvement, given its large swath of tunable parameters and variable responses. However, for those reasons it was excluded from the remainder of this study. By selecting an algorithm with more controlled responses to change of environment, we can extend insights gleaned into improvements for other algorithms, including this one.
+Sanin et al.'s Large-Region Texture algorithm was also eliminated from the assessment due to its temperamental inter-frame performance, similar to the methods above. Some environments, such as the roadways of aton\_highway3, yielded null detections for all frames \textbf{NOTE: This specific test needs to be rerun, I know why the NULLs happened. Everything else is fine though}. The Large-Region Texture algorithm recognizes the pitfalls of the Small-Region approach, such as overly-small texture regions, and attempts to correct them using hard-coded parameters. Unfortunately, the algorithm as a whole displays an overly large sensitivity to change, both inter and intra-dataset. In a larger scoped study, one may approach this algorithm as an ideal candidate for potential improvement, given its large swath of tunable parameters and variable responses. However, for those reasons it was excluded from the remainder of this study. By selecting an algorithm with more controlled responses to change of environment, we can extend insights gleaned into improvements for other algorithms, including this one.
 
-\begin{figure}
-\centering
-\begin{subfigure}{.8\linewidth}
-  \centering
-  \includegraphics[width=1\linewidth]{figures/lrt_sensitivity_2.jpg}
-  \caption{}
-  \label{fig:sub1}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.8\linewidth}
-  \centering
-  \includegraphics[width=1\linewidth]{figures/lrt_sensitivity_1.jpg}
-  \caption{}
-  \label{fig:sub2}
-\end{subfigure}
-\caption{(a) displays the consistent nature of LRT in some environments, while (b) demonstrates erratic dips in consistency. \textbf{CHANGE THESE FIGS}}
-\label{fig:lrt_sensitivity}
-\end{figure}
+\textit{LR Example sensitivity (one consistent, one inconsistent, one null.}
 
-Finally, both Chromacity-based and Physical-based shadow removal held the qualities ascribed to a suitable algorithm for exploration. In both cases, trends are observed, consistency of detection is within reasonable range, and the modification of parameters produces a scalable and easily observable response. This is visualized in Figure \ref{similarities}.
+Finally, both Chromacity-based and Physical-based shadow removal held the qualities ascribed to a suitable algorithm for exploration. In both cases, trends are observed, consistency of detection is within reasonable range, and the modification of parameters produces a scalable and easily observable response.
 
-\begin{figure}
-\centering
-\begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/similarities_chromacity_highway1.jpg}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/similarities_physical_highway1.jpg}
-
-\end{subfigure}
-\hfill
-\begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/similarities_chromacity_hallway.jpg}
-  \caption{Chromacity removal.}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/similarities_physical_hallway.jpg}
-  \caption{Physical removal.}
-\end{subfigure}
-
-\caption{Chromacity (a) and Physical (b) shadow removal demonstrate similar responses to multiple datasets.}
-\label{fig:similarities}
-\end{figure}
+\textit{Examples of similarity here.}
 
 Chromacity shadow removal leads Physical removal consistency between datasets; the removal algorithm succeeds due to the tendency of shadows within a dataset to remain a consistent darkness when compared to the corresponding background model. However, this simple approach can prove problematic when experiencing illumination changes within a dataset. Physical shadow removal utilizes a similar system of gaging a shadow's darkness compared to a background model - what is referred to as a weak detector [ref Phys, Chroma, LRT] - and implicitly suffers similar breakdowns of detection when presented with significant illumination flux within a dataset. Although they both suffer, Physical shadow removal proves robust than Chromacity removal under these conditions. This increase in sophistication also lends itself to utilizing more malleable parameters during detection. Physical shadow removal demonstrates sensitivity to both parameter changes and environmental changes, within reasonable ranges. In the end, Physical shadow removal was selected as the main experimental framework for this study, triumphing over Chromacity shadow removal in part due to its more sophisticated model. [However, as we will illuminate in the coming section, the study of improving Physical shadow removal parallels any similar study undertaken with Chromacity, and can be applied across the pair of algorithms. \textbf{WISHLIST}]
 
@@ -245,7 +176,7 @@ Physical shadow removal operates in two stages: the weak detector, and the stron
 
 \subsubsection{Weak Detector - Physical Shadow Removal}
 
-The purpose of the weak detector is to eliminate impossible pixels from being fed to the strong detector. The weak detector in Physical shadow removal functions similarly to the Chromacity shadow removal process; the candidate pixel is evaluated by its distance from a corresponding background pixel and sorted accordingly. The weak detector is visually, and technically, a cone projected in an RGB plane indicating the range in which a normalized shadow pixel may lie in respect to a background model. textbf{Normalizing the shadow pixel's position relative to the background model} is accomplished by computing the angular distance between the $\vec{RGB}$ vector of the foreground and the $\vec{RGB}$ vector of the background. The resultant represents the color-space deviation from foreground to background. This threshold parameter is named \textit{coneAngle} within the Physical shadow removal algorithm. The cone represents two dimensions: color deviation, and intensity (or brightness) deviation. The tolerable brightness range, delimited by parameters named \textit{coneR1} and \textit{coneR2} respectively, is hard-coded within the algorithm to be 0.3 - 1.0. This range is the maximum and minimum that the normalized ratio of foreground to background (multiplied against the cosine of the color deviation) can exist within and still be considered a possible shadow (awkward). From [Phys ref], defined to be:
+The purpose of the weak detector is to eliminate impossible pixels from being fed to the strong detector. The weak detector in Physical shadow removal functions similarly to the Chromacity shadow removal process; the candidate pixel is evaluated by its distance from a corresponding background pixel and sorted accordingly. The weak detector is visually, and technically, a cone projected in an RGB plane indicating the range in which a normalized shadow pixel may lie in respect to a background model. textbf{Normalizing the shadow pixel's position relative to the background model} is accomplished by computing the angular distance between the $\vec{RGB}$ vector of the foreground and the $\vec{RGB}$ vector of the background. The resultant represents the color-space deviation from foreground to background. This threshold parameter is named \textit{coneAngle} within the Physical shadow removal algorithm. The cone represents two dimensions: color deviation, and intensity (or brightness) deviation. The tolerable brightness range, delimited by parameters named \textit{coneR1} and \textit{coneR2} respectively, is hardcoded within the algorithm to be 0.3 - 1.0. This range is the maximum and minimum that the normalized ratio of foreground to background (multiplied against the cosine of the color deviation) can exist within and still be considered a possible shadow (awkward). From [Phys ref], defined to be:
 
 \textit{show cone figure here.}
 
