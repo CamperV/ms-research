@@ -153,7 +153,7 @@ Considering the diversity of shadow removal methods assessed in this research, a
 
 Identifying an appropriate algorithm for assessment means highlighting a shadow removal method that demonstrates consistently reasonable sensitivity to changes in environmental characteristics. Simultaneously, a candidate for deeper analysis must demonstrate consistency in its detection/discrimination integrity throughout most frames of a dataset, with few sizable deviations. If the study were not constrained in this manner, the motivation of this research quickly becomes redundant, as the sheer amount of interdependent variables brings the problem to levels generally reserved for unsupervised clustering and other big-data approaches. As this study means to link qualitative environmental characteristics to quantitative tangible improvement, this approach would detour research into a different realm entirely.
 
-Candidate shadow removal algorithms were charted according to their efficacy over time and apparent correlation to qualitative observations attributed to a dataset; e.g., the PETS1 dataset experiences a large illumination change midway through its sampling, which is taken into account when searching for trends among the removal rates of a candidate method. For example, Figure \ref{selectinganalgorithm} charts the efficacy of each shadow removal method against the number of SIFT parameters detected in a frame.
+Candidate shadow removal algorithms were charted according to their efficacy over time and apparent correlation to qualitative observations attributed to a dataset; e.g., the PETS1 dataset experiences a large illumination change midway through its sampling, which is taken into account when searching for trends among the removal rates of a candidate method. For example, Figure \ref{fig:selectinganalgorithm} charts the efficacy of each shadow removal method against the number of SIFT parameters detected in a frame.
 
 \begin{figure}
 \centering
@@ -189,7 +189,7 @@ Candidate shadow removal algorithms were charted according to their efficacy ove
 \subsubsection{Evaluation of Methods}
 Both Geometry-based removal and Leone's Small-Region Texture (SRT, \textbf{I will define these acronyms in their own section)} removal were shown to behave highly erratically from frame to frame within an environmentally consistent dataset. Geometry-based removal remains dependent on the shape and consistency of processed foreground objects, ergo dependent on the consistency of whichever foreground extractor is used for a scene. This irregularity is not contingent on the properties of shadows within an environment, and therefore removed Geometry-based methods from candidacy for further analysis. Small-Region Texture removal is based upon a series of Gabor filters used to characterize textural patches found in shadows, and match them to a corresponding background model. This technique requires that shadows cover textural portions of the background model large enough to perform meaningful analysis. The algorithm carries with it no meaningful contingencies for this limitation. The parameters associated with SRT removal define little avenue for improvement of shadow removal in most cases, and defines no avenue for cases mentioned where the shadows are too small. This dependence on a shadow's area, coupled with no parameters suitable to improve detection, eliminated SRT removal from candidacy. 
 
-Sanin et al.'s Large-Region Texture algorithm was also eliminated from the assessment due to its temperamental inter-frame performance, similar to the methods above. Some environments, such as the roadways of aton\_highway3, yielded null detections for all frames \textbf{NOTE: This specific test needs to be rerun, I know why the NULLs happened. Everything else is fine though}. The Large-Region Texture algorithm recognizes the pitfalls of the Small-Region approach, such as overly-small texture regions, and attempts to correct them using hard-coded parameters. Unfortunately, the algorithm as a whole displays an overly large sensitivity to change, both inter and intra-dataset (see Figure \ref{lrt_sensitivity}). In a larger scoped study, one may approach this algorithm as an ideal candidate for potential improvement, given its large swath of tunable parameters and variable responses. However, for those reasons it was excluded from the remainder of this study. By selecting an algorithm with more controlled responses to change of environment, we can extend insights gleaned into improvements for other algorithms, including this one.
+Sanin et al.'s Large-Region Texture algorithm was also eliminated from the assessment due to its temperamental inter-frame performance, similar to the methods above. Some environments, such as the roadways of aton\_highway3, yielded null detections for all frames \textbf{NOTE: This specific test needs to be rerun, I know why the NULLs happened. Everything else is fine though}. The Large-Region Texture algorithm recognizes the pitfalls of the Small-Region approach, such as overly-small texture regions, and attempts to correct them using hard-coded parameters. Unfortunately, the algorithm as a whole displays an overly large sensitivity to change, both inter and intra-dataset (see Figure \ref{fig:lrt_sensitivity}). In a larger scoped study, one may approach this algorithm as an ideal candidate for potential improvement, given its large swath of tunable parameters and variable responses. However, for those reasons it was excluded from the remainder of this study. By selecting an algorithm with more controlled responses to change of environment, we can extend insights gleaned into improvements for other algorithms, including this one.
 
 \begin{figure}
 \centering
@@ -210,7 +210,7 @@ Sanin et al.'s Large-Region Texture algorithm was also eliminated from the asses
 \label{fig:lrt_sensitivity}
 \end{figure}
 
-Finally, both Chromacity-based and Physical-based shadow removal held the qualities ascribed to a suitable algorithm for exploration. In both cases, trends are observed, consistency of detection is within reasonable range, and the modification of parameters produces a scalable and easily observable response. This is visualized in Figure \ref{similarities}.
+Finally, both Chromacity-based and Physical-based shadow removal held the qualities ascribed to a suitable algorithm for exploration. In both cases, trends are observed, consistency of detection is within reasonable range, and the modification of parameters produces a scalable and easily observable response. This is visualized in Figure \ref{fig:similarities}.
 
 \begin{figure}
 \centering
@@ -258,7 +258,7 @@ As previously expressed, the main components of the weak detector are parameteri
 
 \subsubsection{Strong Detector - Physical Shadow Removal}
 
-After the weak detector removes impossible candidates for shadow pixels, a Gaussian Mixture Model (GMM) is used to learn the color features of shadow pixels when compared to background pixels. Using the remaining pixels, the GMM estimates the normalized spectral ratio for shadows in a scene, i.e., the ratio of spectral illuminants [ref Phys]. More information on spectral illuminants can be found in section \ref{nonlinearatten}. The GMM is a framework based upon Expectation Maximization and learning over time; therefore, the initial parameters presented in the algorithm have little influence over the efficacy of shadow removal. Shadow removal displayed sensitivity to only one significant parameter, \textit{postThresh}, the parameter controlling the posterior threshold. The posterior threshold is the threshold governing shadow/foreground assignment after the posterior probability of a pixel is determined via the GMM. \textit{postThresh}'s effect on shadow detection and discrimination is illustrated in Figure \ref{postthresh_iterate}.
+After the weak detector removes impossible candidates for shadow pixels, a Gaussian Mixture Model (GMM) is used to learn the color features of shadow pixels when compared to background pixels. Using the remaining pixels, the GMM estimates the normalized spectral ratio for shadows in a scene, i.e., the ratio of spectral illuminants [ref Phys]. More information on spectral illuminants can be found in section \ref{nonlinearatten}. The GMM is a framework based upon Expectation Maximization and learning over time; therefore, the initial parameters presented in the algorithm have little influence over the efficacy of shadow removal. Shadow removal displayed sensitivity to only one significant parameter, \textit{postThresh}, the parameter controlling the posterior threshold. The posterior threshold is the threshold governing shadow/foreground assignment after the posterior probability of a pixel is determined via the GMM. \textit{postThresh}'s effect on shadow detection and discrimination is illustrated in Figure \ref{fig:postthresh_iterate}.
 
 \textbf{Move this to next section?}
 \begin{figure}
@@ -280,7 +280,7 @@ Since the GMM adapts to its environment, modifying the posterior threshold under
 
 \subsubsection{Evaluation of Parameters}
 
-Due to their integral nature to both the weak and strong detectors, the following parameters are evaluated for their effect on shadow removal: \textit{coneR1}, and \textit{coneAngle}. Each parameter is shown to have a pronounced effect on shadow removal. Figure \ref{coneR1_iterate} demonstrates \textit{coneR1}'s contribution to detection/discrimination across datasets.
+Due to their integral nature to both the weak and strong detectors, the following parameters are evaluated for their effect on shadow removal: \textit{coneR1}, and \textit{coneAngle}. Each parameter is shown to have a pronounced effect on shadow removal. Figure \ref{fig:coneR1_iterate} demonstrates \textit{coneR1}'s contribution to detection/discrimination across datasets.
 
 \begin{figure}
   \begin{subfigure}{.49\linewidth}
@@ -375,19 +375,65 @@ In the ideal case, the attenuation of light is an entirely linear function, i.e.
   \label{fig:rgbcube}
 \end{figure}
 
-Due to physical properties of illumination and reflectance, this linearity does not always hold true; cast shadows in real-world scenes commonly belong to more than one illumination source. In an outdoor scene, a shadow may be the product of direct sunlight, blue light refracted from the sky, and diffuse light scattering from nearby objects or surfaces. Any of these factors contribute to color bleed [ref phys/colorbleed], influencing the attenuation of shadow pixels. These disparate light sources are said to have different \textit{spectral power distributions}, different illumination characterized by varying concentrations of constituent wavelengths. 
-
-\textit{may be able to scrounge a figure from Physical?}
-
-This non-linear attenuation model is the primary motivator behind using GMM to learn a shadow's color model in [ref Phys].
+Due to physical properties of illumination and reflectance, this linearity does not always hold true; cast shadows in real-world scenes commonly belong to more than one illumination source. In an outdoor scene, a shadow may be the product of direct sunlight, blue light refracted from the sky, and diffuse light scattering from nearby objects or surfaces. Any of these factors contribute to color bleed [ref phys/colorbleed], influencing the attenuation of shadow pixels. These disparate light sources are said to have different \textit{spectral power distributions}, different illumination characterized by varying concentrations of constituent wavelengths. This non-linear attenuation model is the primary motivator behind using GMM to learn a shadow's color model in [ref Phys].
 
 \subsubsection{Observed Spectral Properties in Outdoor Scenes}
 
-Since the spectral properties of an illumination source can not always be predicted, this study attempted to observe trends between datasets to properly characterize shadows. By visualizing the magnitude of color shift due to shadows, we can clearly partition datasets into outdoor and indoor images. Outdoor datatsets experience change disproportionately in each channel of an RGB image, while indoor datasets are characterized by equal and predictable shifts in each channel.
+Since the spectral properties of an illumination source can not always be predicted, this study attempted to observe trends between datasets to properly characterize shadows. By visualizing the magnitude of color shift due to shadows, we can clearly partition datasets into outdoor and indoor images. Outdoor datasets experience change disproportionately in each channel of an RGB image, while indoor datasets are characterized by equal and predictable shifts in each channel.
 
-\textit{Insert comparison of R,G,B shifts in shadowed regions}
+\begin{figure}
+  \centering
+  \begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/rgshift_pets1.jpg}
+  \caption{PETS1}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/rgshift_pets2.jpg}
+  \caption{PETS2}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/rgshift_highway1.jpg}
+  \caption{aton\_highway1}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/rgshift_highway3.jpg}
+  \caption{aton\_highway3}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.7\linewidth}
+  \includegraphics[width=1\linewidth]{figures/rgshift_campus.jpg}
+  \caption{aton\_campus}
+\end{subfigure}
 
-This disproportionate discrepancy is most apparent during periods of large illumination change, found prominently in datasets PETS1 and PETS2. Examining the outdoor datatsets, we can see that the red and green channels experience larger magnitude shifts that the blue channel. Based on assumed spectral power distributions of the source illumination found in the outdoor scenes, we can deduce that outdoor scenes display an introduction of blue light scattered from the sky that is not present in indoor scenes. With a spectral power distribution skewed towards blue, the red and green channels experience greater perturbation than the blue channel due to cast shadows. This study attempts to utilize this observed multi-illuminant model to better characterize the attenuation model assumed by a scene. 
+\caption{Outdoor datasets demonstrate consistently greater deviations in the red and green channels. During illumination changes (evident in PETS1 and PETS2), the red and green channels shift disproportionate to that of the blue channel, indicating scattered blue light is a primary component of the shadows' spectral illuminant ratio.}
+\label{fig:rgshift_outdoor}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/rgshift_room.jpg}
+  \caption{aton\_room}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/rgshift_hallway.jpg}
+  \caption{aton\_hallway}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.7\linewidth}
+  \includegraphics[width=1\linewidth]{figures/rgshift_lab.jpg}
+  \caption{aton\_lab}
+\end{subfigure}
+
+\caption{Indoor datasets demonstrate closer grouping of each channel's color shift. aton\_hallway behaves most erratically of the indoor datasets. This is due to color-bleed from nearby objects, making aton\_hallway the most diverse spectral ratio of the indoor sets. aton\_lab behaves linearly, as expected.}
+\label{fig:rgshift_indoor}
+\end{figure}
+
+This disproportionate discrepancy is most apparent during periods of large illumination change, found prominently in datasets PETS1 and PETS2. Examining the outdoor datasets, we can see that the red and green channels experience larger magnitude shifts that the blue channel. Based on assumed spectral power distributions of the source illumination found in the outdoor scenes, we can deduce that outdoor scenes display an introduction of blue light scattered from the sky that is not present in indoor scenes. With a spectral power distribution skewed towards blue, the red and green channels experience greater perturbation than the blue channel due to cast shadows. This study attempts to utilize this observed multi-illuminant model to better characterize the attenuation model assumed by a scene. 
 
 \subsection{Brightness Models}
 
@@ -458,15 +504,61 @@ Ideally, HSP provides the most accurate perceptually conscious brightness. Envir
 
 An environment typically contains a large set of low-level textural features unique to it. These low-level features have been characterized and quantified in many ways, such as the SIFT, SURF, or FAST feature descriptors [ref for all of these]. These feature descriptors are used for image recognition and retrieval at various scales, rotations, and translations. These algorithms are traditionally performed on intensity images, i.e., grayscale images. However, hue and saturation play a large role in scene characterization; therefore, SIFT implementations were developed to incorporate color information. Popular implementations of a color-SIFT method are HSV-SIFT, RGB-SIFT, HueSIFT, and others [ref colorsift, hsv sift, etc].
 
-Intensity images, while discarding chromatic information, often retain structural and textural information, due to image gradients' invariant basis in intensity. We assume a cast shadow similarly has minimal impact on underlying structures and textures, due to success of Textural shadow removal methods [ref LR, SR, etc]. As a result, SIFT keypoints remain largely harmonic between a frame and its background model in intensity images. Excluding the introduction of non-shadow foreground objects, discrepancies between SIFT keypoints in both foreground and background tend to be caused by the homogenizing effect a background model takes on, and not by the presence of cast shadows. In a traditional understanding of shadow attenuation as a linear process, both the hue and saturation of a pixel remain constant, as the intensity attenuates. Since this study assumes a different, non-linear understanding of light attenuation, we sought for representative changes that shadows bring to the hue and saturation channels of an HSV image. While intensity images are resistant to changes in structure, the saturation channel experiences small localized structure changes within these shadowed regions.
+Intensity images, while discarding chromatic information, often retain structural and textural information, due to image gradients' invariant basis in intensity. We assume a cast shadow similarly has minimal impact on underlying structures and textures, due to success of Textural shadow removal methods [ref LR, SR, etc]. As a result, SIFT keypoints remain largely harmonic between a frame and its background model in intensity images. Excluding the introduction of non-shadow foreground objects, discrepancies between SIFT keypoints in both foreground and background tend to be caused by the homogenizing effect a background model takes on, and not by the presence of cast shadows. In a traditional understanding of shadow attenuation as a linear process, both the hue and saturation of a pixel remain constant, as the intensity attenuates. Since this study assumes a different, non-linear understanding of light attenuation, we sought for representative changes that shadows bring to the hue and saturation channels of an HSV image. While intensity images are resistant to changes in structure, the saturation channel experiences small localized structure changes within these shadowed regions (Figure \ref{fig:sat_struct}).
 
-\textit{example ATON\_LAB of shadow-area structural changes.}
+\begin{figure}
+  \centering
+  \begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_0161.jpg}
+  \caption{aton\_lab}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_gt_0161.jpg}
+  \caption{aton\_lab ground truth}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_sat_bg_0161.jpg}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_sat_fg_0161.jpg}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_sat_bg_zoom_0161.jpg}
+  \caption{Saturation channel (background)}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.49\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_sat_fg_zoom_0161.jpg}
+  \caption{Saturation channel (frame)}
+\end{subfigure}
 
-We attempt to characterize these localized changes in structure using HSV-SIFT, by detecting SIFT keypoints using only the saturation channels of both a frame and its corresponding background model. It is apparent that foreground objects introduce significant structural changes in any of the three channels, therefore the collection of SIFT descriptors is limited to only those considered \textit{low contrast}. The SIFT algorithm operates in four major stages: scale-space extrema extraction, elimination of low-contrast keypoints, elimination of strong edge responses, and the assignment of orientations. Low-contrast detections are eliminated due to their susceptibility to noise [ref SIFT]. In our study, we build two matrices: the first containing keypoints of low and normal contrast (still excluding edge responses), and the second containing only normal contrast keypoints. We then extract low-contrast keypoints using an exclusive-or operation. The non-linearity of light attenuation, paired with surface irregularities, make shadowed regions in the saturation channel a hotbed for these low-contrast SIFT keypoints. When drawn onto the source frame, we can see that low-contrast SIFT keypoints align logically with shadowed regions. 
+\caption{The limited structural effects of cast shadows in the saturation channel (d).}
+\label{fig:sat_struct}
+\end{figure}
 
-\textit{lowc SIFT keypoints drawn onto ATON\_LAB.}
+We attempt to characterize these localized changes in structure using HSV-SIFT, by detecting SIFT keypoints using only the saturation channels of both a frame and its corresponding background model. It is apparent that foreground objects introduce significant structural changes in any of the three channels, therefore the collection of SIFT descriptors is limited to only those considered \textit{low contrast}. The SIFT algorithm operates in four major stages: scale-space extrema extraction, elimination of low-contrast keypoints, elimination of strong edge responses, and the assignment of orientations. Low-contrast detections are eliminated due to their susceptibility to noise [ref SIFT]. In our study, we build two matrices: the first containing keypoints of low and normal contrast (still excluding edge responses), and the second containing only normal contrast keypoints. We then extract low-contrast keypoints using an exclusive-or operation. The non-linearity of light attenuation, paired with surface irregularities, make shadowed regions in the saturation channel ripe regions for low-contrast SIFT keypoints. When drawn onto the source frame, we can see that low-contrast SIFT keypoints align logically with shadowed regions (Figure \ref{fig:sat_lowc_kp}). 
 
-With shadows partially characterized by low-contrast SIFT keypoints, this study utilizes this insight by attempting to model the proportion of foreground objects to shadows introduced in a given frame. The approximate ratio of shadows introduced to foreground objects in calculated for both the foreground and background frames, using the ratio
+\begin{figure}
+  \centering
+  \begin{subfigure}{.75\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_lowc_rgb_0161.jpg}
+  \caption{Low-contrast SIFT keypoints detected using the intensity channel.}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.75\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_lowc_sat_0161.jpg}
+  \caption{Low-contrast SIFT keypoints detected in the saturation channel.}
+\end{subfigure}
+
+\caption{Detecting low-contrast SIFT keypoints in the saturation channel more effectively captures structural changes due to cast shadows.}
+\label{fig:sat_lowc_kp}
+\end{figure}
+
+With shadows partially characterized by low-contrast SIFT keypoints, this study utilizes this insight by attempting to model the proportion of foreground objects to shadows introduced in a given frame. The approximate ratio of shadows introduced to foreground objects in calculated for both the foreground and background frames, using the ratio:
 
 \begin{equation}
 \%lowC = 1 - \dfrac{num SIFT(0.04) features}{num SIFT(0.01) features}
@@ -486,11 +578,14 @@ This calculated ratio is used for improving and accentuating correlation of atte
 
 With the coneR1 parameter tuned to optimal performance for a wide variety of datasets, we can begin to model a difference between environmental parameters and the optimal cone range. Normalizing correlative environmental parameters, we model an optimal shift from calculated parameters to the optimal value of the weak detector. While the average attenuation from the foreground to the background provides reasonable correlation to the weak detector's cone angle, said correlation does not indicate accurate magnitude for the environmentally-calculated cone angle parameter. This is due to the nature of the properties of attenuation. The attenuation calculation utilized is a function of brightness shift as a percentage of a background value, e.g., a pair of foreground/background pixels with a value of 50 and 100 produces the same attenuation as a pair valued at 50 and 25, respectively.
 
-To circumvent this dilemma, required magnitude shift can be extrapolated from the magnitude of color shift found from foreground to background. From the color shift we can calculate brightness shift. By plotting the average brightness magnitude difference against the required shift of attenuation to optimal angle, we produce a general relationship between foreground attenuation, brightness magnitude, and the shift required to perform optimally. Using data points from each frame in each dataset, we can produce a best-fit polynomial to generalize a model of attenuation and brightness magnitude shift into a scene-generated cone angle parameter. To avoid over-fitting, a parametrized logarithm was chosen to represent the required magnitude shift ($\Delta$ RGB).
+To circumvent this dilemma, required magnitude shift can be extrapolated from the magnitude of color shift found from foreground to background. From the color shift we can calculate brightness shift. By plotting the average brightness magnitude difference against the required shift of attenuation to optimal angle, we produce a general relationship between foreground attenuation, brightness magnitude, and the shift required to perform optimally. Using data points from each frame in each dataset, we can produce a best-fit polynomial to generalize a model of attenuation and brightness magnitude shift into a scene-generated cone angle parameter. To avoid over-fitting, a parametrized logarithm was chosen to represent the required magnitude shift ($\Delta$ RGB). Regression of our data is shown in Figure \ref{fig:polyfit}.
 
-\begin{equation}
-a*ln(x) + b, {change this!}
-\end{equation}
+\begin{figure}
+  \centering
+  \includegraphics[width=1\linewidth]{figures/polyfit.jpg}
+  \caption{Regression performed on RGB shift found per frame, vs. required magnitude shift to optimal.}
+  \label{fig:polyfit}
+\end{figure}
 
 The final equation to represent the newly calculated algorithmic parameter can be assembled as:
 

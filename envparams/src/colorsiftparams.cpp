@@ -113,16 +113,16 @@ int main(int argc, char** argv) {
     drawKeypoints(bg, remainingSIFT_bgS, kpbgS, Scalar::all(-1), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
     drawKeypoints(bg, remainingSIFT_bgV, kpbgV, Scalar::all(-1), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
 
-    //imshow("kpImg", kpImg);
+    imshow("kpImg", kpImg);
     //imshow("kpImg_bg", kpImg_bg);
     //imshow("kpH", kpH);
     imshow("kpS", kpS);
     //imshow("kpV", kpV);
     //imshow("kpbgH", kpbgH);
-    imshow("kpbgS", kpbgS);
+    //imshow("kpbgS", kpbgS);
     //imshow("kpbgV", kpbgV);
-    imshow("sat", hsv_channels[1]);
-    imshow("sat2", hsv_bg_channels[1]);
+    //imshow("sat", hsv_channels[1]);
+    //imshow("sat2", hsv_bg_channels[1]);
   }
 
   waitKey(0);
