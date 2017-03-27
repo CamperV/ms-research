@@ -102,11 +102,11 @@ for infile in sorted(listing):
   for line in model_process.stderr:
     splitline = line.strip("\n").split(",")
     new_val = splitline[0]
-    #rg_shift = splitline[1]
+    rg_shift = splitline[1]
     readout += new_val
     readout += ","
-    #readout += str(float(rg_shift)/255.0)
-    #readout += ","
+    readout += str(rg_shift)
+    readout += ","
 
   # update existing value
   config.set(psection, param, float(new_val))

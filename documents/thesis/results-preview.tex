@@ -266,7 +266,7 @@ In addition to attenuation models, datasets also respond uniquely to varying bri
 
 Two distinct response trends are observed in Figure \ref{fig:brightness_corr_db}. These trends are clearly shown in Figure \ref{fig:brightness_indoor_outdoor}: outdoor datasets (PETS1, PETS2, highway3, and campus) share a similar response to changing brightness models, while indoor datasets (room, hallway, and lab) also share a similar response. The difference in brightness models can be primarily characterized by their individual treatments of color content in a pixel. The grouping of datasets further reinforces the importance of color shift depending on the environment.
 
-The exception to this grouping of outdoor and indoor datasets is aton\_highway1, an outdoor dastaset that has a response reciprocal to that of most outdoor environments. Figure \ref{fig:highway1_reciprocal} visualizes the mirrored nature of aton\_highway1's response. In Chapter \textbf{METHODOLOGY} in section \textbf{WOOWOO}, we can see aton\_highway1's RGB shift in shadowed regions (figure reference?). The RGB shift is characteristic of an outdoor scene; red, green, and blue channels were attenuated by different amounts. However, aton\_highway1 contains the darkest cast shadows in relation to its background model. The highest of aton\_highway1's responses, HSV and Norm, both result in an over-valued brightness value in accordance to color shifts. While these serve as relative low points in other outdoor datasets for that reason, the larger calculated brightness attenuation simply provided for a closer relational value with the optimal \textit{coneR1} value in the dark shadowed region.
+The exception to this grouping of outdoor and indoor datasets is aton\_highway1, an outdoor dastaset that has a response reciprocal to that of most outdoor environments. Figure \ref{fig:highway1_reciprocal} visualizes the mirrored nature of aton\_highway1's response. In Chapter \textbf{METHODOLOGY} in section \textbf{WOOWOO}, we can see aton\_highway1's RGB shift in shadowed regions (figure reference?). The RGB shift is characteristic of an outdoor scene; red, green, and blue channels attenuate by different amounts. However, aton\_highway1 contains the darkest cast shadows in relation to its background model. The highest of aton\_highway1's responses, HSV and Norm, both result in an over-valued brightness value in accordance to color shifts. While these serve as relative low points in other outdoor datasets for that reason, the larger calculated brightness attenuation simply provided for a closer relational value with the optimal \textit{coneR1} value in the dark shadowed region.
 
 % Brightness Models indoor/outdoor (dB)
 \begin{figure}
@@ -296,6 +296,7 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
 %%%
 \section{Parameter Model Results}
 %%%
+
 % RGB shift per req. shift to optimal
 \begin{figure}
 \centering
@@ -329,8 +330,8 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
   \caption{Norm}
 \end{subfigure}
 
-\caption{Outdoor datasets (a) share a common response to varying brightness models. In contrast, indoor datasets (b) share a common lack of response.}
-\label{fig:brightness_indoor_outdoor}
+\caption{For each brightness model, red-green color bias is plotted against RSO \textbf{define this in methodology}. The general model for each brightness calculation is formed through a bset-fit logarithm.}
+\label{fig:model_scatter}
 \end{figure}
 
 % detect/discrim calc

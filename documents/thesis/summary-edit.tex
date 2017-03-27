@@ -1,0 +1,19 @@
+\documentclass[12pt]{report}
+\usepackage{setspace}  %use this package to set linespacing as desired
+\usepackage{color,soul}
+
+\begin{document}
+\doublespacing
+
+\clearpage
+\begin{centering}
+\textbf{SUMMARY}\\
+\vspace{\baselineskip}
+\end{centering}
+
+The motivation of this research is to provide a quantitative model for improving shadow detection in arbitrary environments. Many computer vision applications utilize the extraction of foreground pixels to capture moving objects in a scene; however, since shadows share movement patterns with foreground objects (and have a similar magnitude of intensity change compared with the background model), they tend to be extracted alongside the desired object pixels. Shadows generally contribute to inaccurate object classifications and impede proper tracking of foreground objects. Contemporary shadow removal algorithms have made great strides in discriminating between object pixels and shadow pixels, but are hampered by a lack of scene-independence. In order to perform optimally, these leading methods require assumptions to be made about key factors of a scene, including illumination constancy, color content, and shadow intensity. As a result, no leading shadow removal method is robust enough to compensate for environmental change over time, nor are they suitable for deployment into a particular environment without a priori tuning of parameters.
+
+This research evaluates popular shadow removal methods, extracts corresponding algorithmic parameters that affect shadow removal, correlates these parameters with salient environmental aspects, and finally leverages this correlation to improve shadow removal efficacy across diverse environments. Data collection and validation were performed using a collection widely-used computer vision datasets. Parameters, both algorithmic and environmental in nature, are identified, correlated, and evaluated using analytic tools. Particularly, a strong correlation is found using the average attenuation of dark foreground pixels in a frame. Exploiting this correlation, \hl{the average attenuation model} improves the efficacy of shadow detection by up to 10\% and improved shadow-object discrimination by up to 28\%. Additional correlative factors are found to modify the effectiveness of this attenuation model. Measuring the color bias introduced by shadows in a scene allows for the selection of an appropriate brightness-attenuation model per environment, boosting correlation by 7\% to 20\%. A study of low-contrast feature keypoints in a scene was shown to occasionally improve attenuation-correlation by up to 12\%. \hl{These environmental measurements were shown to correspond to functionally similar algorithmic parameters across a range of shadow removal algorithms, increasing detection by a\% on average (WISHLIST SENTENCE). ADD PHYSICAL TALK}
+
+\pagenumbering{gobble}  %remove page number on summary page
+\end{document}
