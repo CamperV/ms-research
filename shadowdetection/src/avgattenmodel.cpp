@@ -8,6 +8,7 @@
 #include <iostream>
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include "opencv2/nonfree/features2d.hpp"
 
 using namespace std;
 using namespace cv;
@@ -33,6 +34,8 @@ float frameAvgAttenuationNorm_RGB(const cv::Mat& frame, const cv::Mat& bg, const
 
 Scalar frameAvgColorShift(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& shadows);
 float frameAvgRGShift(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& shadows);
+
+float ratioSIFT(Mat img, float contrastRatio);
 
 int main(int argc, char** argv) {
 
@@ -65,6 +68,15 @@ int main(int argc, char** argv) {
   cvtColor(img, imgHSV, CV_RGB2HSV);
   cvtColor(bg, bgHSV, CV_RGB2HSV);
 
+  vector<Mat> hsv_channels;
+  split(imgHSV, hsv_channels);
+
+  vector<Mat> hsv_bg_channels;
+  split(bgHSV, hsv_bg_channels);
+
+  float rS = ratioSIFT(hsv_channels[1], 0.01);
+  float bgrS = ratioSIFT(hsv_bg_channels[1], 0.01);
+
   /* PROCESSING */
 
   //float avgatten = frameAvgAttenuation(imgHSV, bgHSV, shadows);
@@ -79,32 +91,27 @@ int main(int argc, char** argv) {
   //float avgattennorm = frameAvgAttenuationNorm(img, bg, shadows);
 
   float avgattenHSV_RGB = frameAvgAttenuationHSV_RGB(img, bg, shadows);
-  float avgattenHSP_RGB = frameAvgAttenuationHSP_RGB(img, bg, shadows);
-  float avgattenHSI_RGB = frameAvgAttenuationHSI_RGB(img, bg, shadows);
-  float avgattenHSL_RGB = frameAvgAttenuationHSL_RGB(img, bg, shadows);
-  float avgattenluma_RGB = frameAvgAttenuationLuma_RGB(img, bg, shadows);
+  //float avgattenHSP_RGB = frameAvgAttenuationHSP_RGB(img, bg, shadows);
+  //float avgattenHSI_RGB = frameAvgAttenuationHSI_RGB(img, bg, shadows);
+  //float avgattenHSL_RGB = frameAvgAttenuationHSL_RGB(img, bg, shadows);
+  //float avgattenluma_RGB = frameAvgAttenuationLuma_RGB(img, bg, shadows);
   //float avgattenw3c_RGB = frameAvgAttenuationW3C_RGB(img, bg, shadows);
- float avgattennorm_RGB = frameAvgAttenuationNorm_RGB(img, bg, shadows);
+  //float avgattennorm_RGB = frameAvgAttenuationNorm_RGB(img, bg, shadows);
 
   Scalar rgbShift = frameAvgColorShift(img, bg, orig_shadows);
   float rgShift = frameAvgRGShift(img, bg, orig_shadows);
 
-  //cerr << 1.0/(float)avgattenhsv << endl;
-  //cerr << (float)avgattenhsv << endl;
-  //cerr << 1.0-(float)avgattenHSV_RGB << endl;
-  //cerr << (float)avgattenHSV_RGB << endl;
-  cerr << (float)avgattenHSP_RGB << "," << rgShift - (float)rgbShift[0] << endl;
-  //cout << avgattenHSV_RGB << ","
-  //     << avgattenHSP_RGB << ","
-  //     << avgattenHSI_RGB << ","
-  //     << avgattenHSL_RGB << ","
-  //     << avgattenluma_RGB << ","
-  //     << avgattenw3c_RGB << ","
-  //     << avgattennorm_RGB
-  //     << endl;
+  float siftMult = (float)rS/(float)bgrS;
 
-  //cout << rgbShift[0] << "," << rgbShift[1] << "," << rgbShift[2] << endl;
-  //cout << rgShift << "," << rgbShift[0] << endl;
+  //cerr << (float)avgattenhsv << "," << rgShift - (float)rgbShift[0] << endl;
+  //cerr << (float)avgattenhsp << "," << rgShift - (float)rgbShift[0] << endl;
+  //cerr << (float)avgattenHSV_RGB << "," << rgShift - (float)rgbShift[0] << endl;
+  cerr << (float)avgattenHSV_RGB*(float)siftMult << "," << rgShift - (float)rgbShift[0] << endl;
+  //cerr << (float)avgattenHSP_RGB << "," << rgShift - (float)rgbShift[0] << endl;
+  //cerr << (float)avgattenHSI_RGB << "," << rgShift - (float)rgbShift[0] << endl;
+  //cerr << (float)avgattenHSL_RGB << "," << rgShift - (float)rgbShift[0] << endl;
+  //cerr << (float)avgattenluma_RGB << "," << rgShift - (float)rgbShift[0] << endl;
+  //cerr << (float)avgattennorm_RGB << "," << rgShift - (float)rgbShift[0] << endl;
 
 	return 0;
 }
@@ -240,7 +247,10 @@ float frameAvgAttenuationHSV(const cv::Mat& frame, const cv::Mat& bg, const cv::
 
 float frameAvgAttenuationHSP(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {
 	float avgAtten = 0;
-	int count = 0;
+  float stdDev = 0;
+  float magdiff = 0;
+  vector<float> data;
+  vector<float> data_rgb;
 
 	for (int y = 0; y < frame.rows; ++y) {
 		const uchar* fgPtr = fg.ptr(y);
@@ -267,17 +277,41 @@ float frameAvgAttenuationHSP(const cv::Mat& frame, const cv::Mat& bg, const cv::
       double atten = (10+bgBrightness)/(10+frBrightness);
 
 			if (fgPtr[x] > 0 && atten > 1.0) {
-				avgAtten += atten;
-				++count;
+        data.push_back(1.0/(double)atten);
+        data_rgb.push_back(frBrightness/255.0);
 			}
 		}
 	}
 
-	if (count > 0) {
-		avgAtten /= count;
-	}
+  // calculate mean
+  for(int i = 0; i < data.size(); i++) {
+    avgAtten += data[i];
+  }
+  avgAtten /= data.size();
 
-	return avgAtten;
+  // calculate mean rgb diff
+  // %rgb shift (x param)
+  for(int i = 0; i < data_rgb.size(); i++) {
+    magdiff += data_rgb[i];
+  }
+  magdiff /= data_rgb.size();
+
+  // calculate stddev
+  for(int i = 0; i < data.size(); i++) {
+    stdDev += pow(data[i]-avgAtten, 2);
+  }
+  stdDev = sqrt(stdDev/(float)data.size());
+
+  // 1-%hsv shift (y param)
+  float invAvgAtten = 1.0 - avgAtten;
+  float invStdDev = 1.0 - stdDev;
+  float invMagdiff = 1.0 - magdiff;
+
+  // relating equation (coneR1_brightness.ods)
+  double shift_amount = (-0.1130769139)*log(magdiff) - (0.1883942004);
+
+  //return (invMagdiff*invAvgAtten) + shift_amount;
+  return invAvgAtten;
 }
 
 float frameAvgAttenuationHSI(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& fg) {
@@ -1033,4 +1067,34 @@ float frameAvgRGShift(const cv::Mat& frame, const cv::Mat& bg, const cv::Mat& sh
   float rgShift = (rgbShift[1]+rgbShift[2])/2.0;
 
 	return rgShift;
+}
+
+float ratioSIFT(Mat img, float contrastRatio) {
+
+  // start SIFT analysis
+  int numSIFT;
+  int numSIFT_lowc;
+
+  // default is 0.04 for contrast threshold
+  SiftFeatureDetector detector;
+  SiftFeatureDetector detector_lowc(0,3,contrastRatio,10,1.6);
+
+  vector<KeyPoint> keypoints;
+  Mat descriptors;
+  ///
+  detector.detect(img, keypoints);
+  detector.compute(img, keypoints, descriptors);
+  ///
+  numSIFT = keypoints.size();
+
+  vector<KeyPoint> keypoints_lowc;
+  Mat descriptors_lowc;
+  ///
+  detector_lowc.detect(img, keypoints_lowc);
+  detector_lowc.compute(img, keypoints_lowc, descriptors_lowc);
+  ///
+  numSIFT_lowc = keypoints_lowc.size();
+
+  //return numSIFT - numSIFT_lowc;
+  return 1-((float)numSIFT/(float)numSIFT_lowc);
 }

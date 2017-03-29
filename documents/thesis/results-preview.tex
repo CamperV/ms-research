@@ -62,7 +62,7 @@ Tables \ref{table:corr_db} and \ref{table:corr_rgb} present correlation coeffici
 	\hline
 	\textbf{aton\_highway1} & 0.0008668393 & 0.0002027128 & 0.683685054 \\
 	\hline
-	\textbf{aton\_highway3} & 0.0303058095 & 0.0028347791 &  0.7424117824 \\
+	\textbf{aton\_highway3} & 0.0303058095 & 0.0028347791 & 0.7424117824 \\
 	\hline
 	\textbf{aton\_room} & 0.0052297835 & 0.0195673253 &  0.5477587003 \\
 	\hline
@@ -167,7 +167,18 @@ The results in Tables \ref{table:corr_db} and \ref{table:corr_rgb} indicate that
 
 \subsection{Correlation Improvements}
 \subsubsection{Low-contrast Keypoints}
-\textit{Correlation: coneR1 avgAtten*lowcSat}
+
+\begin{figure}
+  \includegraphics[width=1\linewidth]{figures/highway1_sift.jpg}
+\caption{Woopwoop.}
+\label{fig:highway1_sift}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=1\linewidth]{figures/sift_correlation_diff.jpg}
+\caption{Woopwoop.}
+\label{fig:highway1_sift}
+\end{figure}
 
 %%%
 \section{Brightness Models}
@@ -272,12 +283,12 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
 \begin{figure}
 \centering
 \begin{subfigure}{.8\linewidth}
-  \includegraphics[width=1\linewidth]{figures/placeholder.jpg}
+  \includegraphics[width=1\linewidth]{figures/brightness/db/correlation_outside.jpg}
   \caption{}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.8\linewidth}
-  \includegraphics[width=1\linewidth]{figures/placeholder.jpg}
+  \includegraphics[width=1\linewidth]{figures/brightness/db/correlation_inside.jpg}
   \caption{}
 \end{subfigure}
 
@@ -288,7 +299,7 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
 % Aton_highway1 oddity
 \begin{figure}
 \centering
-  \includegraphics[width=.7\linewidth]{figures/placeholder.jpg}
+  \includegraphics[width=1\linewidth]{figures/brightness/db/highway1_reciprocal.jpg}
 \caption{aton\_highway1's response to various brightness models is foil to other outdoor datasets' responses.}
 \label{fig:highway1_reciprocal}
 \end{figure}
@@ -297,41 +308,68 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
 \section{Parameter Model Results}
 %%%
 
+\subsection{SIFT Affect}
+
+% SIFT numbers affect detect/discrim
+\begin{figure}
+\centering
+  \includegraphics[width=1\linewidth]{figures/sift_diff.jpg}
+\caption{This is the difference found between optimal coneR1 models and SIFT models.}
+\label{fig:highway1_reciprocal}
+\end{figure}
+
 % RGB shift per req. shift to optimal
 \begin{figure}
 \centering
 \begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/model_hsv.jpg}
+  \includegraphics[width=1\linewidth]{figures/model/scatter/model_hsv.jpg}
   \caption{HSV}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/placeholder.jpg}
+  \includegraphics[width=1\linewidth]{figures/model/scatter/model_hsp.jpg}
   \caption{HSP}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/placeholder.jpg}
+  \includegraphics[width=1\linewidth]{figures/model/scatter/model_hsi.jpg}
   \caption{HSI}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/placeholder.jpg}
+  \includegraphics[width=1\linewidth]{figures/model/scatter/model_hsl.jpg}
   \caption{HSL}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/placeholder.jpg}
+  \includegraphics[width=1\linewidth]{figures/model/scatter/model_luma.jpg}
   \caption{Luma (Y')}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.49\linewidth}
-  \includegraphics[width=1\linewidth]{figures/placeholder.jpg}
+  \includegraphics[width=1\linewidth]{figures/model/scatter/model_norm.jpg}
   \caption{Norm}
 \end{subfigure}
 
-\caption{For each brightness model, red-green color bias is plotted against RSO \textbf{define this in methodology}. The general model for each brightness calculation is formed through a bset-fit logarithm.}
+\caption{For each brightness model, red-green color bias is plotted against RSO \textbf{define this in methodology}. The general model for each brightness calculation is formed through a best-fit logarithm.}
 \label{fig:model_scatter}
+\end{figure}
+
+% coneR1 v. newR1
+\begin{figure}
+  \centering
+  \begin{subfigure}{1\linewidth}
+  \includegraphics[width=1\linewidth]{figures/model/highway1_calc_coneR1.jpg}
+  \caption{}
+\end{subfigure}
+\hfill
+\begin{subfigure}{1\linewidth}
+  \includegraphics[width=1\linewidth]{figures/model/highway3_calc_coneR1.jpg}
+  \caption{}
+\end{subfigure}
+
+\caption{Automatically tuned \textit{coneR1} parameter (orange) charted against optimally tuned \textit{coneR1} parameter (blue) and average attenuation (\%$\Delta$) (yellow). All results can be found in the appendix.}
+\label{fig:new_coneR1}
 \end{figure}
 
 % detect/discrim calc
@@ -354,9 +392,18 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
 % HSV, HSP, etc for one dataset
 \begin{figure}
 \centering
-  \includegraphics[width=1\linewidth]{figures/placeholder.jpg}
-\caption{Detection (blue) and Discrimination (orange) for each brightness model. Dataset: PETS1. Full results for all datasets can be found in the appendix.}
+  \begin{subfigure}{1\linewidth}
+  \includegraphics[width=1\linewidth]{figures/model/highway1_all_brightness_models.jpg}
+  \caption{aton\_highway1}
+\end{subfigure}
+\hfill
+  \begin{subfigure}{1\linewidth}
+  \includegraphics[width=1\linewidth]{figures/model/pets1_all_brightness_models.jpg}
+  \caption{PETS1}
+\end{subfigure}
+\caption{Detection (blue) and Discrimination (orange) for each brightness model. Full results for all datasets can be found in the appendix.}
 \label{fig:pets1_bars_calc_all}
 \end{figure}
+
 
 \end{document}
