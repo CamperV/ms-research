@@ -126,7 +126,9 @@ Tables \ref{table:corr_db} and \ref{table:corr_rgb} present correlation coeffici
 \label{table:corr_rgb}
 \end{table}
 
-Both the dB and \%$\Delta$ attenuation models are visualized, the better contrast the trends of each method of calculation. Direct qualitative comparison is found in Figure \ref{fig:corr_compare}. 
+PETS1 serves as the primary outlier with a correlation coefficient of approximately 19\%. One of the primary culprits is the lack of a properly adaptive background model for the dataset, i.e., a frame may contain extreme cloud cover, while its corresponding background model retains its sunny disposition. The resultant of the non-ideal background model is that every pixel contained in the foreground has a much larger attenuation when compared to its background pixel, excluding natural cast shadows, whose attenuation remains relatively consistent. This large swing in overall attenuation impacts the amount of pixels considered for candidacy by Physical removal's weak detector. The discrepancy found in the correlation coefficient of PETS1 is the result of the flood of non-shadow candidate pixels. While both PETS2 and PETS1 experience illumination change within the extracted samples, PETS2 does not endure the same measure of disrelation, due to the illumination flux in question delivering less intensity differential in combination with stronger cast shadows than PETS1. 
+
+Both the dB and \%$\Delta$ attenuation models are visualized to contrast the trends of each method of calculation. Direct qualitative comparison is found in Figure \ref{fig:corr_compare}. 
 
 The results in Tables \ref{table:corr_db} and \ref{table:corr_rgb} indicate that some datasets benefit from the dB attenuation model, while others benefit from the \%$\Delta$ attenuation model. \textbf{Due to the rational nature of the dB calculation,  some data points are exaggerated, increasing correlation within some environments, and decreasing it in others.(awkward?)}
 
@@ -168,20 +170,53 @@ The results in Tables \ref{table:corr_db} and \ref{table:corr_rgb} indicate that
 \subsection{Correlation Improvements}
 \subsubsection{Low-contrast Keypoints}
 
+Using the formula outlined in Chapter SNARF, section NARF, $\%lowC(fg \rightarrow bg)$ is calculated per frame and multiplied against the observed average attenuation. This multiplication attempts to accentuate the correlation coefficient between \textit{coneR1} and average attenuation by modulating according to the relative percentage of low-contrast SIFT keypoints. Figure \ref{fig:highway1_sift} visually demonstrates the modulation's effect on the aton\_highway1 dataset. Figure \ref{fig:corr_diff_sift} and Table \ref{table:corr_diff_sift} detail the effects on correlation for each dataset.
+
 \begin{figure}
   \includegraphics[width=1\linewidth]{figures/highway1_sift.jpg}
-\caption{Woopwoop.}
+\caption{Low-contrast SIFT modulation's effect on correlation (y-axis) for aton\_highway1.}
 \label{fig:highway1_sift}
 \end{figure}
 
 \begin{figure}
   \includegraphics[width=1\linewidth]{figures/sift_correlation_diff.jpg}
-\caption{Woopwoop.}
-\label{fig:highway1_sift}
+\caption{Low-contrast SIFT modulation's effect on correlation (y-axis) for each dataset.}
+\label{fig:corr_diff_sift}
 \end{figure}
 
+% Table Form (SIFT Diff)
+\begin{table}
+\centering
+\begin{tabular}{ |c|c| }
+	\hline
+	\textbf{Dataset} & Correlation Diff (\%) \\
+	\hline
+	\hline
+	\textbf{PETS1} &  -2.06 \\
+	\hline
+	\textbf{PETS2} & -0.58 \\
+	\hline
+	\textbf{aton\_highway1} &  13.62 \\
+	\hline
+	\textbf{aton\_highway3} & -4.76  \\
+	\hline
+	\textbf{aton\_room} & 3.087 \\
+	\hline
+	\textbf{aton\_campus} & 6.06 \\
+	\hline
+	\textbf{aton\_hallway} & -11.78 \\
+	\hline
+	\textbf{aton\_lab} & -10.17 \\
+	\hline
+\end{tabular}
+\caption{Datasets and their correlations to \textit{coneR1} (\%$\Delta$ attenuation model).}
+\label{table:corr_diff_sift}
+\end{table}
+
+While modulating the observed attenuation proved fruitful in some cases (aton\_highway1, aton\_room, aton\_campus), the negative affectation inflicted upon other datasets is too unpredictable and severe to warrant inclusion in the final improvement model. Continuing with the thread of low-contrast SIFT keypoints, future work will entail developing a more precise model to better abstract perceived quantities of shadows within a scene.
+
 %%%
-\section{Brightness Models}
+\section{Brightness Models} \label{section:brightness_models}
 %%%
 
 In addition to attenuation models, datasets also respond uniquely to varying brightness models. Figure \ref{fig:brightness_example} visualizes the disparity between multiple modes of brightness calculation, and how it may affect the correlation coefficient of attenuation. Tables \ref{table:brightness_corr_db} and \ref{table:brightness_corr_rgb} enumerate the correlative changes experienced by each dataset when subjected to multiple modes of brightness calculation.
@@ -308,15 +343,7 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
 \section{Parameter Model Results}
 %%%
 
-\subsection{SIFT Affect}
-
-% SIFT numbers affect detect/discrim
-\begin{figure}
-\centering
-  \includegraphics[width=1\linewidth]{figures/sift_diff.jpg}
-\caption{This is the difference found between optimal coneR1 models and SIFT models.}
-\label{fig:highway1_reciprocal}
-\end{figure}
+The primary challenge in adapting observed average attenuation into an arbitrary model for shadow removal improvement lies in understanding the necessary translation between observed attenuation and optimally tuned \textit{coneR1}. Utilizing the formula specified in Chapter METHODS in section UNOIT, a coarse-grained model was developed. Applied to an arbitrary frame, attenuation and color magnitude shift is analyzed and used to create the necessary translation. This analysis is performed on each brightness model, seen in Figure \ref{fig:model_scatter}. For each brightness model, red-green color bias in shadow pixels is plotted against the RSO (Required Shift to Optimal) between optimally \textit{coneR1} and observed attenuation. A best-fit logarithm is drawn for each of these scatterplots, relating required attenuation translation and observed color-bias. Visualized results of this combination model are displayed in Figure \ref{fig:new_coneR1}. The resultant of the model, shown in \textbf{red (this might change)}, retains correlative properties observed prior while providing a reasonable estimate for required translation.
 
 % RGB shift per req. shift to optimal
 \begin{figure}
@@ -372,6 +399,10 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
 \label{fig:new_coneR1}
 \end{figure}
 
+\subsection{Analysis}
+
+Figure \ref{fig:new_coneR1} provides the resulting detection and discrimination rates of shadow removal using the programmatically-generated parameter, contrasting the generated results (orange) with detection/discrimination determined via the original naive method (blue). Quantitative results are shown in Table \ref{plstablenow}. Results indicate that for a majority of datasets, fractional amount of shadow detection are sacrificed for disproportionate increases in discrimination of shadows. \textbf{Figure \ref{qualgraphic}} visualizes shadow removal improvements using the adaptive method.
+
 % detect/discrim calc
 \begin{figure}
 \centering
@@ -389,6 +420,21 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
 \label{fig:bars_hsv_calc}
 \end{figure}
 
+aton\_highway1 proved consistently anomalous \textbf{woo oxymorons}, trading in nearly equal part detection for discrimination, arriving at a net modest positive of \%1.2. We theorize aton\_highway1's unwaveringly inconsistent \textit{I enjoy oxymorons, okay} behavior is again due to it possessing the darkest cast shadows. Furthermore, as seen in Figure \ref{color bias ref}, aton\_highway1 attenuates non-linearly (as expected of an outdoor scene), yet by visual inspection, is desaturated to the point of grayscale. The combination of the strong shadows, the low saturation of the frame, and the relative featureless nature of the background model, allows a larger population of candidate shadows pixels to be gathered. Due to these conditions, foreground object pixels are more likely to appear identical to shadow pixels, in both color information and relative distance from its background pixel. The confluence of these scene characteristics renders aton\_highway1 less predictable than other datasets.
+
+PETS1 and PETS2 also do not conform to the upward trends seen in the majority of datasets. In the case of PETS1, the root cause is hypothesized to be similar to the reason for the low correlation coefficient, i.e., a non-ideal background model that misrepresents the attenuation of cast shadows. More interestingly, PETS2 experiences the same degradation of performance as PETS1, but has a much stronger correlation coefficient, seen in Table \ref{table:corr_rgb}. This decoupling of correlation and accuracy stems from the generalized model of improvement translating the observed average attenuation necessarily. This is visualized in Figure \ref{fig:pets2_translate}. The model overcompensates for observed color bias in PETS2, and again the culprit is the non-ideal background model. The misrepresentation of attenuation (and thereby color bias) of cast shadows in PETS2 results in the unnecessary 'downward' translation, impacting PETS2's shadow discrimination accuracy.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\linewidth]{figures/model/pets2_translate.jpg}
+\caption{}
+\label{fig:pets2_translate}
+\end{figure} 
+
+\subsection{Results From Those Brightness Models Down There}
+
+It is noted in section \ref{section:brightness_models} that the correlative changes observed in varying brightness models are not consistent from the dB to the \%$\Delta$ model of attenuation. \textbf{THIS MAY BE WRONG? The changes in the correlation coefficient demonstrates direct impact on the accuracy of shadow removal; since the mode of brightness computation does not affect the generalized model's translative properties, we observe proportional relations between improving correlation and improving shadow removal.} Figure \ref{fig:pets1_bars_calc_all} illustrates detection (blue) and discrimination (orange) rates within a dataset across varying brightness modes.
+
 % HSV, HSP, etc for one dataset
 \begin{figure}
 \centering
@@ -404,6 +450,5 @@ The exception to this grouping of outdoor and indoor datasets is aton\_highway1,
 \caption{Detection (blue) and Discrimination (orange) for each brightness model. Full results for all datasets can be found in the appendix.}
 \label{fig:pets1_bars_calc_all}
 \end{figure}
-
 
 \end{document}
