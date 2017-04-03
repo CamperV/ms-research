@@ -9,7 +9,7 @@
 \doublespacing
 
 \clearpage
-\chapter{Methodology}
+\chapter{Methodology} \label{chapter:methodology}
 
 \section{Algorithm Assessment}
 
@@ -17,7 +17,7 @@
 
 In order to develop a model capable of arbitrarily improving shadow removal, one must first select an algorithm to improve. The algorithm selected must demonstrate sensitivity to environmental parameter shifts, from within a single scene as well as from one unique dataset to another. Additionally, the shadow removal method must prove similarly sensitive to parametric shifts: having its removal efficacy linked to one or more hard-coded or curated algorithm parameters. Analysis and assessment of the previously presented shadow removal algorithms (Chromacity, Geometry, Physical, Small-Region Texture, and Large-Region Texture) is conducted using a series of graphical tools in conjunction with ground truths identifying shadow regions across eight different datasets and seven unique environments. The graphical tools were developed using functionality from OpenCV and SimpleINI.
 
-\subsection{Data Collection and Analysis}
+\subsection{Data Collection and Analysis}  \label{section:datacollection}
 \subsubsection{Datasets}
 The majority of the datasets chosen to begin this assessment are provided under the Computer Vision and Robotics Research Laboratory (CVRR) in association with the University of San Diego. The datasets were cataloged with the Autonomous Agents for On-Scene Networked Incident Management (ATON) project. In an effort to improve shadow detection, six datasets were manually segmented to identify shadow regions (gray) within foreground objects (white). The datasets are detailed as follows:
 
@@ -114,7 +114,7 @@ The scenes sampled in each dataset represent sufficiently diverse environments f
 \end{figure}
 
 \subsubsection{Graphical Tools}
-Graphical tools were used to rapidly assess an algorithmic parameter's affect on shadow removal. Each shadow removal method was modified to accept arbitrary parameter values in real-time. These parameters were then tied to graphical sliders dictating their range and value. Any numerical parameter that has the potential to modify the Detection or Discrimination rates of a shadow removal method is included in the GUI.
+Graphical tools were used to rapidly assess an algorithmic parameter's affect on shadow removal. Each shadow removal method was modified to accept arbitrary parameter values in real-time. These parameters were then tied to graphical sliders dictating their range and value. Any numerical parameter that has the potential to modify the Detection or Discrimination rates of a shadow removal method is included in the GUI. 
 
 \begin{figure}
 \centering
@@ -147,7 +147,7 @@ In an early implementation, the shadow removal methods under assessment containe
 
 The removal of compilation enables batch jobs run with iterated parameter values. In this style, a Python script was written to meticulously exercise a parameter through a specified range and record its corresponding affect upon Detection/Discrimination rates. This approach culminates in the development of many overnight tests designed to uncover optimal parameter values for each frame in each dataset. The optimal values are used to determine degrees of correlation and set the foundation for a general model of arbitrary shadow removal improvement.
 
-\subsection{Selecting an Algorithm}
+\subsection{Selecting an Algorithm} \label{section:selectalgorithm}
 
 Considering the diversity of shadow removal methods assessed in this research, a wide array of environmental factors potentially may influence an even wider array of algorithmic parameters. The scope of proposed analysis has been therefore been truncated to identifying a suitable algorithm to assess, linking a parameter (endemic to this algorithm) to unique environmental characteristics or shifts, and begin the construction of a general model of shadow removal improvement given parameters of the same nature.
 
@@ -239,7 +239,7 @@ Finally, both Chromacity-based and Physical-based shadow removal held the qualit
 
 Chromacity shadow removal leads Physical removal consistency between datasets; the removal algorithm succeeds due to the tendency of shadows within a dataset to remain a consistent darkness when compared to the corresponding background model. However, this simple approach can prove problematic when experiencing illumination changes within a dataset. Physical shadow removal utilizes a similar system of gaging a shadow's darkness compared to a background model - what is referred to as a weak detector [ref Phys, Chroma, LRT] - and implicitly suffers similar breakdowns of detection when presented with significant illumination flux within a dataset. Although they both suffer, Physical shadow removal proves robust than Chromacity removal under these conditions. This increase in sophistication also lends itself to utilizing more malleable parameters during detection. Physical shadow removal demonstrates sensitivity to both parameter changes and environmental changes, within reasonable ranges. In the end, Physical shadow removal was selected as the main experimental framework for this study, triumphing over Chromacity shadow removal in part due to its more sophisticated model. [However, as we will illuminate in the coming section, the study of improving Physical shadow removal parallels any similar study undertaken with Chromacity, and can be applied across the pair of algorithms. \textbf{WISHLIST}]
 
-\subsection{Selecting a Parameter - Physical Shadow Removal}
+\subsection{Selecting a Parameter - Physical Shadow Removal} \label{section:selectparameter}
 
 Physical shadow removal operates in two stages: the weak detector, and the strong detector. The weak detector typically identifies candidate shadow pixels simply by eliminating impossible pixels, i.e., pixels that are brighter than the background model. These candidate pixels are then provided to the strong detector, which characterizes these pixels as either shadow or foreground. Our assessment of algorithmic parameters explores parameters in both of these detector spaces. Before we can illustrate which parameters were considered for experimentation, we must first understand the parameters' place within the algorithm.
 
@@ -258,7 +258,7 @@ As previously expressed, the main components of the weak detector are parameteri
 
 \subsubsection{Strong Detector - Physical Shadow Removal}
 
-After the weak detector removes impossible candidates for shadow pixels, a Gaussian Mixture Model (GMM) is used to learn the color features of shadow pixels when compared to background pixels. Using the remaining pixels, the GMM estimates the normalized spectral ratio for shadows in a scene, i.e., the ratio of spectral illuminants [ref Phys]. More information on spectral illuminants can be found in section \ref{nonlinearatten}. The GMM is a framework based upon Expectation Maximization and learning over time; therefore, the initial parameters presented in the algorithm have little influence over the efficacy of shadow removal. Shadow removal displayed sensitivity to only one significant parameter, \textit{postThresh}, the parameter controlling the posterior threshold. The posterior threshold is the threshold governing shadow/foreground assignment after the posterior probability of a pixel is determined via the GMM. \textit{postThresh}'s effect on shadow detection and discrimination is illustrated in Figure \ref{fig:postthresh_iterate}.
+After the weak detector removes impossible candidates for shadow pixels, a Gaussian Mixture Model (GMM) is used to learn the color features of shadow pixels when compared to background pixels. Using the remaining pixels, the GMM estimates the normalized spectral ratio for shadows in a scene, i.e., the ratio of spectral illuminants [ref Phys]. More information on spectral illuminants can be found in section \ref{section:nonlinearatten}. The GMM is a framework based upon Expectation Maximization and learning over time; therefore, the initial parameters presented in the algorithm have little influence over the efficacy of shadow removal. Shadow removal displayed sensitivity to only one significant parameter, \textit{postThresh}, the parameter controlling the posterior threshold. The posterior threshold is the threshold governing shadow/foreground assignment after the posterior probability of a pixel is determined via the GMM. \textit{postThresh}'s effect on shadow detection and discrimination is illustrated in Figure \ref{fig:postthresh_iterate}.
 
 \textbf{Move this to next section?}
 \begin{figure}
@@ -323,7 +323,7 @@ Due to their integral nature to both the weak and strong detectors, the followin
 
 The remaining parameters (results included in appendices) inhabit too narrow a range of sensitivity to properly exploit, e.g., \textit{coneAngle} displays erratic variation in the discovered values for optimal shadow removal, yet the optimal values are within millionths of each other. Similarly, the remaining parameters did not provided as large of a general improvement in shadow removal as \textit{coneR1} does. The erratic nature of the optimal parameter values, in combination with both the minimal removal improvement and diminutive range of sensitive values makes further examination of these parameters difficult. For the duration of the study, environmental feature correlations were sought after only in relation to \textit{coneR1}.
 
-\section{Environmental Assessment - Environmental Parameters}
+\section{Environmental Assessment - Environmental Parameters} \label{section:envassess}
 
 \subsection{Previous Work - Large Region Texture Removal}
 
@@ -362,9 +362,9 @@ Similar to the dB model, $(1 - \%\Delta$) is considered for correlation, represe
 
 \textbf{These attenuation calculation methods differ in the assumptions of linearity, and how it relates to shadows in an environment.}
 
-Saturation is the measurement of 'depth of hue' in a pixel, e.g., a lower saturation means the base hue is less expressed, while a higher saturation means the color of a pixel more closely matches the base hue. The saturation level of a background pixel affects the intensity attenuation a shadow pixel experiences. While the average saturation of foreground objects can be used as a coarse guide for adjusting intensity thresholds (see LRT removal), saturation properties are used differently in this study, as seen in section \ref{lowcSIFT}.
+Saturation is the measurement of 'depth of hue' in a pixel, e.g., a lower saturation means the base hue is less expressed, while a higher saturation means the color of a pixel more closely matches the base hue. The saturation level of a background pixel affects the intensity attenuation a shadow pixel experiences. While the average saturation of foreground objects can be used as a coarse guide for adjusting intensity thresholds (see LRT removal), saturation properties are used differently in this study, as seen in section \ref{section:lowcSIFT}.
 
-\subsection{Non-linear Attenuation and Spectral Properties of Light} \label{nonlinearatten}
+\subsection{Non-linear Attenuation and Spectral Properties of Light} \label{section:nonlinearatten}
 
 In the ideal case, the attenuation of light is an entirely linear function, i.e., a shadow pixel lies along the the vector drawn from the background pixel to the origin within the three dimensional RGB space. [re Physical]
 
@@ -435,7 +435,7 @@ Since the spectral properties of an illumination source can not always be predic
 
 This disproportionate discrepancy is most apparent during periods of large illumination change, found prominently in datasets PETS1 and PETS2. Examining the outdoor datasets, we can see that the red and green channels experience larger magnitude shifts that the blue channel. Based on assumed spectral power distributions of the source illumination found in the outdoor scenes, we can deduce that outdoor scenes display an introduction of blue light scattered from the sky that is not present in indoor scenes. With a spectral power distribution skewed towards blue, the red and green channels experience greater perturbation than the blue channel due to cast shadows. This study attempts to utilize this observed multi-illuminant model to better characterize the attenuation model assumed by a scene. 
 
-\subsection{Brightness Models}
+\subsection{Brightness Models} \label{section:brightnessmodels}
 
 Since attenuation is a function of brightness, understanding the myriad methods of calculating the brightness of a pixel is tantamount to accurately modeling attenuation for a scene. Similarly, in response to the spectral differences of light given the light source, the model for brightness used for a scene must adhere to what suits that scene best \textbf{awkward}. Below is a short taxonomy of popular brightness models studied. Each of the brightness models included are tested and analyzed for its affect on the average attenuation model. \textbf{NOTE: should I include hexcone/bihexcone models here?}
 
@@ -500,7 +500,7 @@ P = \sqrt{0.299\Delta R^2 + 0.587\Delta G^2 + 0.114\Delta B^2}
 
 Ideally, HSP provides the most accurate perceptually conscious brightness. Environments that experience large saturation shifts due to shadows benefit primarily, as both color distance and weighted coefficients are considered.
 
-\subsection{Low-contrast SIFT Keypoints} \label{lowcSIFT}
+\subsection{Low-contrast SIFT Keypoints} \label{section:lowcSIFT}
 
 An environment typically contains a large set of low-level textural features unique to it. These low-level features have been characterized and quantified in many ways, such as the SIFT, SURF, or FAST feature descriptors [ref for all of these]. These feature descriptors are used for image recognition and retrieval at various scales, rotations, and translations. These algorithms are traditionally performed on intensity images, i.e., grayscale images. However, hue and saturation play a large role in scene characterization; therefore, SIFT implementations were developed to incorporate color information. Popular implementations of a color-SIFT method are HSV-SIFT, RGB-SIFT, HueSIFT, and others [ref colorsift, hsv sift, etc].
 
@@ -572,7 +572,7 @@ where \textit{SIFT(0.04)} represents features captured using the default contras
 
 This calculated ratio is used for improving and accentuating correlation of attenuation against algorithm parameters.
 
-\section{Weak Detector Estimation - Creating a Model}
+\section{Weak Detector Estimation - Creating a Model} \label{section:model}
 
 \textbf{Wrote this first without knowing what the other sections would be. May require serious re-write}
 
