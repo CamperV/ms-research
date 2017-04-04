@@ -2,7 +2,7 @@
 echo "PETs1 [1/8] [==>             ]"
 #python param_iter.py ./samples/PETs1/ P,coneR1 1.0,0.001
 echo "PETs2 [2/8] [====>           ]"
-python param_iter.py ./samples/PETs2/ P,coneR1 1.0,0.001
+#python param_iter.py ./samples/PETs2/ P,coneR1 1.0,0.001
 echo "aton_campus [3/8] [======>         ]"
 python param_iter.py ./samples/aton_campus/ P,coneR1 1.0,0.001
 echo "aton_hallway [4/8] [========>       ]"
