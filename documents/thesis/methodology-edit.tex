@@ -15,6 +15,11 @@
 \clearpage
 \chapter{Methodology} \label{chapter:methodology}
 
+\textbf{Things Still Needed:}
+\begin{itemize}
+\item Intro needed for Section \ref{section:datacollection}
+\end{itemize}
+
 \hl{This chapter contains the research methodology employed while implementing a proof-of-concept of an adaptive shadow removal model. Our methodology is divided into two components: algorithm assessment in the context of shadow removal in diverse environments, and the creation of the adaptive model for a previously assessed algorithm. 
 
 We first assess the previously catalogued algorithms (Chromacity, Physical, Geometry, SRT, and LRT removal) for sensitivity to both environmental and parametric change. We then perform a similar sensitivity analysis upon the parameters utilized by the algorithms. These assessments are performed qualitatively to determine the feasibility of an adaptive model being created for each algorithm.} 
@@ -25,86 +30,80 @@ We first assess the previously catalogued algorithms (Chromacity, Physical, Geom
 
 \hl{We assess several leading shadow removal algorithms (Chromacity, Physical, Geometry, SRT, and LRT removal) for their sensitivity to different environmental properties, as well as quantitative shifts in those environmental properties. Environmental properties are identified across diverse datasets, examples including shadow strength/darkness, shadow directionality, and color saturation. Environmental property shifts are characterized in multiple datasets, i.e., strong illumination changes within one dataset sequence.
 
-In addition to analyzing the algorithms' sensitivity to environmental change, we similarly assess the algorithms' sensitivity to parametric shift, i.e., algorithm performance is qualitatively assessed according to the algorithm's dependence on one or more curated parameter values. Analysis and assessment of the previously presented shadow removal algorithms is conducted using a series of graphical tools in conjunction with ground truths identifying shadow regions across eight different datasets and seven unique environments. The graphical tools were developed using functionality from OpenCV and SimpleINI.}
+In addition to analyzing the algorithms' sensitivity to environmental change, we similarly assess the algorithms' sensitivity to parametric shift, i.e., algorithm performance is qualitatively assessed according to the algorithm's dependence on one or more curated parameter values. Analysis and assessment of the previously presented shadow removal algorithms is conducted using a series of graphical tools in conjunction with ground truths identifying shadow regions across eight different datasets with seven unique environments.}
 
 \subsection{Data Collection and Analysis}  \label{section:datacollection}
+
+What kind of introduction does the data collection section need?
+
 \subsubsection{Datasets}
-The majority of the datasets chosen to begin this assessment are provided under the Computer Vision and Robotics Research Laboratory (CVRR) in association with the University of San Diego. The datasets were cataloged with the Autonomous Agents for On-Scene Networked Incident Management (ATON) project. In an effort to improve shadow detection, six datasets were manually segmented to identify shadow regions (gray) within foreground objects (white). The datasets are detailed as follows:
+\hl{A total of eight datasets were chosen for this assessment, and are summarized in Table \ref{table:datasets}.} Datasets 2 - 8 (denoted by the prefix "aton\_") are provided under the Computer Vision and Robotics Research Laboratory (CVRR) in association with the University of San Diego [\ref{CVRR}]. The datasets were cataloged with the Autonomous Agents for On-Scene Networked Incident Management (ATON) project [\ref{aton}]. \hl{These datasets represent diverse environments, including both indoor and outdoor scenes, a range of shadow intensity, and images of varying saturation.}
 
-\begin{center}
-\begin{tabular}{ |c|c|c| }
-	\hline
-	\textbf{Name} & \textbf{Size} & \textbf{\# Samples} \\
-	\hline
-	\hline
-	highway1 & 320x240 & 8 \\
-	\hline 
-	highway3 & 320x240 & 7 \\ 
-	\hline
-	room & 320x240 & 22 \\ 
-	\hline
-	campus & 320x240 & 53 \\ 
-	\hline
-	hallway & 320x240 & 13 \\
-	\hline
-	lab & 320x240 & 14 \\ 
-	\hline
-\end{tabular}
-\end{center}
+\hl{In addition, two datasets were included from the Performance Evaluation of Tracking and Surveillance (PETS) project [\ref{pets}]. In contrast to the ATON datasets, these sequences were explicitly chosen because they possess subsequences featuring rapid illumination changes, due to a shift in weather conditions and cloud cover. These environmental changes darken, lighten, and blend shadows in accordance with a background model. Figure \ref{fig:pets2illum} demonstrates the illumination changes within the PETS datasets.}
 
-\begin{figure}
+\hl{All eight datasets} were manually segmented to form ground truths that identify shadow regions (gray) within foreground objects (white). \hl{Figure \ref{fig:datasetsgt} illustrates the ground truths of dataset frames.}
+
+\hl{The .avi sequences aren't hosted where they were, meaning I probably can not find the sequence length.}
+
+\begin{table}
 \centering
-\begin{subfigure}{.3\linewidth}
-  \includegraphics[width=1\linewidth]{figures/highway1_0045.jpg}
-  \label{fig:sub1}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.3\linewidth}
-  \includegraphics[width=1\linewidth]{figures/lab_0151.jpg}
-  \label{fig:sub2}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.3\linewidth}
-  \includegraphics[width=1\linewidth]{figures/hallway_0164.jpg}
-  \label{fig:sub3}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.3\linewidth}
-  \includegraphics[width=1\linewidth]{figures/highway1_gt_0045.jpg}
-  \caption{}
-  \label{fig:sub4}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.3\linewidth}
-  \includegraphics[width=1\linewidth]{figures/lab_gt_0151.jpg}
-  \caption{}
-  \label{fig:sub5}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.3\linewidth}
-  \includegraphics[width=1\linewidth]{figures/hallway_gt_0164.jpg}
-  \caption{}
-  \label{fig:sub6}
-\end{subfigure}
-
-\caption{Datasets collected for ATON: (a) aton\_highway1, (b) aton\_lab, and (c) aton\_hallway.}
-\label{fig:datasets}
-\end{figure}
-
-The scenes sampled in each dataset represent sufficiently diverse environments for our assessment. While the datasets represent diverse scene characteristics, there are no events within any specific dataset that cause environmental transformations, e.g., shifting weather conditions or rapid illumination changes. Therefore we have manually segmented two more datasets from the Performance Evaluation of Tracking and Surveillance (PETS) project. Both included samples feature rapid illumination changes due to cloud cover, darkening, lightening, and blending shadows in accordance with a background model.
-
-\begin{center}
 \begin{tabular}{ |c|c|c| }
 	\hline
-	\textbf{Name} & \textbf{Size} & \textbf{\# Samples} \\
+	\textbf{Name} & \textbf{Resolution} & \textbf{\# Ground Truth Frames} \\
 	\hline
 	\hline
 	PETS1 & 768x576 & 12 \\
 	\hline
 	PETS2 & 768x576 & 11 \\
 	\hline
-\end{tabular}
-\end{center}
+	aton\_highway1 & 320x240 & 8 \\
+	\hline 
+	aton\_highway3 & 320x240 & 7 \\ 
+	\hline
+	aton\_room & 320x240 & 22 \\ 
+	\hline
+	aton\_campus & 320x240 & 53 \\ 
+	\hline
+	aton\_hallway & 320x240 & 13 \\
+	\hline
+	aton\_lab & 320x240 & 14 \\ 
+	\hline
+\end{tabular} \label{table:datasets}
+\caption{Dataset information.}
+\end{table}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.3\linewidth}
+  \includegraphics[width=1\linewidth]{figures/highway1_0045.jpg}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.3\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_0151.jpg}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.3\linewidth}
+  \includegraphics[width=1\linewidth]{figures/hallway_0164.jpg}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.3\linewidth}
+  \includegraphics[width=1\linewidth]{figures/highway1_gt_0045.jpg}
+  \caption{}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.3\linewidth}
+  \includegraphics[width=1\linewidth]{figures/lab_gt_0151.jpg}
+  \caption{}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.3\linewidth}
+  \includegraphics[width=1\linewidth]{figures/hallway_gt_0164.jpg}
+  \caption{}
+\end{subfigure}
+
+\caption{Datasets collected for ATON: (a) aton\_highway1, (b) aton\_lab, and (c) aton\_hallway.}
+\label{fig:datasetsgt}
+\end{figure}
 
 \begin{figure}
 \centering
@@ -124,7 +123,7 @@ The scenes sampled in each dataset represent sufficiently diverse environments f
 \end{figure}
 
 \subsubsection{Graphical Tools}
-Graphical tools were used to rapidly assess an algorithmic parameter's affect on shadow removal. Each shadow removal method was modified to accept arbitrary parameter values in real-time. These parameters were then tied to graphical sliders dictating their range and value. Any numerical parameter that has the potential to modify the Detection or Discrimination rates of a shadow removal method is included in the GUI. 
+Graphical tools were used to rapidly assess an algorithmic parameter's affect on shadow removal. Each shadow removal method was modified to accept arbitrary parameter values in real-time. These parameters were then tied to graphical sliders (from OpenCV's highgui library [\ref{opencvhighgui}]) dictating their range and value. Any numerical parameter that has the potential to modify the Detection or Discrimination rates of a shadow removal method is included in the GUI. 
 
 \begin{figure}
 \centering
@@ -143,10 +142,10 @@ Graphical tools were used to rapidly assess an algorithmic parameter's affect on
 \label{fig:guitools}
 \end{figure}
 
-While lacking in absolute precision, the graphical tools used enabled rapid evaluation of the sensitivity of an algorithm to change of parameter within specific scenes. The display is updated in real-time with both a visual representation of detected shadow pixels, and a quantified display of both the exact Detection and Discrimination rates. The slider GUI is available through OpenCV's highgui library.
+The display is updated in real-time with both a visual representation of detected shadow pixels, and a quantified display of both the exact Detection and Discrimination rates. \hl{Leveraging human perception} \hl{(qualitative perception?)}, the graphical tools enabled rapid evaluation of the sensitivity of an algorithm to changes in parameter values within specific scenes. 
 
 \subsubsection{SimpleINI}
-In an early implementation, the shadow removal methods under assessment contained relevant parameters hard-coded into the algorithms, requiring re-compilation to bring any modifications to fruition (excepting GUI-based binaries). This shortcoming was rectified by extracting each parameter and organizing them into an \textit{.ini} file. By utilizing brofield's SimpleINI architecture, hosted on Github [ref brofield], parameters could be either set extemporaneously or altered by an external script. 
+The shadow removal methods under assessment contain relevant parameters hard-coded into the algorithms, requiring re-compilation to bring any modifications to fruition (excepting GUI-based binaries). This shortcoming was rectified by extracting each parameter and organizing them into an \textit{.ini} file. By utilizing \hl{username} brofield's SimpleINI architecture, hosted on Github [\ref{brofield}], parameters could be either set extemporaneously or altered by an external script. 
 
 \begin{figure}
   \centering
