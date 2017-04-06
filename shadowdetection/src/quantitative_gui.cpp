@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
   //namedWindow("Chromacity", CV_WINDOW_NORMAL);
   namedWindow("Physical", CV_WINDOW_NORMAL);
   //namedWindow("Geometry", CV_WINDOW_NORMAL);
-  //namedWindow("Large Region Texture", CV_WINDOW_NORMAL);
+  namedWindow("Large Region Texture", CV_WINDOW_NORMAL);
 
   /* TRACKBARS & PARAMS */
 
@@ -168,9 +168,9 @@ int main(int argc, char** argv) {
   //createTrackbar("splitIncrement", "Large Region Texture", &lrTex.params.splitIncrement, 10);
   //createTrackbar("splitRadius", "Large Region Texture", &lrTex.params.splitRadius, 10);
 
-  //createTrackbar("cannyThresh1", "Large Region Texture", &cannyThresh1Int, 200);
-  //createTrackbar("cannyThresh2", "Large Region Texture", &cannyThresh2Int, 200);
-  //createTrackbar("cannyApertureSize", "Large Region Texture", &lrTex.params.cannyApertureSize, 10);
+  createTrackbar("cannyThresh1", "Large Region Texture", &cannyThresh1Int, 200);
+  createTrackbar("cannyThresh2", "Large Region Texture", &cannyThresh2Int, 200);
+  createTrackbar("cannyApertureSize", "Large Region Texture", &lrTex.params.cannyApertureSize, 10);
 
   //createTrackbar("minCorrPoints", "Large Region Texture", &lrTex.params.minCorrPoints, 10);
   //createTrackbar("maxCorrRounds", "Large Region Texture", &lrTex.params.maxCorrRounds, 10);
@@ -259,7 +259,7 @@ int main(int argc, char** argv) {
 	  //imshow("Chromacity", chrMask);
 	  imshow("Physical", physMask);
     //imshow("Geometry", geoMask);
-	  //imshow("Large Region Texture", lrTexMask);
+	  imshow("Large Region Texture", lrTexMask);
 
 
     if(waitKey(30) == 'q') break;
