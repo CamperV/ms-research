@@ -12,7 +12,7 @@
 \clearpage
 \chapter{Results}
 
-\section{Correlation of Parameters}
+\section{Correlation of Parameters} \label{section:corrofparams}
 
 We observe correlation between two parameters using the statistical definition of the correlation coefficient ($\rho_{X,Y}$), defined as
 
@@ -170,7 +170,8 @@ The results in Tables \ref{table:corr_db} and \ref{table:corr_rgb} indicate that
 \end{figure}
 
 \subsection{Correlation Improvements}
-\subsubsection{Low-contrast Keypoints}
+
+\subsubsection{Low-contrast Keypoints} \label{section:lowcsensitivity}
 
 Using the formula outlined in Chapter (methodology), section (SIFT), $\%lowC(fg \rightarrow bg)$ is calculated per frame and multiplied against the observed average attenuation. This multiplication attempts to accentuate the correlation coefficient between \textit{coneR1} and average attenuation by modulating according to the relative percentage of low-contrast SIFT keypoints. Figure \ref{fig:highway1_sift} visually demonstrates the modulation's effect on the aton\_highway1 dataset. Figure \ref{fig:corr_diff_sift} and Table \ref{table:corr_diff_sift} detail the effects on correlation for each dataset.
 
