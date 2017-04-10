@@ -23,13 +23,13 @@ echo "Using $1..."
 
 for file in $INDIR/{.,}*;
 do
-  if [ $(basename "$file") == "." ] || [ $(basename "$file") == ".." ]; then 
-    continue;
-  fi
+  #if [ $(basename "$file") == "." ] || [ $(basename "$file") == ".." ]; then 
+  #  continue;
+  #fi
 
-  if [ $(basename "$file") == "fg" ] || [ $(basename "$file") == "bgs" ]; then 
-    continue;
-  fi
+  #if [ $(basename "$file") == "fg" ] || [ $(basename "$file") == "bgs" ]; then 
+  #  continue;
+  #fi
 
   mkdir -p $RESULTSDIR/$TRIM
   $BINDIR/hsvparams "$file" >> $RESULTSDIR/$TRIM/hsvparams.csv  # HSV

@@ -462,9 +462,9 @@ In the ideal case, the attenuation of light is an entirely linear function, i.e.
 
 Due to physical properties of illumination and reflectance, this linearity does not always hold true; cast shadows in real-world scenes \hl{are caused by} more than one illumination source. In an outdoor scene, a shadow may be the product of direct sunlight, blue light refracted from the sky, and diffuse light scattering from nearby objects or surfaces. Any of these factors contribute to color bleed [\ref{phys/colorbleed}], influencing the attenuation of shadow pixels. These disparate light sources are said to have different \textit{spectral power distributions}, different illumination characterized by varying concentrations of constituent wavelengths. This non-linear attenuation model is the primary motivator behind using GMM to learn a shadow's color model in [\ref{Phys}].
 
-\subsubsection{Observed Spectral Properties in Outdoor Scenes}
+\subsubsection{Observed Spectral Properties in Outdoor Scenes} \label{section:spectralprop}
 
-Since the spectral properties of an illumination source cannot always be predicted, this study \hl{attmepts} to observe trends \hl{across} datasets to properly characterize shadows. By visualizing the magnitude of color shift due to shadows, we can clearly partition datasets into outdoor and indoor images. Outdoor datasets experience change disproportionately in each channel of an RGB image, while indoor datasets are characterized by equal and predictable shifts in each channel.
+Since the spectral properties of an illumination source cannot always be predicted, this study \hl{attempts} to observe trends \hl{across} datasets to properly characterize shadows. By visualizing the magnitude of color shift due to shadows, we can clearly partition datasets into outdoor and indoor images. Outdoor datasets experience change disproportionately in each channel of an RGB image, while indoor datasets are characterized by equal and predictable shifts in each channel.
 
 \begin{figure}
   \centering
