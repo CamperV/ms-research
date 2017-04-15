@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
   //namedWindow("Chromacity", CV_WINDOW_NORMAL);
   namedWindow("Physical", CV_WINDOW_NORMAL);
   //namedWindow("Geometry", CV_WINDOW_NORMAL);
-  namedWindow("Large Region Texture", CV_WINDOW_NORMAL);
+  //namedWindow("Large Region Texture", CV_WINDOW_NORMAL);
 
   /* TRACKBARS & PARAMS */
 
@@ -138,7 +138,7 @@ int main(int argc, char** argv) {
   int vThreshUpperLowAttenInt = 100;
   int vThreshUpperHighAttenInt = 99;
   int vThreshLowerLowAttenInt = 60;
-  int vThreshLowerHighAttenInt = 121;
+  int vThreshLowerHighAttenInt = 21;
 
   int avgPerimThreshInt = 100;
   int cannyThresh1Int = 72;
@@ -241,25 +241,28 @@ int main(int argc, char** argv) {
 
     str << "Detection Rate: " << 100*calcDetectRate(physMask, shadows);
     putText(physMask, str.str(), Point(10,25), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+            Scalar(200,200,200), 1, CV_AA);
+    putText(lrTexMask, str.str(), Point(10,25), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
             Scalar(50,50,200), 1, CV_AA);
 
     str.str("");
     str << "Discrimination Rate: " << 100*calcDiscrimRate(physMask, shadows);
     putText(physMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+            Scalar(200,200,200), 1, CV_AA);
+    putText(lrTexMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
             Scalar(50,50,200), 1, CV_AA);
 
     str.str("");
     str << "Score: " << 100*calcDiscrimRate(physMask, shadows) + 100*calcDetectRate(physMask, shadows);
-    putText(physMask, str.str(), Point(10,65), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
-            Scalar(50,50,200), 1, CV_AA);
-
+    //putText(physMask, str.str(), Point(10,65), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+    //        Scalar(50,50,200), 1, CV_AA);
 	  // show results
 	  //imshow("Frame", frame);
     //imshow("Ground Truth", shadows);
 	  //imshow("Chromacity", chrMask);
 	  imshow("Physical", physMask);
     //imshow("Geometry", geoMask);
-	  imshow("Large Region Texture", lrTexMask);
+	  //imshow("Large Region Texture", lrTexMask);
 
 
     if(waitKey(30) == 'q') break;

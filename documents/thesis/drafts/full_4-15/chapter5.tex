@@ -1,0 +1,30 @@
+\clearpage
+\chapter{Conclusion and Future Work}
+
+\section{Conclusion}
+
+We have demonstrated the capability of an adaptive model to intelligently adapt the parameters of a shadow removal algorithm, using observed environmental features. This was completed through the construction of a proof-of-concept which adapted the parameter \textit{coneR1} of the Physical shadow removal algorithm, according to the average brightness attenuation ($\alpha$) observed between a shadow region and its corresponding background. The adaptive model was shown to positively affect the discrimination ($\xi$) of foreground object pixels from shadow pixels for 6 out of the 8 datasets, with average improvements ranging from 4\% to 29\% greater accuracy (when compared to the naive model). The adaptive model was shown to behave poorly with regards to rapid illumination change (PETS1, PETS2), decreasing the shadow discrimination by 3\% and 8\% during these periods. The adaptive model marginally increases shadow detection ($\eta$) in three datasets (PETS1, PETS2, aton\_highway1) by 0.5\% to 9\%, while the remaining datasets trade fractional amounts ($< 0.5\%$) of shadow detection for the previously observed increases in discrimination.
+
+We have developed tools to facilitate the construction of the adaptive model, including a graphical interface for rapidly modifying a shadow removal algorithm's parameters, and an iterative process designed to automatically calculate the optimal value of a given parameter, i.e., the value that yields the highest combination of shadow detection and discrimination for a frame. Using this framework, we provided the ability to quickly assess an algorithm's sensitivity to its mutable parameters, both qualitatively, using the graphical tools, and quantitatively, using the iterative process.
+
+In order to construct the adaptive model for Physical shadow removal (and \textit{coneR1}), we correlated shadow brightness attenuation ($\alpha$) to the optimal parameter value \textit{coneR1}*, determined empirically through the use of our tools. The correlation ($\rho_{\alpha}$) ranges from 18\% to 80\%. We improve correlation by evaluating two models of attenuation, $\alpha_{dB}$ and $\alpha_{\%\Delta}$. The adaptive model is based on the $\alpha_{\%\Delta}$ model, due to it providing a better fit to \textit{coneR1}*. 
+
+We also showcased two methods to affect the correlation ($\rho_{\%\Delta}$). The first of these, the measurement of low-contrast SIFT features in a scene, demonstrates changes in correlation ($\rho_{\alpha}$) ranging from -12\% to 13\%. Varying the brightness model (HSV, HSP, HSI, HSL, Y', and Norm) used in calculating attenuation produced a wide range of correlation changes for both $\alpha_{\%\Delta}$ and $\alpha_{dB}$. For $\alpha_{dB}$, we demonstrate the ability to select the best-suited brightness model based on the red-green bias we calculate for dark pixels in a scene, which divide the datasets into outdoor and indoor environments. Variation of brightness calculation methods did not produce similar patterns for $\alpha_{\%\Delta}$.
+
+This model is best suited for long videos and stuff where it needs to adapt over time in a scalable manner, and stuff.
+
+We show (by way of proof-of-concept) that an adaptive model based on environmental properties can increase the portability of shadow removal algorithms, by automatically calibrating an algorithm to an environment. The implemented proof-of-concept is performed on the Physical model for shadow removal, a method that employs unsupervised machine-learning to learn the appearance of a shadow pixel over time. We demonstrate that an adaptive model can still increase the efficacy of shadow removal by tuning the parameters, for even an inherently adaptive shadow removal algorithm. The adaptive model is flexible enough to continuously adapt an algorithm over long periods of time, providing a scalable solution without relying on hard-coding thresholds and parameters. 
+
+\section{Future Work}
+
+\subsection{Modeling Low-contrast SIFT Keypoints}
+
+Given the correlation sensitivity shown with regard to $SIFT_{fg/bg}$, it is apparent that a more sophisticated model is required for the representation of low-contrast SIFT features in an image. We believe there are improvements to be made to properly model the low-contrast structural changes seen in shadow regions. One such improvement would be restricting the observed low-contrast features to those found within identified foreground objects, eliminating false positives, i.e., low-contrast features existing outside of shadow regions (primarily caused by pixel-level noise).
+
+\subsection{Illumination Compensation}
+
+The presented adaptive model overcompensates for rapid illumination change, hampering shadow detection and discrimination. The problematic illumination changes are exaggerated by a background model that has not adapted to properly represent the new scene brightness. Bales et al.'s BigBackground is a process for illumination compensation that utilizes stable background features to locally estimate illumination changes for an entire scene. By utilizing BigBackground, we can compensate for the sluggish background model, and realistically represent the exaggerated attenuation between shadow and background.
+
+\subsection{Classifying Indoor/Outdoor Scenes}
+
+While implementing various brightness calculation methods, we found (for the $\alpha_{dB}$ model of attenuation) that we could assign an ideal brightness model to a scene based on whether or not it was an indoor or outdoor environment. We quantified the red-green bias of possible shadow pixels, and used the measured bias to classify a scene as outdoor or indoor. Further verification is required for this claim. Repeating these bias calculations on a wide variety of datasets will validate the spectral-illuminant theory supported the supposition. Further work in this area allows us to study the multi-illuminant properties of outdoor shadows vs. indoor shadows in more depth, which can in turn provide more accurate classification. 
