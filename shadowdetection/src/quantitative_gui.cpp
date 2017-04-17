@@ -239,18 +239,24 @@ int main(int argc, char** argv) {
 
     stringstream str;
 
+    /*
     str << "Detection Rate: " << 100*calcDetectRate(physMask, shadows);
     putText(physMask, str.str(), Point(10,25), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
             Scalar(200,200,200), 1, CV_AA);
-    putText(lrTexMask, str.str(), Point(10,25), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
-            Scalar(50,50,200), 1, CV_AA);
 
     str.str("");
     str << "Discrimination Rate: " << 100*calcDiscrimRate(physMask, shadows);
     putText(physMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
             Scalar(200,200,200), 1, CV_AA);
-    putText(lrTexMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
-            Scalar(50,50,200), 1, CV_AA);
+    */
+    str << "Detection Rate: " << 100*calcDetectRate(geoMask, shadows);
+    putText(geoMask, str.str(), Point(10,25), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+            Scalar(200,200,200), 1, CV_AA);
+
+    str.str("");
+    str << "Discrimination Rate: " << 100*calcDiscrimRate(geoMask, shadows);
+    putText(geoMask, str.str(), Point(10,45), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+            Scalar(200,200,200), 1, CV_AA);
 
     str.str("");
     str << "Score: " << 100*calcDiscrimRate(physMask, shadows) + 100*calcDetectRate(physMask, shadows);

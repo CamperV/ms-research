@@ -110,9 +110,9 @@ int main(int argc, char** argv) {
                               << 100*calcDiscrimRate(physMask, shadows)   << endl;
   cerr << "G,"                << 100*calcDetectRate(geoMask, shadows)     << "," 
                               << 100*calcDiscrimRate(geoMask, shadows)    << endl;
-  cerr << "S,"               << 100*calcDetectRate(srTexMask, shadows)   << "," 
+  cerr << "SR,"               << 100*calcDetectRate(srTexMask, shadows)   << "," 
                               << 100*calcDiscrimRate(srTexMask, shadows)  << endl;
-  cerr << "L,"               << 100*calcDetectRate(lrTexMask, shadows)   << "," 
+  cerr << "LR,"               << 100*calcDetectRate(lrTexMask, shadows)   << "," 
                               << 100*calcDiscrimRate(lrTexMask, shadows)  << endl;
 
   // processing loop

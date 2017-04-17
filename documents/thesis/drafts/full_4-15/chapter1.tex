@@ -42,57 +42,55 @@ Classifying shadow pixels within moving foreground objects has been approached i
 
 These surveys indicate that existing shadow removal algorithms fail to optimally adapt to various environmental properties; these methods quantifiably benefit from assumptions made about key factors of a scene, including illumination constancy, color content, and shadow intensity. In order to facilitate optimization, shadow removal methods possess algorithm parameters that are manually tuned to an environment. The reliance on environmental assumptions affects shadow removal in two ways: firstly, shadow removal performs suboptimally when deployed in an arbitrary environment, and secondly, even when manually calibrated, shadow removal fails to adapt to environmental parameters that change over time. From an application context, a surveillance system that monitors a sun-lit environment 24 hours a day will possess a wide range of shadow qualities when comparing shadows cast at dawn to shadows cast in the evening. Shadows cast in the same location may vary in darkness, size, orientation, and shape depending on the time of day. Therefore shadow removal must adapt not only to diverse environments, but continually adapt as environmental properties vary over time.
 
-We quantitatively demonstrate several cases that indicate the need for adaptation. Shadow removal is judged by its detection rate and its discrimination rate, further detailed in section \ref{section:eval_metrics}. Detection rate indicates the number of shadow pixels correctly identified, while discrimination rate indicates the number of foreground object pixels that are correctly identified. Figure \ref{fig:vthreshdefault} modifies a parameter belonging to Large-Region Texture (LRT) shadow removal, which controls the chromacity range in which a shadow can lie. The parameter (\textit{vThreshLower}) causes LRT shadow removal to perform optimally in the CAVIAR frame at its default value, 121. Similarly, the same algorithm performs poorly in the included dataset aton\_highway1 with the default parameters. However, if \textit{vThreshLower} is modified from 121 to 15, CAVIAR experiences a 47\% loss of discrimination, while aton\_highway1 gains 85\% detection in exchange for a 13\% loss of discrimination. Geometry shadow removal was found to also showcase different results on the same scene, but with differing parameters (Figure \ref{fig:gweight}). 
+We quantitatively demonstrate several cases that indicate the need for adaptation. Shadow removal is judged by its detection rate and its discrimination rate, further detailed in section \ref{section:eval_metrics}. Detection rate indicates the number of shadow pixels correctly identified, while discrimination rate indicates the number of foreground object pixels that are correctly identified. Figure \ref{fig:coner1default} modifies a parameter belonging to \hl{Physical} shadow removal, which controls the chromacity range in which a shadow can lie. The parameter (\hl{\textit{coneR1}}) causes \hl{Physical} shadow removal to perform optimally in the\hl{aton\_highway1} frame at a value of $0.2$. Similarly, the same algorithm performs poorly in the included dataset aton\_campus with \hl{the same parameter value}. However, if \hl{\textit{coneR1}} is modified from 0.2 to 0.68, aton\_\hl{highway1} experiences a \hl{77\% loss of detection}, while aton\_campus gains 53\% discrimination in exchange for a 15\% loss of detection \hl{(\ref{fig:coner168})}. Geometry shadow removal was found to also showcase different results on the same scene, but with differing parameters (Figure \ref{fig:gweight}). 
 
 % vthresh default
 \begin{figure}
   \centering
-  \begin{subfigure}{.45\linewidth}
-    \includegraphics[width=1\linewidth]{figures/background/phys_campus_200.png}
-    \caption{}
-  \end{subfigure}
-  \hfill
   \begin{subfigure}{.49\linewidth}
     \includegraphics[width=1\linewidth]{figures/background/phys_highway1_200.png}
-    \caption{}
+    \caption{aton\_highway1}
   \end{subfigure}
-  \caption{\hl{Default parameters (Default parameters set in reference implementations (Sanin et al. [\ref{Sanin}]) yield inconsistent shadow removal accuracy.} (a) Detection: 96.6637, Discrimination: 99.6233. (b) Detection: 0, Discrimination: 98.3343}
-  \label{fig:vthreshdefault}
+  \hfill
+  \begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{figures/background/phys_campus_200.png}
+    \caption{aton\_campus}
+  \end{subfigure}
+  \caption{\hl{Default parameters (Default parameters set in reference implementations (Sanin et al. [\ref{Sanin}]) yield inconsistent shadow removal accuracy.} (a) Detection: 87.8, Discrimination: 59.84. (b) Detection: 99.9, Discrimination: 32.2}
+  \label{fig:coner102}
 \end{figure}
 
 % vthresh15
 \begin{figure}
   \centering
-  \begin{subfigure}{.45\linewidth}
-    \includegraphics[width=1\linewidth]{figures/background/phys_campus_680.png}
-    \caption{\textit{vThreshLower: 121}}
-  \end{subfigure}
-  \hfill
   \begin{subfigure}{.49\linewidth}
     \includegraphics[width=1\linewidth]{figures/background/phys_highway1_680.png}
-    \caption{\textit{vThreshLower: 15}}
+    \caption{aton\_highway1}
   \end{subfigure}
-  \caption{\textit{vThreshLower} shifted from '121' to '15.' \hl{No parameter value provides consistent accuracy across datasets.} (a) Detection: 96.7076, Discrimination: 52.5296. (b) Detection: 85.0248, Discrimination: 86.5944}
-  \label{fig:vthresh15}
+  \hfill
+  \begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{figures/background/phys_campus_680.png}
+    \caption{aton\_campus}
+  \end{subfigure}
+  \caption{\textit{coneR1} shifted from '0.2' to '0.68.' \hl{No parameter value provides consistent accuracy across datasets.} (a) Detection: 10.59, Discrimination: 87.97. (b) Detection: 84.9, Discrimination: 85.4}
+  \label{fig:coner168}
 \end{figure}
 
 % gweight
 \begin{figure}
   \centering
   \begin{subfigure}{.49\linewidth}
-    \includegraphics[width=1\linewidth]{figures/background/geo_highway1_default.png}
+    \includegraphics[width=1\linewidth]{figures/background/geo_highway1_70.png}
     \caption{\textit{gWeight: 70}}
   \end{subfigure}
   \hfill
   \begin{subfigure}{.49\linewidth}
-    \includegraphics[width=1\linewidth]{figures/background/geo_lower_gweight.png}
+    \includegraphics[width=1\linewidth]{figures/background/geo_highway1_0.png}
     \caption{\textit{gWeight: 0}}
   \end{subfigure}
-  \caption{\textit{gWeight} shifted from '70' to '0.' (a) Detection: 79.0454, Discrimination: 86.7313. (b) Detection: 71.132, Discrimination: 90.1997}
+  \caption{\textit{gWeight} shifted from '70' to '0.' (a) Detection: 79.05, Discrimination: 86.74. (b) Detection: 71.13, Discrimination: 90.21}
   \label{fig:gweight}
 \end{figure}
-
-
 
 %Precedent exists for intelligently adapting parameters for shadow removal. Sanin et al., in the implementation of Large Region Texture shadow removal, measure the average global attenuation, saturation, and foreground object perimeter of a scene. The algorithm selects several differing parameter values for hue, saturation, and value thresholds based on the average shadow attenuation and saturation of the scene. It also modifies the texture differential radius needed to qualify a pixel as shadow based on the perimeter of the foreground object in question. Our research seeks to provide a fully scalable approach, however, as the thresholds established for switching between parameter sets remain empirically determined and coarse-grained.
 

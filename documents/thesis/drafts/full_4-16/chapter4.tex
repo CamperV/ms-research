@@ -510,17 +510,17 @@ Using $\Delta$RGB, $\alpha_{\%\Delta}$, and $shift_{\alpha}$, we calculate the a
 % coneR1 v. newR1
 \begin{figure}
   \centering
-  \begin{subfigure}{1\linewidth}
+  \begin{subfigure}{.8\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/highway1_calc_coneR1.jpg}
   \caption{aton\_highway1}
 \end{subfigure}
 \hfill
-\begin{subfigure}{1\linewidth}
+\begin{subfigure}{.8\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/highway3_calc_coneR1.jpg}
   \caption{aton\_highway3}
 \end{subfigure}
 
-\caption{Adaptively tuned \textit{coneR1}$'$ parameter (orange) charted against \textit{coneR1}* (blue) and average attenuation ($\alpha_{\%\Delta}$) (yellow). All results can be found in the appendix.}
+\caption{Adaptively tuned \textit{coneR1}$'$ parameter (green) charted against \textit{coneR1}* (blue) and average attenuation ($\alpha_{\%\Delta}$) (orange). All results can be found in the appendix.}
 \label{fig:new_coneR1}
 \end{figure}
 
@@ -531,17 +531,17 @@ Figure \ref{fig:bars_hsv_calc} illustrates the resulting detection and discrimin
 % detect/discrim calc
 \begin{figure}
 \centering
-\begin{subfigure}{1\linewidth}
+\begin{subfigure}{.8\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/detect_hsv.jpg}
   \caption{}
 \end{subfigure}
 \hfill
-\begin{subfigure}{1\linewidth}
+\begin{subfigure}{.8\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/discrim_hsv.jpg}
   \caption{}
 \end{subfigure}
 
-\caption{Average detection (a) and average discrimination (b) calculated using the HSV parameter model, for each dataset.}
+\caption{Average detection (a) and average discrimination (b) calculated using the adaptive parameter model, for each dataset.}
 \label{fig:bars_hsv_calc}
 \end{figure}
 
@@ -607,47 +607,47 @@ Results indicate that for a majority of datasets, small amounts of shadow detect
 
 \begin{sidewaysfigure}
   \centering
-  \begin{subfigure}{.24\linewidth}
+  \begin{subfigure}{.32\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/campus_0061_gt.jpg}
   \caption{Ground Truth}
   \end{subfigure}
+  %\hfill
+  %\begin{subfigure}{.24\linewidth}
+  %\includegraphics[width=1\linewidth]{figures/model/campus_0061_optimal.jpg}
+  %\caption{\textit{coneR1}*}
+  %\end{subfigure}
   \hfill
-  \begin{subfigure}{.24\linewidth}
-  \includegraphics[width=1\linewidth]{figures/model/campus_0061_optimal.jpg}
-  \caption{\textit{coneR1}*}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{.24\linewidth}
+  \begin{subfigure}{.32\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/campus_0061_default.jpg}
   \caption{Default (0.3)}
   \end{subfigure}
   \hfill
-  \begin{subfigure}{.24\linewidth}
+  \begin{subfigure}{.32\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/campus_0061_calc.jpg}
   \caption{\textit{coneR1}$'$}
   \end{subfigure}
   %%%
-  \begin{subfigure}{.24\linewidth}
+  \begin{subfigure}{.32\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/room_0275_gt.jpg}
   \caption{Ground Truth}
   \end{subfigure}
+  %\hfill
+  %\begin{subfigure}{.24\linewidth}
+  %\includegraphics[width=1\linewidth]{figures/model/room_0275_optimal.jpg}
+  %\caption{\textit{coneR1}*}
+  %\end{subfigure}
   \hfill
-  \begin{subfigure}{.24\linewidth}
-  \includegraphics[width=1\linewidth]{figures/model/room_0275_optimal.jpg}
-  \caption{\textit{coneR1}*}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{.24\linewidth}
+  \begin{subfigure}{.32\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/room_0275_default.jpg}
   \caption{Default (0.3)}
   \end{subfigure}
   \hfill
-  \begin{subfigure}{.24\linewidth}
+  \begin{subfigure}{.32\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/room_0275_calc.jpg}
   \caption{\textit{coneR1}$'$}
   \end{subfigure}
   
-\caption{Qualitative shadow removal improvement. (a - d) feature the aton\_campus dataset, and (e - h) feature the aton\_room datasets.}
+\caption{Qualitative shadow removal improvement. (a - c) feature the aton\_campus dataset, and (d - f) feature the aton\_room datasets.}
 \label{fig:qual_results}
 \end{sidewaysfigure} 
 
@@ -657,8 +657,8 @@ PETS1 and PETS2 also do not conform to the upward trends seen in the majority of
 
 \begin{figure}
   \centering
-  \includegraphics[width=1\linewidth]{figures/model/pets2_translate.jpg}
-\caption{For PETS2, the adapted parameter \textit{coneR1}$'$ (orange) is erroneously shifted downwards. The originally observed attenuation ($\alpha_{\%\Delta}$) is shown in yellow.}
+  \includegraphics[width=.8\linewidth]{figures/model/pets2_translate.jpg}
+\caption{For PETS2, the adapted parameter \textit{coneR1}$'$ (green) is erroneously shifted downwards. The originally observed attenuation ($\alpha_{\%\Delta}$) is shown in orange.}
 \label{fig:pets2_translate}
 \end{figure} 
 

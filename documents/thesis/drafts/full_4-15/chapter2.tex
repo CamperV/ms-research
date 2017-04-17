@@ -1,9 +1,11 @@
 \clearpage
 \chapter{Approach}
 
+\hl{This chapter details evaluation metrics, provides background on the surveyed shadow removal algorithms, and outlines our research methodology. In section \ref{section:eval_metrics}, we quantify the metrics used to evaluate the accuracy of shadow removal. Section \ref{section:removalmethods} provides background on the shadow removal algorithms utilized for this study. Finally, our research approach is outlined in section \ref{section:approach}.}
+
 \section{Evaluation Metrics} \label{section:eval_metrics}
 
-The efficacy of a shadow removal algorithm on a frame is evaluated with the popular metrics \textit{Detection} ($\eta$) and \textit{Discrimination} ($\xi$) (Eqn. \ref{eqn:detection}, Eqn. \ref{eqn:discrimination}) [\ref{to wherever they originated}]. These formulae measure how many shadow pixels are correctly identified, and how many foreground object pixels are correctly preserved, respectively. The metrics are calculated using true positives (TP) and false negatives (FN) of both foreground pixels and shadow pixels. Subscripts signify operations on shadow pixels ($S$) or foreground pixels ($F$).
+The efficacy of a shadow removal algorithm on a \hl{given} frame is evaluated with the popular metrics \textit{Detection} ($\eta$) and \textit{Discrimination} ($\xi$) (Eqn. \ref{eqn:detection}, Eqn. \ref{eqn:discrimination}) [\ref{to wherever they originated}]. These measure how many shadow pixels are correctly identified, and how many foreground object pixels are correctly preserved, respectively. The metrics are calculated using true positives (TP) and false negatives (FN) of both foreground pixels and shadow pixels. Subscripts signify \hl{identifications} on shadow pixels ($S$) or foreground pixels ($F$).
 
 \begin{equation}
 \eta = \dfrac{TP_{S}}{TP_{S} + FN_{S}} \label{eqn:detection}
@@ -13,9 +15,9 @@ The efficacy of a shadow removal algorithm on a frame is evaluated with the popu
 \xi = \dfrac{TP_{F}}{TP_{F} + FN_{F}} \label{eqn:discrimination}
 \end{equation}
 
-\section{Shadow Removal Methods} \label{section:removalmethods}
+\section{Background: Shadow Removal Methods} \label{section:removalmethods}
 
-Standardized implementations of popular shadow removal methods, including ground truths, backgrounds, and frames, are used courtesy of A. Sanin, C. Sanderson, B.C. Lovell (http://arma.sourceforge.net/shadows), licensed under GPL v3+ and written in C++.
+\hl{We select five popular shadow removal algorithms for this study, named Chromacity, Physical, Geometry, Small-Region Texture, and Large-Region Texture. These shadow removal methods utilize differing techniques for identifying foreground shadow pixels. These techniques are color information (Chromacity), brightness attenuation (Physical), shadow shape (Geometry), and texture information (Small-Region Texture, Large-Region Texture).} Standardized implementations of \hl{the} shadow removal methods, including ground truths, backgrounds, and frames, are used courtesy of A. Sanin, C. Sanderson, B.C. Lovell (http://arma.sourceforge.net/shadows), licensed under GPL v3+ and written in C++.
 
 \subsection{Chromacity}
 
@@ -76,10 +78,8 @@ Large-Region Texture (LRT) shadow removal recognizes that the small regions anal
 %The datasets used by Sanin et al. were also provided, and as such will be utilized in this research for more direct and accurate evaluations. The datasets vary in terms of environment, lighting, time of day, and actors of the scene. These different qualities lend themselves to be quite distinct from one another in terms of shadow length, color, orientation, and definition. Four datasets are indoors, and three outdoors. The spatial environments also differ in key factors such as background textures and color variances.
 
 %%%
-\section{Approach}
+\section{Approach} \label{section:approach}
 %%%
-
-\hl{\textit{This is all ripped from the intro to Methodology. Between that intro, and the contributions outlined in the Introduction, what else am I supposed to say here...?}}
 
 Our approach is divided into two components: algorithm assessment in the context of shadow removal in diverse environments, and the creation of the adaptive model for Physical shadow removal.
 
