@@ -15,13 +15,13 @@ Applications that analyze moving objects rely on the accuracy of the extraction 
   \hfill
   \begin{subfigure}{.49\linewidth}
   \centering
-  \includegraphics[width=1\linewidth]{figures/background/room_0295_shadows.jpg}
+  \includegraphics[width=1\linewidth]{figures/background/room_0295_blob.jpg}
   \caption{}
   \end{subfigure}
   \hfill
   \begin{subfigure}{.49\linewidth}
   \centering
-    \includegraphics[width=1\linewidth]{figures/background/room_0295_blob.jpg}
+    \includegraphics[width=1\linewidth]{figures/background/room_0295_shadows.jpg}
     \caption{}
   \end{subfigure}
   \hfill
@@ -30,7 +30,8 @@ Applications that analyze moving objects rely on the accuracy of the extraction 
     \includegraphics[width=1\linewidth]{figures/background/room_0295_clean.jpg}
     \caption{}
   \end{subfigure}
-  \caption{(a) Original frame, from the aton\_room dataset \hl{[\ref{ATON}]}. (b) The foreground mask is provided, and segmented. Shadow pixels are shown in gray, and foreground object pixels in white. (c) Improper segmentation of the foreground due to shadows. (d) Proper segmentation with the removal of shadows.}
+  %\caption{(a) Original frame, from the aton\_room dataset \hl{[\ref{ATON}]}. (b) The foreground mask is provided, and segmented. Shadow pixels are shown in gray, and foreground object pixels in white. (c) Improper segmentation of the foreground due to shadows. (d) Proper segmentation with the removal of shadows.}
+  \caption{The need for shadow removal: (a) Original frame from the aton\_room dataset \hl{[\ref{ATON}]}. (b) Result of foreground extraction, with shadows incorrectly being detected as moving objects rather than as background. (c) Research goal: proper segmentation into shadow regions and true foreground. (d) Proper identification of foreground with the removal of shadows.}
 \label{fig:nonshadow}
 \end{figure}
 

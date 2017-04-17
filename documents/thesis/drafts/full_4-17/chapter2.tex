@@ -37,7 +37,8 @@ fg_{p}(S) - bg_{p}(S) \leq \tau_{S}
 \beta_{1} \leq \dfrac{fg_{p}(V)}{bg_{p}(V)} \leq \beta_{2}
 \end{equation}
 
-The thresholds are optimized for the environment the algorithm is intended to be deployed to. Due to its reliance on curated thresholds, Chromacity shadow removal is sensitive to strong illumination changes. Furthermore, the assumed linear attenuation model performs worse with dark shadows. 
+%The thresholds are optimized for the environment the algorithm is intended to be deployed to. 
+\hl{The thresholds are optimized for the environment of the algorithm's intended application.} Due to its reliance on curated thresholds, Chromacity shadow removal is sensitive to strong illumination changes. Furthermore, the assumed linear attenuation model performs worse with dark shadows. 
 
 \subsection{Physical}
 
@@ -63,7 +64,7 @@ Physical shadow removal first uses a weak detector to identify candidate shadow 
 
 Popular Geometry-based shadow removal methods attempt to identify shadow regions in a foreground object using projective geometry [\ref{from sanin, mulitple}]. The implementation evaluated in this study, proposed by Hsieh et al. [\ref{Hsieh}], characterizes the geometric moments of foreground blobs in an attempt to identify the vertical peak and center of gravity of the objects. Using this information, the foreground object is split into an object region and a shadow region.
 
-Geometric removal methods often require a shadow and an object retain a clear orientation in regard to one another. Geometric removal is best deployed in environments with distinct, upright objects with a strong directional source of light.  
+Geometric removal methods often require \hl{that} a shadow and an object retain a clear orientation in regard to one another. Geometric removal is best deployed in environments with distinct, upright objects with a strong directional source of light.  
 
 \subsection{Small-Region Texture}
 
@@ -85,7 +86,13 @@ Our approach is divided into two components: algorithm assessment in the context
 
 We first assess the previously catalogued algorithms (Chromacity, Physical, Geometry, SRT, and LRT removal) for sensitivity to both environmental and parametric change. We perform the analysis by applying each shadow removal method to each  environment represented by our datasets. The detection and discrimination rates of each method's shadow removal are plotted over time. Each method is judged based on its (detection/discrimination) response to the different environments of the datasets, and its response over time within each dataset.
 
-We then perform a similar sensitivity analysis upon the parameters utilized by the algorithms. An algorithm is first explored through the use of graphical tools, which enable simple understanding of a parameter's effect upon an algorithm. Parameters are also methodically iterated to illustrate a continuous relationship between a parameter's value and an algorithm's detection and discrimination rates.
+We then perform a similar sensitivity analysis upon the parameters utilized by the algorithms. An algorithm is first explored through the use of 
+%graphical tools, which enable simple understanding of a parameter's effect upon an algorithm. 
+interactive graphical tools, which enable exploration of a parameter's 
+effect upon an algorithm.  Parameter value ranges are also methodically 
+swept to reveal the sensitivity of an algorithm's detection and 
+discrimination rates to a give parameter's value.
+%Parameters are also methodically iterated to illustrate a continuous relationship between a parameter's value and an algorithm's detection and discrimination rates.
 
 From the sensitivity assessments, we demonstrate the creation of an adaptive model for Physical shadow removal's \textit{coneR1} parameter. We create this adaptive model as a proof-of-concept, demonstrating the capability of correlating environmental properties to an algorithm's parameter, and automatically calibrating the algorithm for improved shadow removal. The adaptive model is created in five steps:
 
@@ -101,15 +108,15 @@ From the sensitivity assessments, we demonstrate the creation of an adaptive mod
 
 %\item \underline{Select Parameter}: In addition to demonstrating sensitivity to environmental change, the selected algorithm must also display sensitivity to parametric change. In section \ref{section:selectparameter}, we analyze multiple candidate parameters proven to significantly affect the accuracy of shadow removal.
 
-\item \underline{Determine Optimal Value of Parameter (per frame)}: In accordance with our sensitivity analysis, each frame of a dataset has an optimal value for the selected parameter, i.e., there is an optimal value for which shadow removal is maximized. The process for extracting these optimal values is detailed in section \ref{section:datacollection}.
+\item \underline{Determine optimal value of parameter (per frame)}: In accordance with our sensitivity analysis, each frame of a dataset has an optimal value for the selected parameter, i.e., there is an optimal value for which shadow removal is maximized. The process for extracting these optimal values is detailed in section \ref{section:datacollection}.
 
-\item \underline{Quantify Environmental Properties}: Observed environmental properties are the most influential factor for creating an adaptive model. Section \ref{section:envassess} details identifying and quantifying salient environmental properties. 
+\item \underline{Quantify environmental properties}: Observed environmental properties are the most influential factor for creating an adaptive model. Section \ref{section:envassess} details identifying and quantifying salient environmental properties. 
 
 %\item \underline{Observe Scene Properties Change (per frame)}: Our adaptive model requires that an algorithm may adapt to arbitrary environments as well as environmental changes. Environmental properties' values are recorded for each frame of a dataset.
 
-\item \underline{Correlate Optimal Parameter Value and Environmental Properties}: For each dataset, optimal parameter values and environmental properties are recorded for each frame. By analyzing the correlation between the two sets, we receive a quantitative understanding of how well that environmental parameter would serve as the basis for an adaptive model. For example, if our optimal parameter value increases by $x\%$ from frame 1 to frame 2, and our environmental property also increases by $x\%$ from frame 1 to frame 2, that environmental property may be used to predict an appropriate value of our algorithm parameter. Consistent correlations are sought across each dataset to eliminate false positives.
+\item \underline{Correlate optimal parameter value and environmental properties}: For each dataset, optimal parameter values and environmental properties are recorded for each frame. By analyzing the correlation between the two sets, we receive a quantitative understanding of how well that environmental parameter would serve as the basis for an adaptive model. For example, if our optimal parameter value increases by $x\%$ from frame 1 to frame 2, and our environmental property also increases by $x\%$ from frame 1 to frame 2, that environmental property may be used to predict an appropriate value of our algorithm parameter. Consistent correlations are sought across each dataset to eliminate false positives.
 
-\item \underline{Improve/Evaluate Correlations}: Many environmental properties exist that may not display direct correlation with a parameter's optimal value. We instead utilize these indirect properties as modulators to improve correlation observed with a primary environmental property. Multiple contributing environmental properties are combined to improve correlation and thereby shadow removal. Indirect properties are evaluated in sections \ref{section:nonlinearatten}, \ref{section:brightnessmodels}, and \ref{section:lowcSIFT}.
+\item \underline{Improve/evaluate correlations}: Many environmental properties exist that may not display direct correlation with a parameter's optimal value. We instead utilize these indirect properties as modulators to improve correlation observed with a primary environmental property. Multiple contributing environmental properties are combined to improve correlation and thereby shadow removal. Indirect properties are evaluated in sections \ref{section:nonlinearatten}, \ref{section:brightnessmodels}, and \ref{section:lowcSIFT}.
 
-\item \underline{Create General Model for Selected Parameter}: Incorporating direct and indirect correlative environmental properties, we construct an adaptive model capable of calculating a new value for the algorithm parameter that improves shadow removal. This model is independent of dataset, and is calculated per frame, rather than applied to every frame in a dataset. Methodology for building this model is found in section \ref{section:model}.
+\item \underline{Create general model for selected parameter}: Incorporating direct and indirect correlative environmental properties, we construct an adaptive model capable of calculating a new value for the algorithm parameter that improves shadow removal. This model is independent of dataset, and is calculated per frame, rather than applied to every frame in a dataset. Methodology for building this model is found in section \ref{section:model}.
 \end{enumerate}
