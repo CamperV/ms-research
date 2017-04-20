@@ -1,0 +1,138 @@
+\clearpage
+
+\def\bsq#1{
+\lq{#1}\rq}
+
+\chapter{Introduction}
+
+The need for accurate video analytics has emerged in many application areas, including surveillance, transportation management, and smart-city sensing infrastructure. Many of these applications, e.g., pedestrian and traffic counting \cite{danner2016rapid}, perform classification and analysis on moving objects. In order to detect and extract moving objects in an environment, foreground pixels are differentiated from those of the background through the use of statistical techniques, including Mixture of Gaussians, and Multi-Modal Mean \cite{stauffer1999adaptive, apewokin2007multimodal}. These strategies establish a model of the background of a scene, which changes gradually over time. This background model is then compared directly to a frame. By finding the difference between an image frame and its background model, a mask containing the foreground pixels is created. Foreground pixels are then grouped together and segmented as a moving object, which is analyzed according to the needs of the application.
+
+Applications that analyze moving objects rely on the accuracy of the foreground extraction of foreground pixels. These applications are disadvantaged by the fact that shadows are often mischaracterized as foreground objects, and are included as part of a moving object. This is often because shadows possess similar movement patterns and brightness compared to non-shadow foreground objects \cite{nadimi2004physical}. Figure \ref{fig:nonshadow} illustrates the effect shadows have on the segmentation of foreground objects. 
+
+\begin{figure}
+  \centering
+  \begin{subfigure}{.49\linewidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figures/background/room_0295_frame.jpg}
+  \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.49\linewidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figures/background/room_0295_blob.jpg}
+  \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.49\linewidth}
+  \centering
+    \includegraphics[width=1\linewidth]{figures/background/room_0295_shadows.jpg}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.49\linewidth}
+  \centering
+    \includegraphics[width=1\linewidth]{figures/background/room_0295_clean.jpg}
+    \caption{}
+  \end{subfigure}
+  %\caption{(a) Original frame, from the aton\_room dataset [\ref{ATON}]. (b) The foreground mask is provided, and segmented. Shadow pixels are shown in gray, and foreground object pixels in white. (c) Improper segmentation of the foreground due to shadows. (d) Proper segmentation with the removal of shadows.}
+  \caption{The need for shadow removal: (a) Original frame from the aton\_room dataset \cite{aton2002}. (b) Result of foreground extraction, with shadows incorrectly being detected as moving objects rather than as background. (c) Research goal: proper segmentation into shadow regions and true foreground. (d) Proper identification of foreground with the removal of shadows.}
+\label{fig:nonshadow}
+\end{figure}
+
+The inclusion of shadows in foreground objects may hamper detection and tracking in several ways. Prominent issues, noted by Sanin et al. \cite{sanin2012shadow}, include the distortion of an object's appearance model (required to properly track an object), and the erroneous joining of multiple objects into one labeled connected-component. Additional details regarding a shadow's effect on tracking can be found in \cite{nadimi2004physical, mitra2007shadow}. The removal of shadows from foreground objects is thus a vital step in accurately segmenting moving foreground objects.
+
+Classifying shadow pixels within moving foreground objects has been approached in numerous ways, including color-based attenuation models \cite{cucchiara2003detecting, salvador2004cast, cavallaro2005shadow, chen2010enhanced, sun2010moving}, geometric projective models \cite{hsieh2003shadow, yoneyama2003moving, nicolas2006joint, fang2008method, chen2010human}, and texture-matching models \cite{javed2002hierarchical, tian2005robust, leone2007shadow, zhang2007moving, nghiem2008shadow, sanin2010improved}. Machine-learning has also been employed to attempt to learn the appearance of cast shadows in an unsupervised manner \cite{liu2007cast, martel2007learning, joshi2008learning, huang2009moving}. A taxonomy of shadow removal methods produced by Prati et al. summarizes and evaluates four contemporary method classes: Statistical Nonparametric, Statistical Parametric, Deterministic Nonmodel-based and Deterministic Nonmodel-based \cite{prati2003detecting}. The study concluded that the simpler methods were more suited for general practice, but ``to detect shadows efficiently in one specific environment, [adding] more assumptions yields better results.'' A second algorithm survey conducted by Sanin et al. in \cite{sanin2012shadow} evaluated more modern methods (catalogued as Chromacity, Geometry, Physical, Small Region Texture, and their own contribution, Large Region Texture) on the same datasets as above, yielding similar results concerning the generalization of shadow removal to an arbitrary scene. Mitra et al. provides a survey of threshold selection strategies for identifying shadows in moving foreground objects \cite{mitra2007shadow}.
+
+\section{The Problem}
+
+These surveys indicate that existing shadow removal algorithms fail to optimally adapt to varying environmental properties; these methods quantifiably benefit from assumptions made about key factors of a scene, including illumination constancy, color content, and shadow intensity. In order to facilitate optimization, shadow removal methods possess algorithm parameters that are manually tuned to an environment. The reliance on environmental assumptions affects shadow removal in two ways: firstly, shadow removal performs suboptimally when deployed in an arbitrary environment, and secondly, even when manually calibrated, shadow removal fails to adapt to environmental parameters that change over time. From an application context, a surveillance system that monitors a sun-lit environment throughout an entire day will possess a wide range of shadow qualities when comparing shadows cast at dawn to shadows cast in the evening. Shadows cast in the same location may vary in darkness, size, orientation, and shape depending on the time of day. Therefore shadow removal must adapt not only to diverse environments, but continually adapt as environmental properties vary over time.
+
+We quantitatively demonstrate several cases that indicate the need for adaptation. Shadow removal is judged by its detection rate and its discrimination rate, further detailed in section \ref{section:eval_metrics}. Detection rate indicates the number of shadow pixels correctly identified, while discrimination rate indicates the number of foreground object pixels that are correctly identified. Figure \ref{fig:coner1default} modifies a parameter belonging to Physical shadow removal, which controls the chromacity range in which a shadow can lie. The parameter (\textit{coneR1}) causes Physical shadow removal to perform optimally in the aton\_highway1 frame at a value of $0.2$. Similarly, the same algorithm performs poorly in the included dataset aton\_campus with the same parameter value. However, if \textit{coneR1} is modified from 0.2 to 0.68, aton\_highway1 experiences a 77\% loss of detection, while aton\_campus gains 53\% discrimination in exchange for a 15\% loss of detection (\ref{fig:coner168}). Geometry shadow removal was found to also showcase different results on the same scene, but with differing parameters (Figure \ref{fig:gweight}). 
+
+% vthresh default
+\begin{figure}
+  \centering
+  \begin{subfigure}{.49\linewidth}
+    \includegraphics[width=1\linewidth]{figures/background/phys_highway1_200.png}
+    \caption{aton\_highway1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{figures/background/phys_campus_200.png}
+    \caption{aton\_campus}
+  \end{subfigure}
+  \caption{\textit{coneR1} set to $0.2$. (a) Detection: 87.8, Discrimination: 59.84. (b) Detection: 99.9, Discrimination: 32.2}
+  \label{fig:coner102}
+\end{figure}
+
+% vthresh15
+\begin{figure}
+  \centering
+  \begin{subfigure}{.49\linewidth}
+    \includegraphics[width=1\linewidth]{figures/background/phys_highway1_680.png}
+    \caption{aton\_highway1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.45\linewidth}
+    \includegraphics[width=1\linewidth]{figures/background/phys_campus_680.png}
+    \caption{aton\_campus}
+  \end{subfigure}
+  \caption{\textit{coneR1} shifted from \bsq{0.2} to \bsq{0.68.} (a) Detection: 10.59, Discrimination: 87.97. (b) Detection: 84.9, Discrimination: 85.4. No parameter value provides consistent accuracy across datasets.}
+  \label{fig:coner168}
+\end{figure}
+
+% gweight
+\begin{figure}
+  \centering
+  \begin{subfigure}{.49\linewidth}
+    \includegraphics[width=1\linewidth]{figures/background/geo_highway1_70.png}
+    \caption{\textit{gWeight: 70}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.49\linewidth}
+    \includegraphics[width=1\linewidth]{figures/background/geo_highway1_0.png}
+    \caption{\textit{gWeight: 0}}
+  \end{subfigure}
+  \caption{\textit{gWeight} shifted from '70' to '0.' (a) Detection: 79.05, Discrimination: 86.74. (b) Detection: 71.13, Discrimination: 90.21}
+  \label{fig:gweight}
+\end{figure}
+
+%Precedent exists for intelligently adapting parameters for shadow removal. Sanin et al., in the implementation of Large Region Texture shadow removal, measure the average global attenuation, saturation, and foreground object perimeter of a scene. The algorithm selects several differing parameter values for hue, saturation, and value thresholds based on the average shadow attenuation and saturation of the scene. It also modifies the texture differential radius needed to qualify a pixel as shadow based on the perimeter of the foreground object in question. Our research seeks to provide a fully scalable approach, however, as the thresholds established for switching between parameter sets remain empirically determined and coarse-grained.
+
+%%%
+
+\FloatBarrier
+\section{Objective and Contributions}
+
+%None of the shadow removal methods analyzed are robust enough to compensate for environmental changes over time, nor do they optimally perform in an environment without a priori calibration of algorithm parameters. 
+Our research seeks to establish an understanding of environmental properties that affect shadow removal, and use that understanding to optimize shadow removal in an arbitrary environment. This is achieved by automatically calibrating an algorithm's parameters based on observed environmental properties. Furthermore, we seek to create an understanding of how these environmental properties change over time, in order to continuously adapt shadow removal algorithms. These objectives require the creation of an adaptive model that automatically configures a shadow removal method to optimally perform given the observed environmental properties.
+
+Our research makes the following contributions. We perform a qualitative assessment of each algorithm's performance in various environments. We construct and utilize an interactive framework for evaluating the sensitivity of an algorithm with respect to its mutable parameters. We identify and quantify observed environmental properties, and correlate them to sensitive algorithm parameters. Finally, we demonstrate the construction of an adaptive model, capable of leveraging correlated environmental properties to automatically tune an algorithm's parameters. The demonstration is completed by constructing a proof-of-concept model for Physical shadow removal.
+
+Our proof-of-concept adaptive model draws upon the correlation between brightness attenuation in shadow regions and one of the Physical algorithm's parameters, \textit{coneR1}. It improves shadow detection by up to 10\% and shadow discrimination by up to 28\% on a range of standard datasets from ATON and PETS \cite{aton2002, pets2001}. Additional indirect environmental factors are found to modify the effectiveness of the adaptive model. Various brightness calculation methods are shown to influence attenuation correlation by 7\% to 20\%.
+A study of low-contrast feature keypoints in a scene was shown to improve attenuation-correlation by up to 12\% in some environments.
+
+The outline of this thesis is as follows. In Chapter 2, we detail the shadow removal algorithms utilized in this study, and outline the steps taken to produce an adaptive model. Chapter 3 assesses the shadow removal algorithms for their performance in diverse environments, as well as their sensitivity to parametric change. These assessments culminate in the construction of a proof-of-concept adaptive model for Physical shadow removal, using its \textit{coneR1} parameter. Chapter 3 also explores indirect environmental properties and their potential impacts on the performance of the adaptive model. Chapter 4 quantifies and discusses the results of the adaptive model, and the indirect environmental properties' effects on the model. Chapter 5 summarizes conclusions and future work.
+
+%Characterization of a scene or environment is traditionally done with global parameters such as global hue, saturation, and value (HSV), or color variance. However, more scene properties are needed for proper identification of semantic scene content, needed for this	 research. The ‘gist’ of scene, proposed by Oliva et al. in [5], compares evaluations of the properties of scene, using low-level features and simple arrangement of volumetric forms. Similarly, in [6], Oliva et al. evaluates the content of a scene using shape modeling such as the openness, ruggedness, roughness, expansion of a scene, creating the ‘spatial envelope’ of a scene. Lowe et al. propose the scale-invariant feature transform (SIFT), which utilizes and identifies features of a scene that are robust to noise, illumination, distortion, and viewpoint [7]. Bayesian Scene Modeling, proposed by Fei-Fei et al., utilizes the ‘bag-of-words’ strategy, building a dictionary of codewords relevant to a scene via unsupervised machine learning [8]. This approach creates a ‘theme’ for a scene built upon these collected codewords, categorizing complex diverse scenes into 13 categories (highway, coast, mountain, etc). 
+
+%There is precedent for intelligently adapting parameters for shadow removal. Sanin et al., in the implementation of Large Region Texture shadow removal, measure the average global attenuation, saturation, and foreground object perimeter of a scene. The algorithm selects several differing parameter values for hue, saturation, and value thresholds based on the average shadow attenuation and saturation of the scene. It also modifies the texture differential radius needed to qualify a pixel as shadow based on the perimeter of the foreground object in question.
+
+%\section{Work Completed}
+
+%The implementations of the various approaches came with hard-coded parameters that were found to be correspondent with the provided datasets. Prominent parameters include:
+
+%There are many more mutable parameters that affect shadow removal efficacy, and again, a more complete taxonomy will be provided. 
+%In order to then quickly evaluate the effect of modifying these in-built parameters, a graphical interface was created to adjust them during runtime and view the effects. The interface supports either entire sequences (e.g. video) or singular frames. The interface supports any of the aforementioned shadow removal methods. 
+
+%Fig. 1. Graphical interface for permuting parameters.
+
+%The graphical interface is a crucial development in terms precisely measuring each parameter's effect on a given scene. However, in order to study shadow removal in terms of adaptivity over time, a more procedural method was required. Courtesy of username ‘brofield’, SimpleINI (github.com/brofield/simpleini), licensed under MIT, allowed for creation of .ini files containing any given removal method's default parameters. The algorithms themselves were then modified to allow for runtime modifications to be made to these parameters, meaning a procedural, iterative approach to analysis was created. A python script capable of writing to this .ini file allows for rapid permutation of parameters and values.
+
+%Develop holistic scene content understanding in order to select shadow removal method for the ‘macro’ stage of hypervisor program. A quantization of seemingly qualitative scene content is required to better select between shadow removal methods. Some of this scene content includes shadow orientation vs. foreground object orientation, pre-existing static scene shadows, foreground object classification, distinctiveness of foreground objects (color differences in particular), light source in a scene, and many more. Building up an understanding of these scene properties may also help with the ‘micro’ stage of the proposed framework.
+
+%Develop understanding of how these scene/environment parameters change over time of day and between locales. Observation of how both the quantitative and qualitative scene parameters change over time is required to create the proposed adaptive framework. This step will be simple for things like shadow intensity and global saturation, but more difficult for aforementioned properties like static shadows and object classification.
+
+%Create correlation between global scene/environment properties and shadow removal accuracy. This step represents the main experimental thrust of the proposed research detailed thoroughly in this research summary.
+
+%Use the aforementioned correlation to build hypervisor program to deploy adaptive shadow removal in arbitrary scenes and environments. This will be done primarily in C++, using the OpenCV API.

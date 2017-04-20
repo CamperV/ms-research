@@ -1,0 +1,452 @@
+@inproceedings{danner2016rapid,
+  title={Rapid precedent-aware pedestrian and car classification on constrained IoT platforms},
+  author={Danner, Jay and Wills, Linda and Ruiz, Elbert M and Lerner, Lee W},
+  booktitle={Proceedings of the 14th ACM/IEEE Symposium on Embedded Systems for Real-Time Multimedia},
+  pages={29--36},
+  year={2016},
+  organization={ACM}
+}
+
+@inproceedings{stauffer1999adaptive,
+  title={Adaptive background mixture models for real-time tracking},
+  author={Stauffer, Chris and Grimson, W Eric L},
+  booktitle={Computer Vision and Pattern Recognition, 1999. IEEE Computer Society Conference on.},
+  volume={2},
+  pages={246--252},
+  year={1999},
+  organization={IEEE}
+}
+
+@inproceedings{apewokin2007multimodal,
+  title={Multimodal mean adaptive backgrounding for embedded real-time video surveillance},
+  author={Apewokin, Senyo and Valentine, Brian and Wills, L and Wills, S and Gentile, Antonio},
+  booktitle={Computer Vision and Pattern Recognition, 2007. CVPR'07. IEEE Conference on},
+  pages={1--6},
+  year={2007},
+  organization={IEEE}
+}
+
+@article{nadimi2004physical,
+  title={Physical models for moving shadow and object detection in video},
+  author={Nadimi, Sohail and Bhanu, Bir},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={26},
+  number={8},
+  pages={1079--1087},
+  year={2004},
+  publisher={IEEE}
+}
+
+@electronic{aton2002,
+ title={Shadow Detection},
+ url={http://cvrr.ucsd.edu/aton/shadow/}
+}
+
+@article{sanin2012shadow,
+  title={Shadow detection: A survey and comparative evaluation of recent methods},
+  author={Sanin, Andres and Sanderson, Conrad and Lovell, Brian C},
+  journal={Pattern recognition},
+  volume={45},
+  number={4},
+  pages={1684--1695},
+  year={2012},
+  publisher={Elsevier}
+}
+
+@article{mitra2007shadow,
+  title={On shadow elimination after moving region segmentation based on different threshold selection strategies},
+  author={Mitra, Bhargav Kumar and Young, Rupert and Chatwin, Chris},
+  journal={Optics and Lasers in Engineering},
+  volume={45},
+  number={11},
+  pages={1088--1093},
+  year={2007},
+  publisher={Elsevier}
+}
+
+@article{cucchiara2003detecting,
+  title={Detecting moving objects, ghosts, and shadows in video streams},
+  author={Cucchiara, Rita and Grana, Costantino and Piccardi, Massimo and Prati, Andrea},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={25},
+  number={10},
+  pages={1337--1342},
+  year={2003},
+  publisher={IEEE}
+}
+
+@article{salvador2004cast,
+  title={Cast shadow segmentation using invariant color features},
+  author={Salvador, Elena and Cavallaro, Andrea and Ebrahimi, Touradj},
+  journal={Computer vision and image understanding},
+  volume={95},
+  number={2},
+  pages={238--259},
+  year={2004},
+  publisher={Elsevier}
+}
+
+@article{cavallaro2005shadow,
+  title={Shadow-aware object-based video processing},
+  author={Cavallaro, Andrea and Salvador, Elena and Ebrahimi, Touradj},
+  journal={IEE Proceedings-Vision, Image and Signal Processing},
+  volume={152},
+  number={4},
+  pages={398--406},
+  year={2005},
+  publisher={IET}
+}
+
+@inproceedings{chen2010enhanced,
+  title={An enhanced segmentation on vision-based shadow removal for vehicle detection},
+  author={Chen, Chun-Ting and Su, Chung-Yen and Kao, Wen-Chung},
+  booktitle={Green Circuits and Systems (ICGCS), 2010 International Conference on},
+  pages={679--682},
+  year={2010},
+  organization={IEEE}
+}
+
+@inproceedings{sun2010moving,
+  title={Moving cast shadow detection of vehicle using combined color models},
+  author={Sun, Bangyu and Li, Shutao},
+  booktitle={Chinese conference on pattern recognition},
+  pages={1--5},
+  year={2010}
+}
+
+@article{hsieh2003shadow,
+  title={Shadow elimination for effective moving object detection by Gaussian shadow modeling},
+  author={Hsieh, Jun-Wei and Hu, Wen-Fong and Chang, Chia-Jung and Chen, Yung-Sheng},
+  journal={Image and Vision Computing},
+  volume={21},
+  number={6},
+  pages={505--516},
+  year={2003},
+  publisher={Elsevier}
+}
+
+@inproceedings{yoneyama2003moving,
+  title={Moving cast shadow elimination for robust vehicle extraction based on 2D joint vehicle/shadow models},
+  author={Yoneyama, Akio and Yeh, Chia H and Kuo, C-CJ},
+  booktitle={Advanced Video and Signal Based Surveillance, 2003. Proceedings. IEEE Conference on},
+  pages={229--236},
+  year={2003},
+  organization={IEEE}
+}
+
+@article{nicolas2006joint,
+  title={Joint moving cast shadows segmentation and light source detection in video sequences},
+  author={Nicolas, Henri and Pinel, Jean-Marie},
+  journal={Signal processing: Image communication},
+  volume={21},
+  number={1},
+  pages={22--43},
+  year={2006},
+  publisher={Elsevier}
+}
+
+@article{fang2008method,
+  title={A method to segment moving vehicle cast shadow based on wavelet transform},
+  author={Fang, Liu Zhi and Qiong, Wang Yun and Sheng, You Zhi},
+  journal={Pattern Recognition Letters},
+  volume={29},
+  number={16},
+  pages={2182--2188},
+  year={2008},
+  publisher={Elsevier}
+}
+
+@inproceedings{chen2010human,
+  title={Human shadow removal with unknown light source},
+  author={Chen, Chia-Chih and Aggarwal, Jake K},
+  booktitle={Pattern Recognition (ICPR), 2010 20th International Conference on},
+  pages={2407--2410},
+  year={2010},
+  organization={IEEE}
+}
+
+@inproceedings{javed2002hierarchical,
+  title={A hierarchical approach to robust background subtraction using color and gradient information},
+  author={Javed, Omar and Shafique, Khurram and Shah, Mubarak},
+  booktitle={Motion and Video Computing, 2002. Proceedings. Workshop on},
+  pages={22--27},
+  year={2002},
+  organization={IEEE}
+}
+
+@inproceedings{tian2005robust,
+  title={Robust and efficient foreground analysis for real-time video surveillance},
+  author={Tian, Ying-Li and Lu, Max and Hampapur, Arun},
+  booktitle={Computer Vision and Pattern Recognition, 2005. CVPR 2005. IEEE Computer Society Conference on},
+  volume={1},
+  pages={1182--1187},
+  year={2005},
+  organization={IEEE}
+}
+
+@article{leone2007shadow,
+  title={Shadow detection for moving objects based on texture analysis},
+  author={Leone, Alessandro and Distante, Cosimo},
+  journal={Pattern Recognition},
+  volume={40},
+  number={4},
+  pages={1222--1233},
+  year={2007},
+  publisher={Elsevier}
+}
+
+@article{zhang2007moving,
+  title={Moving cast shadows detection using ratio edge},
+  author={Zhang, Wei and Fang, Xiang Zhong and Yang, Xiaokang K and Wu, QM Jonathan},
+  journal={IEEE Transactions on Multimedia},
+  volume={9},
+  number={6},
+  pages={1202--1214},
+  year={2007},
+  publisher={IEEE}
+}
+
+@inproceedings{nghiem2008shadow,
+  title={Shadow removal in indoor scenes},
+  author={Nghiem, Anh-Tuan and Bremond, Fran{\c{c}}ois and Thonnat, Monique},
+  booktitle={Advanced Video and Signal Based Surveillance, 2008. AVSS'08. IEEE Fifth International Conference on},
+  pages={291--298},
+  year={2008},
+  organization={IEEE}
+}
+
+@inproceedings{sanin2010improved,
+  title={Improved shadow removal for robust person tracking in surveillance scenarios},
+  author={Sanin, Andres and Sanderson, Conrad and Lovell, Brian C},
+  booktitle={Pattern Recognition (ICPR), 2010 20th International Conference on},
+  pages={141--144},
+  year={2010},
+  organization={IEEE}
+}
+
+@inproceedings{liu2007cast,
+  title={Cast shadow removal combining local and global features},
+  author={Liu, Zhou and Huang, Kaiqi and Tan, Tieniu and Wang, Liangsheng},
+  booktitle={Computer Vision and Pattern Recognition, 2007. CVPR'07. IEEE Conference on},
+  pages={1--8},
+  year={2007},
+  organization={IEEE}
+}
+
+@article{martel2007learning,
+  title={Learning and removing cast shadows through a multidistribution approach},
+  author={Martel-Brisson, Nicolas and Zaccarin, Andre},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={29},
+  number={7},
+  year={2007},
+  publisher={IEEE}
+}
+
+@article{joshi2008learning,
+  title={Learning to detect moving shadows in dynamic environments},
+  author={Joshi, Ajay J and Papanikolopoulos, Nikos P},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={30},
+  number={11},
+  pages={2055--2063},
+  year={2008},
+  publisher={IEEE}
+}
+
+@inproceedings{huang2009moving,
+  title={Moving cast shadow detection using physics-based features},
+  author={Huang, Jia-Bin and Chen, Chu-Song},
+  booktitle={Computer Vision and Pattern Recognition, 2009. CVPR 2009. IEEE Conference on},
+  pages={2310--2317},
+  year={2009},
+  organization={IEEE}
+}
+
+@article{prati2003detecting,
+  title={Detecting moving shadows: algorithms and evaluation},
+  author={Prati, Andrea and Mikic, Ivana and Trivedi, Mohan M and Cucchiara, Rita},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={25},
+  number={7},
+  pages={918--923},
+  year={2003},
+  publisher={IEEE}
+}
+
+@misc{pets2001,
+ title={PETS'2001 Second IEEE International Workshop on Performance Evaluation of Tracking and Surveillance},
+ author={James Ferryman},
+ url={http://www.cvg.reading.ac.uk/PETS2001/}
+}
+
+@misc{shadowssourceforge,
+ title={C++ source code and grouth truth for shadow detection / removal},
+ author={Sanin, Sanderson, Lovell},
+ url={http://arma.sourceforge.net/shadows/}
+}
+
+@misc{cvrr,
+ title={Computer Vision and Robotics Research Laboratory - UCSD},
+ url={http://cvrr.ucsd.edu/}
+}
+
+@misc{simpleini,
+ title={Cross-platform C++ library providing a simple API to read and write INI-style configuration files},
+ author={brofield},
+ url={https://github.com/brofield/simpleini}
+}
+
+@misc{opencv,
+ title={OpenCV},
+ url={http://opencv.org/}
+}
+
+@inproceedings{sato2015foreground,
+  title={Foreground Detection Robust Against Cast Shadows in Outdoor Daytime Environment},
+  author={Sato, Akari and Toda, Masato and Tsukada, Masato},
+  booktitle={International Conference on Image Analysis and Processing},
+  pages={653--664},
+  year={2015},
+  organization={Springer}
+}
+
+@article{lee2017shadow,
+  title={Shadow Detection Based on Regions of Light Sources for Object Extraction in Nighttime Video},
+  author={Lee, Gil-beom and Lee, Myeong-jin and Lee, Woo-Kyung and Park, Joo-heon and Kim, Tae-Hwan},
+  journal={Sensors},
+  volume={17},
+  number={3},
+  pages={659},
+  year={2017},
+  publisher={Multidisciplinary Digital Publishing Institute}
+}
+
+@article{smith1978color,
+  title={Color gamut transform pairs},
+  author={Smith, Alvy Ray},
+  journal={ACM Siggraph Computer Graphics},
+  volume={12},
+  number={3},
+  pages={12--19},
+  year={1978},
+  publisher={ACM}
+}
+
+@misc{bt709,
+ title={Recommendation BT.709-6 (06/2015)},
+ year={2015},
+ url={http://www.itu.int/rec/R-REC-BT.709-6-201506-I/en}
+}
+
+@misc{bt601,
+ title={Recommendation BT.601},
+ year={2011},
+ url={http://www.itu.int/rec/R-REC-BT.601/}
+}
+
+@misc{hsp2006,
+ title={HSP Color Model — Alternative to HSV (HSB) and HSL},
+ author={Darel Rex Finley},
+ year={2006},
+ url={http://alienryderflex.com/hsp.html}
+}
+
+@inproceedings{lowe1999object,
+  title={Object recognition from local scale-invariant features},
+  author={Lowe, David G},
+  booktitle={Computer vision, 1999. The proceedings of the seventh IEEE international conference on},
+  volume={2},
+  pages={1150--1157},
+  year={1999},
+  organization={Ieee}
+}
+
+@article{bay2008speeded,
+  title={Speeded-up robust features (SURF)},
+  author={Bay, Herbert and Ess, Andreas and Tuytelaars, Tinne and Van Gool, Luc},
+  journal={Computer vision and image understanding},
+  volume={110},
+  number={3},
+  pages={346--359},
+  year={2008},
+  publisher={Elsevier}
+}
+
+@article{rosten2006machine,
+  title={Machine learning for high-speed corner detection},
+  author={Rosten, Edward and Drummond, Tom},
+  journal={Computer vision--ECCV 2006},
+  pages={430--443},
+  year={2006},
+  publisher={Springer}
+}
+
+@article{bosch2008scene,
+  title={Scene classification using a hybrid generative/discriminative approach},
+  author={Bosch, Anna and Zisserman, Andrew and Mu{\~n}oz, Xavier},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={30},
+  number={4},
+  pages={712--727},
+  year={2008},
+  publisher={IEEE}
+}
+
+@article{geusebroek2001color,
+  title={Color invariance},
+  author={Geusebroek, J-M and Van den Boomgaard, Rein and Smeulders, Arnold W. M. and Geerts, Hugo},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={23},
+  number={12},
+  pages={1338--1350},
+  year={2001},
+  publisher={IEEE}
+}
+
+@article{van2006boosting,
+  title={Boosting color saliency in image feature detection},
+  author={Van de Weijer, Joost and Gevers, Theo and Bagdanov, Andrew D},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={28},
+  number={1},
+  pages={150--156},
+  year={2006},
+  publisher={IEEE}
+}
+
+@article{hancolor,
+  title={Color Filter in SIFT Matching},
+  author={HAN, Yechen and HIRAI, Shinichi}
+}
+
+@article{tuytelaars2008local,
+  title={Local invariant feature detectors: a survey},
+  author={Tuytelaars, Tinne and Mikolajczyk, Krystian and others},
+  journal={Foundations and trends{\textregistered} in computer graphics and vision},
+  volume={3},
+  number={3},
+  pages={177--280},
+  year={2008},
+  publisher={Now Publishers, Inc.}
+}
+
+@inproceedings{abdel2006csift,
+  title={CSIFT: A SIFT descriptor with color invariant characteristics},
+  author={Abdel-Hakim, Alaa E and Farag, Aly A},
+  booktitle={Computer Vision and Pattern Recognition, 2006 IEEE Computer Society Conference on},
+  volume={2},
+  pages={1978--1983},
+  year={2006},
+  organization={IEEE}
+}
+
+@article{bales2011bigbackground,
+  title={Bigbackground-based illumination compensation for surveillance video},
+  author={Bales, M Ryan and Forsthoefel, Dana and Valentine, Brian and ScottWills, D and Wills, Linda M},
+  journal={Journal on Image and Video Processing},
+  volume={2011},
+  pages={8},
+  year={2011},
+  publisher={Hindawi Publishing Corp.}
+}
