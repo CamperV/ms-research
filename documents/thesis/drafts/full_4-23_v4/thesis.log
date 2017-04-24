@@ -1,0 +1,1916 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.20)  22 APR 2017 09:38
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**thesis.tex
+(./thesis.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 2 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count88
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count89
+\Gm@cntv=\count90
+\c@Gm@tempcnt=\count91
+\Gm@bindingoffset=\dimen105
+\Gm@wd@mp=\dimen106
+\Gm@odd@mp=\dimen107
+\Gm@even@mp=\dimen108
+\Gm@layoutwidth=\dimen109
+\Gm@layoutheight=\dimen110
+\Gm@layouthoffset=\dimen111
+\Gm@layoutvoffset=\dimen112
+\Gm@dimlist=\toks15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
+\ttl@box=\box26
+\beforetitleunit=\skip43
+\aftertitleunit=\skip44
+\ttl@plus=\dimen113
+\ttl@minus=\dimen114
+\ttl@toksa=\toks16
+\titlewidth=\dimen115
+\titlewidthlast=\dimen116
+\titlewidthfirst=\dimen117
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
+Package: tocloft 2013/05/02 v2.3f parameterised ToC, etc., typesetting
+Package tocloft Info: The document has chapter divisions on input line 44.
+\cftparskip=\skip45
+\cftbeforetoctitleskip=\skip46
+\cftaftertoctitleskip=\skip47
+\cftbeforepartskip=\skip48
+\cftpartnumwidth=\skip49
+\cftpartindent=\skip50
+\cftbeforechapskip=\skip51
+\cftchapindent=\skip52
+\cftchapnumwidth=\skip53
+\cftbeforesecskip=\skip54
+\cftsecindent=\skip55
+\cftsecnumwidth=\skip56
+\cftbeforesubsecskip=\skip57
+\cftsubsecindent=\skip58
+\cftsubsecnumwidth=\skip59
+\cftbeforesubsubsecskip=\skip60
+\cftsubsubsecindent=\skip61
+\cftsubsubsecnumwidth=\skip62
+\cftbeforeparaskip=\skip63
+\cftparaindent=\skip64
+\cftparanumwidth=\skip65
+\cftbeforesubparaskip=\skip66
+\cftsubparaindent=\skip67
+\cftsubparanumwidth=\skip68
+\cftbeforeloftitleskip=\skip69
+\cftafterloftitleskip=\skip70
+\cftbeforefigskip=\skip71
+\cftfigindent=\skip72
+\cftfignumwidth=\skip73
+\c@lofdepth=\count92
+\c@lotdepth=\count93
+\cftbeforelottitleskip=\skip74
+\cftafterlottitleskip=\skip75
+\cftbeforetabskip=\skip76
+\cfttabindent=\skip77
+\cfttabnumwidth=\skip78
+)
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2013/11/25 v2.8a programmable bibliographies (PK/JW/AB)
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex1.sty
+Package: biblatex1 2013/11/25 v2.8a programmable bibliographies (bibtex) (PK/JW
+/AB)
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count94
+)
+\etb@tempcnta=\count95
+)
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count96
+
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+\c@tabx@nest=\count97
+\c@listtotal=\count98
+\c@listcount=\count99
+\c@liststart=\count100
+\c@liststop=\count101
+\c@citecount=\count102
+\c@citetotal=\count103
+\c@multicitecount=\count104
+\c@multicitetotal=\count105
+\c@instcount=\count106
+\c@maxnames=\count107
+\c@minnames=\count108
+\c@maxitems=\count109
+\c@minitems=\count110
+\c@citecounter=\count111
+\c@savedcitecounter=\count112
+\c@uniquelist=\count113
+\c@uniquename=\count114
+\c@refsection=\count115
+\c@refsegment=\count116
+\c@maxextrayear=\count117
+\c@maxextraalpha=\count118
+\c@abbrvpenalty=\count119
+\c@highnamepenalty=\count120
+\c@lownamepenalty=\count121
+\c@maxparens=\count122
+\c@parenlevel=\count123
+\blx@tempcnta=\count124
+\blx@tempcntb=\count125
+\blx@tempcntc=\count126
+\blx@maxsection=\count127
+\blx@maxsegment=\count128
+\blx@notetype=\count129
+\blx@parenlevel@text=\count130
+\blx@parenlevel@foot=\count131
+\labelnumberwidth=\skip79
+\labelalphawidth=\skip80
+\shorthandwidth=\skip81
+\biblabelsep=\skip82
+\bibitemsep=\skip83
+\bibnamesep=\skip84
+\bibinitsep=\skip85
+\bibparsep=\skip86
+\bibhang=\skip87
+\blx@auxin=\read1
+\blx@auxout=\write3
+\c@mincomprange=\count132
+\c@maxcomprange=\count133
+\c@mincompwidth=\count134
+\c@labelname=\count135
+\c@savedlabelname=\count136
+\c@author=\count137
+\c@savedauthor=\count138
+\c@shortauthor=\count139
+\c@savedshortauthor=\count140
+\c@editor=\count141
+\c@savededitor=\count142
+\c@editora=\count143
+\c@savededitora=\count144
+\c@editorb=\count145
+\c@savededitorb=\count146
+\c@editorc=\count147
+\c@savededitorc=\count148
+\c@shorteditor=\count149
+\c@savedshorteditor=\count150
+\c@bookauthor=\count151
+\c@savedbookauthor=\count152
+\c@translator=\count153
+\c@savedtranslator=\count154
+\c@annotator=\count155
+\c@savedannotator=\count156
+\c@commentator=\count157
+\c@savedcommentator=\count158
+\c@introduction=\count159
+\c@savedintroduction=\count160
+\c@foreword=\count161
+\c@savedforeword=\count162
+\c@afterword=\count163
+\c@savedafterword=\count164
+\c@holder=\count165
+\c@savedholder=\count166
+\c@namea=\count167
+\c@savednamea=\count168
+\c@nameb=\count169
+\c@savednameb=\count170
+\c@namec=\count171
+\c@savednamec=\count172
+\c@institution=\count173
+\c@savedinstitution=\count174
+\c@language=\count175
+\c@savedlanguage=\count176
+\c@location=\count177
+\c@savedlocation=\count178
+\c@organization=\count179
+\c@savedorganization=\count180
+\c@origlocation=\count181
+\c@savedoriglocation=\count182
+\c@origpublisher=\count183
+\c@savedorigpublisher=\count184
+\c@pageref=\count185
+\c@savedpageref=\count186
+\c@publisher=\count187
+\c@savedpublisher=\count188
+\c@lista=\count189
+\c@savedlista=\count190
+\c@listb=\count191
+\c@savedlistb=\count192
+\c@listc=\count193
+\c@savedlistc=\count194
+\c@listd=\count195
+\c@savedlistd=\count196
+\c@liste=\count197
+\c@savedliste=\count198
+\c@listf=\count199
+\c@savedlistf=\count200
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2013/11/25 v2.8a biblatex compatibility (PK/JW/AB)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 
+\c@textcitecount=\count201
+\c@textcitetotal=\count202
+\c@textcitemaxnames=\count203
+\c@biburlnumpenalty=\count204
+\c@biburlucpenalty=\count205
+\c@biburllcpenalty=\count206
+\c@smartand=\count207
+)
+Package biblatex Info: Trying to load bibliography style 'ieee'...
+Package biblatex Info: ... file 'ieee.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex-ieee/ieee.bbx
+File: ieee.bbx 2013/10/25 v1.1j biblatex bibliography style
+Package biblatex Info: Trying to load bibliography style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric-comp.bbx
+File: numeric-comp.bbx 2013/11/25 v2.8a biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2013/11/25 v2.8a biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2013/11/25 v2.8a biblatex bibliography style (PK/JW/AB)
+\c@bbx:relatedcount=\count208
+\c@bbx:relatedtotal=\count209
+))))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2013/11/25 v2.8a biblatex citation style (PK/JW/AB)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen118
+\Hy@linkcounter=\count210
+\Hy@pagecounter=\count211
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count212
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `bookmarks' set `true' on input line 4319.
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count213
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen119
+\Fld@menulength=\count214
+\Field@Width=\dimen120
+\Fld@charsize=\dimen121
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count215
+\c@Item=\count216
+\c@Hfootnote=\count217
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count218
+\c@bookmark@seq@number=\count219
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip88
+)
+(/usr/share/texlive/texmf-dist/tex/latex/appendix/appendix.sty
+Package: appendix 2009/09/02 v1.2b extra appendix facilities
+\c@@pps=\count220
+\c@@ppsavesec=\count221
+\c@@ppsaveapp=\count222
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box27
+\UL@hyphenbox=\box28
+\UL@skip=\skip89
+\UL@hook=\toks17
+\UL@height=\dimen122
+\UL@pe=\count223
+\UL@pixel=\dimen123
+\ULC@box=\box29
+Package: ulem 2012/05/18
+\ULdepth=\dimen124
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen125
+\extrarowheight=\dimen126
+\NC@list=\toks18
+\extratabsurround=\skip90
+\backup@length=\skip91
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen127
+\captionmargin@=\dimen128
+\captionwidth=\dimen129
+\caption@tempdima=\dimen130
+\caption@indent=\dimen131
+\caption@parindent=\dimen132
+\caption@hangindent=\dimen133
+)
+\c@ContinuedFloat=\count224
+Package caption Info: hyperref package is loaded.
+)
+\c@subfigure=\count225
+\c@subtable=\count226
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip92
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks19
+\ex@=\dimen134
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen135
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count227
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count228
+\leftroot@=\count229
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count230
+\DOTSCASE@=\count231
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box30
+\strutbox@=\box31
+\big@size=\dimen136
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count232
+\c@MaxMatrixCols=\count233
+\dotsspace@=\muskip11
+Normal \count register pool exhausted, switching to extended pool.
+\c@parentequation=\count277
+\dspbrk@lvl=\count278
+\tag@help=\toks20
+\row@=\count279
+\column@=\count280
+\maxfields@=\count281
+\andhelp@=\toks21
+\eqnshift@=\dimen137
+\alignsep@=\dimen138
+\tagshift@=\dimen139
+\tagwidth@=\dimen140
+\totwidth@=\dimen141
+\lineht@=\dimen142
+\@envbody=\toks22
+\multlinegap=\skip93
+\multlinetaggap=\skip94
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/soul/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks24
+\SOUL@lasttoken=\toks25
+\SOUL@cmds=\toks26
+\SOUL@buffer=\toks27
+\SOUL@token=\toks28
+\SOUL@spaceskip=\skip95
+\SOUL@ttwidth=\dimen143
+\SOUL@uldp=\dimen144
+\SOUL@ulht=\dimen145
+)
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+\c@r@tfl@t=\count282
+\rotFPtop=\skip96
+\rotFPbot=\skip97
+\rot@float@box=\box32
+\rot@mess@toks=\toks29
+)
+(/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2013/11/25 v2.8a biblatex localization (PK/JW/AB)
+)
+\@quotelevel=\count283
+\@quotereset=\count284
+
+(./thesis.aux)
+\openout1 = `thesis.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 58.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count285
+\scratchdimen=\dimen146
+\scratchbox=\box33
+\nofMPsegments=\count286
+\nofMParguments=\count287
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count288
+\MPscratchDim=\dimen147
+\MPnumerator=\count289
+\makeMPintoPDFobject=\count290
+\everyMPtoPDFconversion=\toks31
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 433.62001pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=433.62001pt
+* \textheight=650.43001pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package biblatex Info: No input encoding detected.
+(biblatex)             Assuming 'ascii'.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'ascii'.
+\openout3 = `thesis-blx.bib'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'thesis.bbl' found.
+(./thesis.bbl)
+Package biblatex Info: Reference section=0 on input line 58.
+Package biblatex Info: Reference segment=0 on input line 58.
+\AtBeginShipoutBox=\box34
+Package hyperref Info: Link coloring OFF on input line 58.
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count291
+)
+LaTeX Info: Redefining \ref on input line 58.
+LaTeX Info: Redefining \pageref on input line 58.
+LaTeX Info: Redefining \nameref on input line 58.
+
+(./thesis.out) (./thesis.out)
+\@outlinefile=\write4
+\openout4 = `thesis.out'.
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: rotating package is loaded.
+Package caption Info: End \AtBeginDocument code.
+ (./titlePage.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 21.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 40.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./approvalPage.tex
+Underfull \hbox (badness 10000) in paragraph at lines 50--53
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--61
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--71
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--85
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.127 \end{titlepage}
+                      [1]) (./acknowledgements.tex [3
+
+]) (./thesis.toc [4
+
+
+]
+[5])
+\tf@toc=\write5
+\openout5 = `thesis.toc'.
+
+ [6] (./thesis.lot)
+\tf@lot=\write6
+\openout6 = `thesis.lot'.
+
+ [7
+
+
+] (./thesis.lof
+Overfull \hbox (26.55042pt too wide) in paragraph at lines 19--19
+ [][] [][]\OT1/ptm/m/n/12 Datasets col-lected for ATON: (a) aton[]highway1, (b)
+ aton[]lab, and (c) aton[]hallway.[] []  
+ []
+
+[8
+
+
+]
+Overfull \hbox (8.65828pt too wide) in paragraph at lines 35--35
+ [][] [][]\OT1/ptm/m/n/12 (a) and (b) show-case er-ratic shadow de-tec-tion run
+ on the dataset aton[]campus, 
+ []
+
+
+Overfull \hbox (52.89003pt too wide) in paragraph at lines 49--49
+ [][] [][]\OT1/ptm/m/n/12 Parameter value re-sponses for \OT1/ptm/m/it/12 coneR
+2 \OT1/ptm/m/n/12 for three datasets (aton[]campus, aton[]highway1, 
+ []
+
+
+Overfull \hbox (7.0146pt too wide) in paragraph at lines 55--55
+ \OT1/ptm/m/n/12 green chan-nels. Dur-ing il-lu-mi-na-tion changes (ev-i-dent i
+n PETS1 and PETS2), 
+ []
+
+[9]
+Overfull \hbox (13.25528pt too wide) in paragraph at lines 67--67
+ [][] [][]\OT1/ptm/m/n/12 Correlation of $\OML/cmm/m/it/12 []$ \OT1/ptm/m/n/12
+ (or-ange) and \OT1/ptm/m/it/12 coneR1\OT1/ptm/m/n/12 * (blue) is ob-served acr
+oss all datasets. 
+ []
+
+
+Overfull \hbox (15.5732pt too wide) in paragraph at lines 71--71
+ [][] [][]$\OML/cmm/m/it/12 SIFT[]$ \OT1/ptm/m/n/12 mul-ti-pli-ca-tion's ef-fec
+t on cor-re-la-tion for the dataset aton[]highway1. 
+ []
+
+[10]
+Overfull \hbox (0.6884pt too wide) in paragraph at lines 89--89
+ [][] [][]\OT1/ptm/m/n/12 Adaptively tuned \OT1/ptm/m/it/12 coneR1$[]$ \OT1/ptm
+/m/n/12 pa-ram-e-ter (green) charted against \OT1/ptm/m/it/12 coneR1\OT1/ptm/m/
+n/12 * (blue) 
+ []
+
+)
+\tf@lof=\write7
+\openout7 = `thesis.lof'.
+
+ [11] (./summary.tex
+Overfull \hbox (0.5212pt too wide) in paragraph at lines 7--8
+[]\OT1/ptm/m/n/12 The mo-ti-va-tion for this re-search is to pro-vide a quan-ti
+-ta-tive model for im-prov-ing shadow
+ []
+
+) [12
+
+
+] [13] (./chapter1.tex
+Chapter 1.
+<figures/background/room_0295_frame.jpg, id=468, 321.2pt x 240.9pt>
+File: figures/background/room_0295_frame.jpg Graphic file (type jpg)
+
+<use figures/background/room_0295_frame.jpg>
+Package pdftex.def Info: figures/background/room_0295_frame.jpg used on input l
+ine 16.
+(pdftex.def)             Requested size: 212.47618pt x 159.36206pt.
+
+<figures/background/room_0295_blob.jpg, id=469, 321.2pt x 240.9pt>
+File: figures/background/room_0295_blob.jpg Graphic file (type jpg)
+
+<use figures/background/room_0295_blob.jpg>
+Package pdftex.def Info: figures/background/room_0295_blob.jpg used on input li
+ne 22.
+(pdftex.def)             Requested size: 212.47618pt x 159.36206pt.
+
+<figures/background/room_0295_shadows.jpg, id=470, 321.2pt x 240.9pt>
+File: figures/background/room_0295_shadows.jpg Graphic file (type jpg)
+
+<use figures/background/room_0295_shadows.jpg>
+Package pdftex.def Info: figures/background/room_0295_shadows.jpg used on input
+ line 28.
+(pdftex.def)             Requested size: 212.47618pt x 159.36206pt.
+
+<figures/background/room_0295_clean.jpg, id=471, 321.2pt x 240.9pt>
+File: figures/background/room_0295_clean.jpg Graphic file (type jpg)
+
+<use figures/background/room_0295_clean.jpg>
+Package pdftex.def Info: figures/background/room_0295_clean.jpg used on input l
+ine 34.
+(pdftex.def)             Requested size: 212.47618pt x 159.36206pt.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.45 
+      [1
+
+
+
+] [2 <./figures/background/room_0295_frame.jpg> <./figures/background/room_0295
+_blob.jpg> <./figures/background/room_0295_shadows.jpg (PNG copy)> <./figures/b
+ackground/room_0295_clean.jpg>] [3]
+
+LaTeX Warning: Reference `fig:coner1default' on page 4 undefined on input line 
+50.
+
+
+Overfull \hbox (7.6364pt too wide) in paragraph at lines 50--51
+[]\OT1/ptm/m/n/12 We quan-ti-ta-tively demon-strate sev-eral cases that in-di-c
+ate the need for adap-ta-tion. Shadow
+ []
+
+<figures/background/phys_highway1_200.png, id=541, 437.38406pt x 328.22626pt>
+File: figures/background/phys_highway1_200.png Graphic file (type png)
+
+<use figures/background/phys_highway1_200.png>
+Package pdftex.def Info: figures/background/phys_highway1_200.png used on input
+ line 56.
+(pdftex.def)             Requested size: 212.47618pt x 159.44997pt.
+
+<figures/background/phys_campus_200.png, id=542, 400.49625pt x 328.22626pt>
+File: figures/background/phys_campus_200.png Graphic file (type png)
+
+<use figures/background/phys_campus_200.png>
+Package pdftex.def Info: figures/background/phys_campus_200.png used on input l
+ine 61.
+(pdftex.def)             Requested size: 195.12767pt x 159.92075pt.
+
+<figures/background/phys_highway1_680.png, id=543, 437.38406pt x 328.22626pt>
+File: figures/background/phys_highway1_680.png Graphic file (type png)
+
+<use figures/background/phys_highway1_680.png>
+Package pdftex.def Info: figures/background/phys_highway1_680.png used on input
+ line 72.
+(pdftex.def)             Requested size: 212.47618pt x 159.44997pt.
+
+<figures/background/phys_campus_680.png, id=544, 400.49625pt x 328.22626pt>
+File: figures/background/phys_campus_680.png Graphic file (type png)
+
+<use figures/background/phys_campus_680.png>
+Package pdftex.def Info: figures/background/phys_campus_680.png used on input l
+ine 77.
+(pdftex.def)             Requested size: 195.12767pt x 159.92075pt.
+
+<figures/background/geo_highway1_70.png, id=545, 437.38406pt x 328.22626pt>
+File: figures/background/geo_highway1_70.png Graphic file (type png)
+
+<use figures/background/geo_highway1_70.png>
+Package pdftex.def Info: figures/background/geo_highway1_70.png used on input l
+ine 88.
+(pdftex.def)             Requested size: 212.47618pt x 159.44997pt.
+
+<figures/background/geo_highway1_0.png, id=546, 437.38406pt x 328.22626pt>
+File: figures/background/geo_highway1_0.png Graphic file (type png)
+
+<use figures/background/geo_highway1_0.png>
+Package pdftex.def Info: figures/background/geo_highway1_0.png used on input li
+ne 93.
+(pdftex.def)             Requested size: 212.47618pt x 159.44997pt.
+ [4 <./figures/background/phys_highway1_200.png> <./figures/background/phys_cam
+pus_200.png>] [5 <./figures/background/phys_highway1_680.png> <./figures/backgr
+ound/phys_campus_680.png> <./figures/background/geo_highway1_70.png> <./figures
+/background/geo_highway1_0.png>]
+[6]) (./chapter2.tex [7]
+Chapter 2.
+[8
+
+
+] [9] [10] [11] [12]
+Overfull \hbox (7.37433pt too wide) in paragraph at lines 118--119
+[]$[]$\OT1/ptm/m/n/12 : For each dataset, op-
+ []
+
+) (./chapter3.tex [13]
+Chapter 3.
+[14
+
+
+] [15] <figures/PETS2_highv.jpg, id=654, 770.88pt x 578.16pt>
+File: figures/PETS2_highv.jpg Graphic file (type jpg)
+
+<use figures/PETS2_highv.jpg>
+Package pdftex.def Info: figures/PETS2_highv.jpg used on input line 60.
+(pdftex.def)             Requested size: 208.13574pt x 156.09645pt.
+
+<figures/PETS2_lowv.jpg, id=655, 770.88pt x 578.16pt>
+File: figures/PETS2_lowv.jpg Graphic file (type jpg)
+
+<use figures/PETS2_lowv.jpg>
+Package pdftex.def Info: figures/PETS2_lowv.jpg used on input line 65.
+(pdftex.def)             Requested size: 208.13574pt x 156.09645pt.
+
+<figures/highway1_0045.jpg, id=656, 321.2pt x 240.9pt>
+File: figures/highway1_0045.jpg Graphic file (type jpg)
+
+<use figures/highway1_0045.jpg>
+Package pdftex.def Info: figures/highway1_0045.jpg used on input line 75.
+(pdftex.def)             Requested size: 130.08733pt x 97.56763pt.
+
+<figures/lab_0151.jpg, id=657, 321.2pt x 240.9pt>
+File: figures/lab_0151.jpg Graphic file (type jpg)
+ <use figures/lab_0151.jpg>
+Package pdftex.def Info: figures/lab_0151.jpg used on input line 79.
+(pdftex.def)             Requested size: 130.08733pt x 97.56763pt.
+
+<figures/hallway_0164.jpg, id=658, 321.2pt x 240.9pt>
+File: figures/hallway_0164.jpg Graphic file (type jpg)
+
+<use figures/hallway_0164.jpg>
+Package pdftex.def Info: figures/hallway_0164.jpg used on input line 83.
+(pdftex.def)             Requested size: 130.08733pt x 97.56763pt.
+
+<figures/highway1_gt_0045.jpg, id=659, 321.2pt x 240.9pt>
+File: figures/highway1_gt_0045.jpg Graphic file (type jpg)
+
+<use figures/highway1_gt_0045.jpg>
+Package pdftex.def Info: figures/highway1_gt_0045.jpg used on input line 87.
+(pdftex.def)             Requested size: 130.08733pt x 97.56763pt.
+
+<figures/lab_gt_0151.jpg, id=660, 321.2pt x 240.9pt>
+File: figures/lab_gt_0151.jpg Graphic file (type jpg)
+
+<use figures/lab_gt_0151.jpg>
+Package pdftex.def Info: figures/lab_gt_0151.jpg used on input line 92.
+(pdftex.def)             Requested size: 130.08733pt x 97.56763pt.
+
+<figures/hallway_gt_0164.jpg, id=661, 321.2pt x 240.9pt>
+File: figures/hallway_gt_0164.jpg Graphic file (type jpg)
+
+<use figures/hallway_gt_0164.jpg>
+Package pdftex.def Info: figures/hallway_gt_0164.jpg used on input line 97.
+(pdftex.def)             Requested size: 130.08733pt x 97.56763pt.
+ [16 <./figures/PETS2_highv.jpg> <./figures/PETS2_lowv.jpg>] <figures/simpleini
+.png, id=669, 266.9975pt x 224.84pt>
+File: figures/simpleini.png Graphic file (type png)
+
+<use figures/simpleini.png>
+Package pdftex.def Info: figures/simpleini.png used on input line 114.
+(pdftex.def)             Requested size: 216.81pt x 182.58255pt.
+ [17 <./figures/highway1_0045.jpg> <./figures/lab_0151.jpg (PNG copy)> <./figur
+es/hallway_0164.jpg> <./figures/highway1_gt_0045.jpg (PNG copy)> <./figures/lab
+_gt_0151.jpg (PNG copy)> <./figures/hallway_gt_0164.jpg (PNG copy)>]
+<figures/geo_highway1_default.png, id=679, 369.38pt x 580.1675pt>
+File: figures/geo_highway1_default.png Graphic file (type png)
+
+<use figures/geo_highway1_default.png>
+Package pdftex.def Info: figures/geo_highway1_default.png used on input line 12
+3.
+(pdftex.def)             Requested size: 195.12767pt x 306.4781pt.
+
+<figures/gui_model.png, id=681, 688.07062pt x 261.97874pt>
+File: figures/gui_model.png Graphic file (type png)
+
+<use figures/gui_model.png>
+Package pdftex.def Info: figures/gui_model.png used on input line 131.
+(pdftex.def)             Requested size: 433.62001pt x 165.09944pt.
+ [18 <./figures/simpleini.png>] [19 <./figures/geo_highway1_default.png> <./fig
+ures/gui_model.png>]
+<figures/gui_iterate.png, id=696, 721.19438pt x 292.84406pt>
+File: figures/gui_iterate.png Graphic file (type png)
+
+<use figures/gui_iterate.png>
+Package pdftex.def Info: figures/gui_iterate.png used on input line 147.
+(pdftex.def)             Requested size: 433.62001pt x 176.07419pt.
+
+<figures/campus_dd.jpg, id=697, 537.50812pt x 313.17pt>
+File: figures/campus_dd.jpg Graphic file (type jpg)
+
+<use figures/campus_dd.jpg>
+Package pdftex.def Info: figures/campus_dd.jpg used on input line 155.
+(pdftex.def)             Requested size: 346.89732pt x 202.11494pt.
+
+<figures/campus_score.jpg, id=698, 537.50812pt x 312.41719pt>
+File: figures/campus_score.jpg Graphic file (type jpg)
+
+<use figures/campus_score.jpg>
+Package pdftex.def Info: figures/campus_score.jpg used on input line 160.
+(pdftex.def)             Requested size: 346.89732pt x 201.62909pt.
+
+
+LaTeX Warning: Reference `eqn:optscore' on page 20 undefined on input line 167.
+
+
+[20] [21 <./figures/gui_iterate.png>] [22 <./figures/campus_dd.jpg> <./figures/
+campus_score.jpg>]
+<figures/selectinganalgorithm_chromacity.jpg, id=722, 511.15968pt x 318.43968pt
+>
+File: figures/selectinganalgorithm_chromacity.jpg Graphic file (type jpg)
+ <use figures/selectinganalgorithm_chromacity.jpg>
+Package pdftex.def Info: figures/selectinganalgorithm_chromacity.jpg used on in
+put line 193.
+(pdftex.def)             Requested size: 208.14236pt x 129.66705pt.
+
+<figures/selectinganalgorithm_physical.jpg, id=723, 511.15968pt x 317.68687pt>
+File: figures/selectinganalgorithm_physical.jpg Graphic file (type jpg)
+
+<use figures/selectinganalgorithm_physical.jpg>
+Package pdftex.def Info: figures/selectinganalgorithm_physical.jpg used on inpu
+t line 198.
+(pdftex.def)             Requested size: 208.14236pt x 129.3605pt.
+
+<figures/selectinganalgorithm_geometry.jpg, id=724, 511.15968pt x 318.43968pt>
+File: figures/selectinganalgorithm_geometry.jpg Graphic file (type jpg)
+
+<use figures/selectinganalgorithm_geometry.jpg>
+Package pdftex.def Info: figures/selectinganalgorithm_geometry.jpg used on inpu
+t line 203.
+(pdftex.def)             Requested size: 208.14236pt x 129.66705pt.
+
+<figures/selectinganalgorithm_srt.jpg, id=725, 511.15968pt x 317.68687pt>
+File: figures/selectinganalgorithm_srt.jpg Graphic file (type jpg)
+
+<use figures/selectinganalgorithm_srt.jpg>
+Package pdftex.def Info: figures/selectinganalgorithm_srt.jpg used on input lin
+e 208.
+(pdftex.def)             Requested size: 208.14236pt x 129.3605pt.
+
+<figures/selectinganalgorithm_lrt.jpg, id=726, 513.41812pt x 318.43968pt>
+File: figures/selectinganalgorithm_lrt.jpg Graphic file (type jpg)
+
+<use figures/selectinganalgorithm_lrt.jpg>
+Package pdftex.def Info: figures/selectinganalgorithm_lrt.jpg used on input lin
+e 213.
+(pdftex.def)             Requested size: 208.14236pt x 129.09856pt.
+ [23
+
+] [24 <./figures/selectinganalgorithm_chromacity.jpg> <./figures/selectinganalg
+orithm_physical.jpg> <./figures/selectinganalgorithm_geometry.jpg> <./figures/s
+electinganalgorithm_srt.jpg> <./figures/selectinganalgorithm_lrt.jpg>]
+<figures/sensitive_param.jpg, id=745, 537.50812pt x 313.17pt>
+File: figures/sensitive_param.jpg Graphic file (type jpg)
+
+<use figures/sensitive_param.jpg>
+Package pdftex.def Info: figures/sensitive_param.jpg used on input line 231.
+(pdftex.def)             Requested size: 212.47618pt x 123.79396pt.
+File: figures/campus_dd.jpg Graphic file (type jpg)
+ <use figures/campus_dd.jpg>
+Package pdftex.def Info: figures/campus_dd.jpg used on input line 236.
+(pdftex.def)             Requested size: 212.47618pt x 123.79396pt.
+ [25 <./figures/sensitive_param.jpg>]
+<figures/campus_geo_erratic.jpg, id=753, 426.84468pt x 256.70906pt>
+File: figures/campus_geo_erratic.jpg Graphic file (type jpg)
+
+<use figures/campus_geo_erratic.jpg>
+Package pdftex.def Info: figures/campus_geo_erratic.jpg used on input line 251.
+
+(pdftex.def)             Requested size: 346.89732pt x 208.64217pt.
+
+<figures/campus_srt_erratic.jpg, id=754, 426.84468pt x 255.20343pt>
+File: figures/campus_srt_erratic.jpg Graphic file (type jpg)
+
+<use figures/campus_srt_erratic.jpg>
+Package pdftex.def Info: figures/campus_srt_erratic.jpg used on input line 256.
+
+(pdftex.def)             Requested size: 346.89732pt x 207.41847pt.
+
+<figures/lrt_sensitivity_2.jpg, id=757, 449.42906pt x 268.75406pt>
+File: figures/lrt_sensitivity_2.jpg Graphic file (type jpg)
+
+<use figures/lrt_sensitivity_2.jpg>
+Package pdftex.def Info: figures/lrt_sensitivity_2.jpg used on input line 272.
+(pdftex.def)             Requested size: 346.89732pt x 207.44977pt.
+
+<figures/lrt_sensitivity_1.jpg, id=758, 449.42906pt x 268.75406pt>
+File: figures/lrt_sensitivity_1.jpg Graphic file (type jpg)
+
+<use figures/lrt_sensitivity_1.jpg>
+Package pdftex.def Info: figures/lrt_sensitivity_1.jpg used on input line 278.
+(pdftex.def)             Requested size: 346.89732pt x 207.44977pt.
+
+<figures/highway1_avgAttenThresh_response.jpg, id=760, 528.47438pt x 316.93407p
+t>
+File: figures/highway1_avgAttenThresh_response.jpg Graphic file (type jpg)
+ <use figures/highway1_avgAttenThresh_response.jpg>
+Package pdftex.def Info: figures/highway1_avgAttenThresh_response.jpg used on i
+nput line 289.
+(pdftex.def)             Requested size: 346.89732pt x 208.04066pt.
+
+<figures/similarities_chromacity_physical_hallway.jpg, id=761, 482.55281pt x 29
+2.84406pt>
+File: figures/similarities_chromacity_physical_hallway.jpg Graphic file (type j
+pg)
+ <use figures/similarities_chromacity_physical_hallway.jpg>
+Package pdftex.def Info: figures/similarities_chromacity_physical_hallway.jpg u
+sed on input line 299.
+(pdftex.def)             Requested size: 346.89732pt x 210.52583pt.
+ [26]
+[27 <./figures/campus_geo_erratic.jpg> <./figures/campus_srt_erratic.jpg>]
+[28 <./figures/lrt_sensitivity_2.jpg> <./figures/lrt_sensitivity_1.jpg>]
+[29 <./figures/highway1_avgAttenThresh_response.jpg> <./figures/similarities_ch
+romacity_physical_hallway.jpg>] [30]
+<figures/cone_physical.jpg, id=796, 666.49pt x 512.91624pt>
+File: figures/cone_physical.jpg Graphic file (type jpg)
+
+<use figures/cone_physical.jpg>
+Package pdftex.def Info: figures/cone_physical.jpg used on input line 318.
+(pdftex.def)             Requested size: 346.89732pt x 266.96843pt.
+ [31] [32 <./figures/cone_physical.jpg>]
+<figures/pets1_coneR1_response.jpg, id=815, 553.31718pt x 332.74312pt>
+File: figures/pets1_coneR1_response.jpg Graphic file (type jpg)
+
+<use figures/pets1_coneR1_response.jpg>
+Package pdftex.def Info: figures/pets1_coneR1_response.jpg used on input line 3
+36.
+(pdftex.def)             Requested size: 195.12767pt x 117.3402pt.
+
+<figures/pets2_coneR1_response.jpg, id=816, 553.31718pt x 332.74312pt>
+File: figures/pets2_coneR1_response.jpg Graphic file (type jpg)
+
+<use figures/pets2_coneR1_response.jpg>
+Package pdftex.def Info: figures/pets2_coneR1_response.jpg used on input line 3
+41.
+(pdftex.def)             Requested size: 195.12767pt x 117.3402pt.
+
+<figures/highway1_coneR1_response.jpg, id=817, 553.31718pt x 332.74312pt>
+File: figures/highway1_coneR1_response.jpg Graphic file (type jpg)
+
+<use figures/highway1_coneR1_response.jpg>
+Package pdftex.def Info: figures/highway1_coneR1_response.jpg used on input lin
+e 346.
+(pdftex.def)             Requested size: 195.12767pt x 117.3402pt.
+
+<figures/highway3_coneR1_response.jpg, id=818, 553.31718pt x 332.74312pt>
+File: figures/highway3_coneR1_response.jpg Graphic file (type jpg)
+
+<use figures/highway3_coneR1_response.jpg>
+Package pdftex.def Info: figures/highway3_coneR1_response.jpg used on input lin
+e 351.
+(pdftex.def)             Requested size: 195.12767pt x 117.3402pt.
+
+<figures/room_coneR1_response.jpg, id=819, 553.31718pt x 332.74312pt>
+File: figures/room_coneR1_response.jpg Graphic file (type jpg)
+
+<use figures/room_coneR1_response.jpg>
+Package pdftex.def Info: figures/room_coneR1_response.jpg used on input line 35
+6.
+(pdftex.def)             Requested size: 195.12767pt x 117.3402pt.
+
+<figures/campus_coneR1_response.jpg, id=820, 553.31718pt x 332.74312pt>
+File: figures/campus_coneR1_response.jpg Graphic file (type jpg)
+
+<use figures/campus_coneR1_response.jpg>
+Package pdftex.def Info: figures/campus_coneR1_response.jpg used on input line 
+361.
+(pdftex.def)             Requested size: 195.12767pt x 117.3402pt.
+
+<figures/hallway_coneR1_response.jpg, id=821, 553.31718pt x 332.74312pt>
+File: figures/hallway_coneR1_response.jpg Graphic file (type jpg)
+
+<use figures/hallway_coneR1_response.jpg>
+Package pdftex.def Info: figures/hallway_coneR1_response.jpg used on input line
+ 366.
+(pdftex.def)             Requested size: 195.12767pt x 117.3402pt.
+
+<figures/lab_coneR1_response.jpg, id=822, 553.31718pt x 332.74312pt>
+File: figures/lab_coneR1_response.jpg Graphic file (type jpg)
+
+<use figures/lab_coneR1_response.jpg>
+Package pdftex.def Info: figures/lab_coneR1_response.jpg used on input line 371
+.
+(pdftex.def)             Requested size: 195.12767pt x 117.3402pt.
+
+<figures/pets1_coneR1_score.jpg, id=823, 552.56438pt x 322.20375pt>
+File: figures/pets1_coneR1_score.jpg Graphic file (type jpg)
+
+<use figures/pets1_coneR1_score.jpg>
+Package pdftex.def Info: figures/pets1_coneR1_score.jpg used on input line 381.
+
+(pdftex.def)             Requested size: 195.12767pt x 113.77594pt.
+
+<figures/pets2_coneR1_score.jpg, id=824, 552.56438pt x 322.20375pt>
+File: figures/pets2_coneR1_score.jpg Graphic file (type jpg)
+
+<use figures/pets2_coneR1_score.jpg>
+Package pdftex.def Info: figures/pets2_coneR1_score.jpg used on input line 386.
+
+(pdftex.def)             Requested size: 195.12767pt x 113.77594pt.
+
+<figures/highway1_coneR1_score.jpg, id=825, 552.56438pt x 322.20375pt>
+File: figures/highway1_coneR1_score.jpg Graphic file (type jpg)
+
+<use figures/highway1_coneR1_score.jpg>
+Package pdftex.def Info: figures/highway1_coneR1_score.jpg used on input line 3
+91.
+(pdftex.def)             Requested size: 195.12767pt x 113.77594pt.
+
+<figures/highway3_coneR1_score.jpg, id=826, 552.56438pt x 322.20375pt>
+File: figures/highway3_coneR1_score.jpg Graphic file (type jpg)
+
+<use figures/highway3_coneR1_score.jpg>
+Package pdftex.def Info: figures/highway3_coneR1_score.jpg used on input line 3
+96.
+(pdftex.def)             Requested size: 195.12767pt x 113.77594pt.
+
+<figures/room_coneR1_score.jpg, id=827, 552.56438pt x 322.20375pt>
+File: figures/room_coneR1_score.jpg Graphic file (type jpg)
+
+<use figures/room_coneR1_score.jpg>
+Package pdftex.def Info: figures/room_coneR1_score.jpg used on input line 401.
+(pdftex.def)             Requested size: 195.12767pt x 113.77594pt.
+
+<figures/campus_coneR1_score.jpg, id=828, 552.56438pt x 322.20375pt>
+File: figures/campus_coneR1_score.jpg Graphic file (type jpg)
+
+<use figures/campus_coneR1_score.jpg>
+Package pdftex.def Info: figures/campus_coneR1_score.jpg used on input line 406
+.
+(pdftex.def)             Requested size: 195.12767pt x 113.77594pt.
+
+<figures/hallway_coneR1_score.jpg, id=829, 552.56438pt x 322.20375pt>
+File: figures/hallway_coneR1_score.jpg Graphic file (type jpg)
+
+<use figures/hallway_coneR1_score.jpg>
+Package pdftex.def Info: figures/hallway_coneR1_score.jpg used on input line 41
+1.
+(pdftex.def)             Requested size: 195.12767pt x 113.77594pt.
+
+<figures/lab_coneR1_score.jpg, id=830, 552.56438pt x 322.20375pt>
+File: figures/lab_coneR1_score.jpg Graphic file (type jpg)
+
+<use figures/lab_coneR1_score.jpg>
+Package pdftex.def Info: figures/lab_coneR1_score.jpg used on input line 416.
+(pdftex.def)             Requested size: 195.12767pt x 113.77594pt.
+
+Overfull \hbox (17.296pt too wide) in paragraph at lines 424--425
+[]\OT1/ptm/m/n/12 Figure []3.15[] demon-strates \OT1/ptm/m/it/12 coneR1\OT1/ptm
+/m/n/12 's con-tri-bu-tion to de-tec-tion/discrimination across datasets.
+ []
+
+[33] [34 <./figures/pets1_coneR1_response.jpg> <./figures/pets2_coneR1_response
+.jpg> <./figures/highway1_coneR1_response.jpg> <./figures/highway3_coneR1_respo
+nse.jpg> <./figures/room_coneR1_response.jpg> <./figures/campus_coneR1_response
+.jpg> <./figures/hallway_coneR1_response.jpg> <./figures/lab_coneR1_response.jp
+g>] [35 <./figures/pets1_coneR1_score.jpg> <./figures/pets2_coneR1_score.jpg> <
+./figures/highway1_coneR1_score.jpg> <./figures/highway3_coneR1_score.jpg> <./f
+igures/room_coneR1_score.jpg> <./figures/campus_coneR1_score.jpg> <./figures/ha
+llway_coneR1_score.jpg> <./figures/lab_coneR1_score.jpg>]
+<figures/campus_coneR2_response.jpg, id=863, 434.5836pt x 272.217pt>
+File: figures/campus_coneR2_response.jpg Graphic file (type jpg)
+
+<use figures/campus_coneR2_response.jpg>
+Package pdftex.def Info: figures/campus_coneR2_response.jpg used on input line 
+431.
+(pdftex.def)             Requested size: 195.12767pt x 122.22235pt.
+
+<figures/campus_coneR2_score.jpg, id=864, 434.5836pt x 271.7352pt>
+File: figures/campus_coneR2_score.jpg Graphic file (type jpg)
+
+<use figures/campus_coneR2_score.jpg>
+Package pdftex.def Info: figures/campus_coneR2_score.jpg used on input line 436
+.
+(pdftex.def)             Requested size: 195.12767pt x 122.00604pt.
+
+<figures/highway1_coneR2_response.jpg, id=865, 434.5836pt x 272.217pt>
+File: figures/highway1_coneR2_response.jpg Graphic file (type jpg)
+
+<use figures/highway1_coneR2_response.jpg>
+Package pdftex.def Info: figures/highway1_coneR2_response.jpg used on input lin
+e 441.
+(pdftex.def)             Requested size: 195.12767pt x 122.22235pt.
+
+<figures/highway1_coneR2_score.jpg, id=866, 434.5836pt x 271.7352pt>
+File: figures/highway1_coneR2_score.jpg Graphic file (type jpg)
+
+<use figures/highway1_coneR2_score.jpg>
+Package pdftex.def Info: figures/highway1_coneR2_score.jpg used on input line 4
+46.
+(pdftex.def)             Requested size: 195.12767pt x 122.00604pt.
+
+<figures/room_coneR2_response.jpg, id=867, 434.5836pt x 272.217pt>
+File: figures/room_coneR2_response.jpg Graphic file (type jpg)
+
+<use figures/room_coneR2_response.jpg>
+Package pdftex.def Info: figures/room_coneR2_response.jpg used on input line 45
+1.
+(pdftex.def)             Requested size: 195.12767pt x 122.22235pt.
+
+<figures/room_coneR2_score.jpg, id=868, 434.5836pt x 271.7352pt>
+File: figures/room_coneR2_score.jpg Graphic file (type jpg)
+
+<use figures/room_coneR2_score.jpg>
+Package pdftex.def Info: figures/room_coneR2_score.jpg used on input line 456.
+(pdftex.def)             Requested size: 195.12767pt x 122.00604pt.
+File: figures/sensitive_param.jpg Graphic file (type jpg)
+ <use figures/sensitive_param.jpg>
+Package pdftex.def Info: figures/sensitive_param.jpg used on input line 469.
+(pdftex.def)             Requested size: 346.89732pt x 202.11494pt.
+
+<figures/sensitive_param_score.jpg, id=870, 537.50812pt x 312.41719pt>
+File: figures/sensitive_param_score.jpg Graphic file (type jpg)
+
+<use figures/sensitive_param_score.jpg>
+Package pdftex.def Info: figures/sensitive_param_score.jpg used on input line 4
+74.
+(pdftex.def)             Requested size: 346.89732pt x 201.62909pt.
+ [36] [37 <./figures/campus_coneR2_response.jpg> <./figures/campus_coneR2_score
+.jpg> <./figures/highway1_coneR2_response.jpg> <./figures/highway1_coneR2_score
+.jpg> <./figures/room_coneR2_response.jpg> <./figures/room_coneR2_score.jpg>] [
+38 <./figures/sensitive_param_score.jpg>] [39] [40] [41]
+<figures/rgb_linear_atten.jpg, id=917, 285.31593pt x 273.27094pt>
+File: figures/rgb_linear_atten.jpg Graphic file (type jpg)
+
+<use figures/rgb_linear_atten.jpg>
+Package pdftex.def Info: figures/rgb_linear_atten.jpg used on input line 536.
+(pdftex.def)             Requested size: 212.47618pt x 203.50577pt.
+
+<figures/rgb_nonlinear_atten.jpg, id=918, 287.57437pt x 269.50688pt>
+File: figures/rgb_nonlinear_atten.jpg Graphic file (type jpg)
+
+<use figures/rgb_nonlinear_atten.jpg>
+Package pdftex.def Info: figures/rgb_nonlinear_atten.jpg used on input line 541
+.
+(pdftex.def)             Requested size: 212.47618pt x 199.13176pt.
+ [42 <./figures/rgb_linear_atten.jpg> <./figures/rgb_nonlinear_atten.jpg>]
+<figures/rgshift_pets1.jpg, id=926, 451.6875pt x 271.76532pt>
+File: figures/rgshift_pets1.jpg Graphic file (type jpg)
+
+<use figures/rgshift_pets1.jpg>
+Package pdftex.def Info: figures/rgshift_pets1.jpg used on input line 559.
+(pdftex.def)             Requested size: 212.47618pt x 127.84167pt.
+
+<figures/rgshift_pets2.jpg, id=927, 451.6875pt x 271.76532pt>
+File: figures/rgshift_pets2.jpg Graphic file (type jpg)
+
+<use figures/rgshift_pets2.jpg>
+Package pdftex.def Info: figures/rgshift_pets2.jpg used on input line 564.
+(pdftex.def)             Requested size: 212.47618pt x 127.84167pt.
+
+<figures/rgshift_highway1.jpg, id=928, 451.6875pt x 271.0125pt>
+File: figures/rgshift_highway1.jpg Graphic file (type jpg)
+
+<use figures/rgshift_highway1.jpg>
+Package pdftex.def Info: figures/rgshift_highway1.jpg used on input line 569.
+(pdftex.def)             Requested size: 212.47618pt x 127.48753pt.
+
+<figures/rgshift_highway3.jpg, id=929, 451.6875pt x 270.25969pt>
+File: figures/rgshift_highway3.jpg Graphic file (type jpg)
+
+<use figures/rgshift_highway3.jpg>
+Package pdftex.def Info: figures/rgshift_highway3.jpg used on input line 574.
+(pdftex.def)             Requested size: 212.47618pt x 127.1334pt.
+
+<figures/rgshift_campus.jpg, id=930, 451.6875pt x 271.76532pt>
+File: figures/rgshift_campus.jpg Graphic file (type jpg)
+
+<use figures/rgshift_campus.jpg>
+Package pdftex.def Info: figures/rgshift_campus.jpg used on input line 579.
+(pdftex.def)             Requested size: 303.53267pt x 182.63748pt.
+
+<figures/rgshift_room.jpg, id=931, 451.6875pt x 271.76532pt>
+File: figures/rgshift_room.jpg Graphic file (type jpg)
+
+<use figures/rgshift_room.jpg>
+Package pdftex.def Info: figures/rgshift_room.jpg used on input line 590.
+(pdftex.def)             Requested size: 212.47618pt x 127.84167pt.
+
+<figures/rgshift_hallway.jpg, id=932, 451.6875pt x 271.0125pt>
+File: figures/rgshift_hallway.jpg Graphic file (type jpg)
+
+<use figures/rgshift_hallway.jpg>
+Package pdftex.def Info: figures/rgshift_hallway.jpg used on input line 595.
+(pdftex.def)             Requested size: 212.47618pt x 127.48753pt.
+
+<figures/rgshift_lab.jpg, id=933, 451.6875pt x 270.25969pt>
+File: figures/rgshift_lab.jpg Graphic file (type jpg)
+
+<use figures/rgshift_lab.jpg>
+Package pdftex.def Info: figures/rgshift_lab.jpg used on input line 600.
+(pdftex.def)             Requested size: 303.53267pt x 181.62563pt.
+ [43] [44 <./figures/rgshift_pets1.jpg> <./figures/rgshift_pets2.jpg> <./figure
+s/rgshift_highway1.jpg> <./figures/rgshift_highway3.jpg> <./figures/rgshift_cam
+pus.jpg>] [45 <./figures/rgshift_room.jpg> <./figures/rgshift_hallway.jpg> <./f
+igures/rgshift_lab.jpg>] [46] [47] [48]
+<figures/lab_0161.jpg, id=998, 321.2pt x 240.9pt>
+File: figures/lab_0161.jpg Graphic file (type jpg)
+ <use figures/lab_0161.jpg>
+Package pdftex.def Info: figures/lab_0161.jpg used on input line 689.
+(pdftex.def)             Requested size: 212.47618pt x 159.36206pt.
+
+<figures/lab_gt_0161.jpg, id=999, 321.2pt x 240.9pt>
+File: figures/lab_gt_0161.jpg Graphic file (type jpg)
+
+<use figures/lab_gt_0161.jpg>
+Package pdftex.def Info: figures/lab_gt_0161.jpg used on input line 694.
+(pdftex.def)             Requested size: 212.47618pt x 159.36206pt.
+
+<figures/lab_sat_bg_0161.jpg, id=1000, 240.9pt x 180.675pt>
+File: figures/lab_sat_bg_0161.jpg Graphic file (type jpg)
+
+<use figures/lab_sat_bg_0161.jpg>
+Package pdftex.def Info: figures/lab_sat_bg_0161.jpg used on input line 699.
+(pdftex.def)             Requested size: 212.47618pt x 159.36115pt.
+
+<figures/lab_sat_fg_0161.jpg, id=1001, 240.9pt x 180.675pt>
+File: figures/lab_sat_fg_0161.jpg Graphic file (type jpg)
+
+<use figures/lab_sat_fg_0161.jpg>
+Package pdftex.def Info: figures/lab_sat_fg_0161.jpg used on input line 703.
+(pdftex.def)             Requested size: 212.47618pt x 159.36115pt.
+
+<figures/lab_sat_bg_zoom_0161.jpg, id=1002, 240.9pt x 180.675pt>
+File: figures/lab_sat_bg_zoom_0161.jpg Graphic file (type jpg)
+
+<use figures/lab_sat_bg_zoom_0161.jpg>
+Package pdftex.def Info: figures/lab_sat_bg_zoom_0161.jpg used on input line 70
+7.
+(pdftex.def)             Requested size: 212.47618pt x 159.36115pt.
+
+<figures/lab_sat_fg_zoom_0161.jpg, id=1003, 240.9pt x 180.675pt>
+File: figures/lab_sat_fg_zoom_0161.jpg Graphic file (type jpg)
+
+<use figures/lab_sat_fg_zoom_0161.jpg>
+Package pdftex.def Info: figures/lab_sat_fg_zoom_0161.jpg used on input line 71
+2.
+(pdftex.def)             Requested size: 212.47618pt x 159.36115pt.
+ [49] [50 <./figures/lab_0161.jpg (PNG copy)> <./figures/lab_gt_0161.jpg (PNG c
+opy)> <./figures/lab_sat_bg_0161.jpg> <./figures/lab_sat_fg_0161.jpg> <./figure
+s/lab_sat_bg_zoom_0161.jpg> <./figures/lab_sat_fg_zoom_0161.jpg>]
+File: figures/lab_0161.jpg Graphic file (type jpg)
+ <use figures/lab_0161.jpg>
+Package pdftex.def Info: figures/lab_0161.jpg used on input line 725.
+(pdftex.def)             Requested size: 212.47618pt x 159.36206pt.
+File: figures/lab_gt_0161.jpg Graphic file (type jpg)
+
+<use figures/lab_gt_0161.jpg>
+Package pdftex.def Info: figures/lab_gt_0161.jpg used on input line 729.
+(pdftex.def)             Requested size: 212.47618pt x 159.36206pt.
+
+<figures/lab_lowc_rgb_0161.jpg, id=1023, 240.9pt x 180.675pt>
+File: figures/lab_lowc_rgb_0161.jpg Graphic file (type jpg)
+
+<use figures/lab_lowc_rgb_0161.jpg>
+Package pdftex.def Info: figures/lab_lowc_rgb_0161.jpg used on input line 733.
+(pdftex.def)             Requested size: 212.47618pt x 159.36115pt.
+
+<figures/lab_lowc_sat_0161.jpg, id=1024, 240.9pt x 180.675pt>
+File: figures/lab_lowc_sat_0161.jpg Graphic file (type jpg)
+
+<use figures/lab_lowc_sat_0161.jpg>
+Package pdftex.def Info: figures/lab_lowc_sat_0161.jpg used on input line 738.
+(pdftex.def)             Requested size: 212.47618pt x 159.36115pt.
+ [51] [52 <./figures/lab_lowc_rgb_0161.jpg> <./figures/lab_lowc_sat_0161.jpg>] 
+[53]
+<figures/model_hsv.jpg, id=1046, 554.07pt x 406.6392pt>
+File: figures/model_hsv.jpg Graphic file (type jpg)
+
+<use figures/model_hsv.jpg>
+Package pdftex.def Info: figures/model_hsv.jpg used on input line 779.
+(pdftex.def)             Requested size: 346.89732pt x 254.58942pt.
+) (./chapter4.tex [54 <./figures/model_hsv.jpg>]
+Chapter 4.
+
+Overfull \hbox (3.54971pt too wide) in paragraph at lines 19--20
+\OT1/ptm/m/n/12 Both at-ten-u-a-tion mod-els ($\OML/cmm/m/it/12 []$ \OT1/ptm/m
+/n/12 and $\OML/cmm/m/it/12 []$\OT1/ptm/m/n/12 ) were con-sid-ered for cor-re-
+la-tion against the \OT1/ptm/m/it/12 coneR1\OT1/ptm/m/n/12 *
+ []
+
+[55
+
+
+] <figures/room_db_corr.jpg, id=1070, 433.62pt x 286.82156pt>
+File: figures/room_db_corr.jpg Graphic file (type jpg)
+
+<use figures/room_db_corr.jpg>
+Package pdftex.def Info: figures/room_db_corr.jpg used on input line 25.
+(pdftex.def)             Requested size: 433.62001pt x 286.83397pt.
+
+<figures/campus_db_corr.jpg, id=1071, 433.62pt x 287.57437pt>
+File: figures/campus_db_corr.jpg Graphic file (type jpg)
+
+<use figures/campus_db_corr.jpg>
+Package pdftex.def Info: figures/campus_db_corr.jpg used on input line 30.
+(pdftex.def)             Requested size: 212.47618pt x 140.91267pt.
+
+<figures/pets2_db_corr.jpg, id=1072, 433.62pt x 286.82156pt>
+File: figures/pets2_db_corr.jpg Graphic file (type jpg)
+
+<use figures/pets2_db_corr.jpg>
+Package pdftex.def Info: figures/pets2_db_corr.jpg used on input line 34.
+(pdftex.def)             Requested size: 212.47618pt x 140.54378pt.
+
+<figures/room_rgb_corr.jpg, id=1073, 433.62pt x 286.06876pt>
+File: figures/room_rgb_corr.jpg Graphic file (type jpg)
+
+<use figures/room_rgb_corr.jpg>
+Package pdftex.def Info: figures/room_rgb_corr.jpg used on input line 46.
+(pdftex.def)             Requested size: 433.62001pt x 286.08115pt.
+
+<figures/campus_rgb_corr.jpg, id=1074, 433.62pt x 287.57437pt>
+File: figures/campus_rgb_corr.jpg Graphic file (type jpg)
+
+<use figures/campus_rgb_corr.jpg>
+Package pdftex.def Info: figures/campus_rgb_corr.jpg used on input line 51.
+(pdftex.def)             Requested size: 212.47618pt x 140.91267pt.
+
+<figures/pets2_rgb_corr.jpg, id=1075, 433.62pt x 286.82156pt>
+File: figures/pets2_rgb_corr.jpg Graphic file (type jpg)
+
+<use figures/pets2_rgb_corr.jpg>
+Package pdftex.def Info: figures/pets2_rgb_corr.jpg used on input line 55.
+(pdftex.def)             Requested size: 212.47618pt x 140.54378pt.
+ [56] [57 <./figures/room_db_corr.jpg> <./figures/campus_db_corr.jpg> <./figure
+s/pets2_db_corr.jpg>] [58 <./figures/room_rgb_corr.jpg> <./figures/campus_rgb_c
+orr.jpg> <./figures/pets2_rgb_corr.jpg>]
+[59] <figures/highway1_sift.jpg, id=1113, 434.37282pt x 298.11375pt>
+File: figures/highway1_sift.jpg Graphic file (type jpg)
+
+<use figures/highway1_sift.jpg>
+Package pdftex.def Info: figures/highway1_sift.jpg used on input line 226.
+(pdftex.def)             Requested size: 346.89732pt x 238.09102pt.
+
+<figures/sift_correlation_diff.jpg, id=1114, 537.50812pt x 313.17pt>
+File: figures/sift_correlation_diff.jpg Graphic file (type jpg)
+
+<use figures/sift_correlation_diff.jpg>
+Package pdftex.def Info: figures/sift_correlation_diff.jpg used on input line 2
+32.
+(pdftex.def)             Requested size: 433.62001pt x 252.64368pt.
+ [60] [61 <./figures/highway1_sift.jpg> <./figures/sift_correlation_diff.jpg>]
+<figures/pets2_hsv_hsp.jpg, id=1132, 502.87875pt x 304.88907pt>
+File: figures/pets2_hsv_hsp.jpg Graphic file (type jpg)
+
+<use figures/pets2_hsv_hsp.jpg>
+Package pdftex.def Info: figures/pets2_hsv_hsp.jpg used on input line 282.
+(pdftex.def)             Requested size: 346.89732pt x 210.31786pt.
+
+<figures/lab_hsv_hsp.jpg, id=1133, 502.87875pt x 302.63063pt>
+File: figures/lab_hsv_hsp.jpg Graphic file (type jpg)
+
+<use figures/lab_hsv_hsp.jpg>
+Package pdftex.def Info: figures/lab_hsv_hsp.jpg used on input line 287.
+(pdftex.def)             Requested size: 346.89732pt x 208.75993pt.
+
+<figures/correlation_x_db.jpg, id=1134, 723.6636pt x 414.348pt>
+File: figures/correlation_x_db.jpg Graphic file (type jpg)
+
+<use figures/correlation_x_db.jpg>
+Package pdftex.def Info: figures/correlation_x_db.jpg used on input line 328.
+(pdftex.def)             Requested size: 650.43001pt x 372.43556pt.
+ [62] [63 <./figures/pets2_hsv_hsp.jpg> <./figures/lab_hsv_hsp.jpg>] [64 <./fig
+ures/correlation_x_db.jpg>]
+<figures/correlation_outdoors_db.jpg, id=1156, 565.1514pt x 309.3156pt>
+File: figures/correlation_outdoors_db.jpg Graphic file (type jpg)
+
+<use figures/correlation_outdoors_db.jpg>
+Package pdftex.def Info: figures/correlation_outdoors_db.jpg used on input line
+ 339.
+(pdftex.def)             Requested size: 346.89732pt x 189.8669pt.
+
+<figures/correlation_indoors_db.jpg, id=1157, 563.2242pt x 308.8338pt>
+File: figures/correlation_indoors_db.jpg Graphic file (type jpg)
+
+<use figures/correlation_indoors_db.jpg>
+Package pdftex.def Info: figures/correlation_indoors_db.jpg used on input line 
+344.
+(pdftex.def)             Requested size: 346.89732pt x 190.21204pt.
+ [65] [66 <./figures/correlation_outdoors_db.jpg> <./figures/correlation_indoor
+s_db.jpg>]
+<figures/highway1_reciprocal.jpg, id=1172, 565.6332pt x 308.8338pt>
+File: figures/highway1_reciprocal.jpg Graphic file (type jpg)
+
+<use figures/highway1_reciprocal.jpg>
+Package pdftex.def Info: figures/highway1_reciprocal.jpg used on input line 400
+.
+(pdftex.def)             Requested size: 433.62001pt x 236.75659pt.
+ [67]
+<figures/correlation_x_rgb.jpg, id=1180, 724.6272pt x 413.8662pt>
+File: figures/correlation_x_rgb.jpg Graphic file (type jpg)
+
+<use figures/correlation_x_rgb.jpg>
+Package pdftex.def Info: figures/correlation_x_rgb.jpg used on input line 444.
+(pdftex.def)             Requested size: 650.43001pt x 371.48465pt.
+
+<figures/correlation_outdoors_rgb.jpg, id=1181, 567.5604pt x 309.7974pt>
+File: figures/correlation_outdoors_rgb.jpg Graphic file (type jpg)
+
+<use figures/correlation_outdoors_rgb.jpg>
+Package pdftex.def Info: figures/correlation_outdoors_rgb.jpg used on input lin
+e 453.
+(pdftex.def)             Requested size: 346.89732pt x 189.35902pt.
+
+<figures/correlation_indoors_rgb.jpg, id=1182, 566.5968pt x 309.7974pt>
+File: figures/correlation_indoors_rgb.jpg Graphic file (type jpg)
+
+<use figures/correlation_indoors_rgb.jpg>
+Package pdftex.def Info: figures/correlation_indoors_rgb.jpg used on input line
+ 458.
+(pdftex.def)             Requested size: 346.89732pt x 189.67102pt.
+ [68 <./figures/highway1_reciprocal.jpg>] [69 <./figures/correlation_x_rgb.jpg>
+] [70 <./figures/correlation_outdoors_rgb.jpg> <./figures/correlation_indoors_r
+gb.jpg>]
+<figures/model/scatter/model_hsv.jpg, id=1207, 554.07pt x 406.6392pt>
+File: figures/model/scatter/model_hsv.jpg Graphic file (type jpg)
+
+<use figures/model/scatter/model_hsv.jpg>
+Package pdftex.def Info: figures/model/scatter/model_hsv.jpg used on input line
+ 481.
+(pdftex.def)             Requested size: 212.47618pt x 155.9392pt.
+
+<figures/model/scatter/model_hsp.jpg, id=1208, 553.5882pt x 406.6392pt>
+File: figures/model/scatter/model_hsp.jpg Graphic file (type jpg)
+
+<use figures/model/scatter/model_hsp.jpg>
+Package pdftex.def Info: figures/model/scatter/model_hsp.jpg used on input line
+ 486.
+(pdftex.def)             Requested size: 212.47618pt x 156.0757pt.
+
+<figures/model/scatter/model_hsi.jpg, id=1209, 553.5882pt x 406.6392pt>
+File: figures/model/scatter/model_hsi.jpg Graphic file (type jpg)
+
+<use figures/model/scatter/model_hsi.jpg>
+Package pdftex.def Info: figures/model/scatter/model_hsi.jpg used on input line
+ 491.
+(pdftex.def)             Requested size: 212.47618pt x 156.0757pt.
+
+<figures/model/scatter/model_hsl.jpg, id=1210, 553.5882pt x 406.6392pt>
+File: figures/model/scatter/model_hsl.jpg Graphic file (type jpg)
+
+<use figures/model/scatter/model_hsl.jpg>
+Package pdftex.def Info: figures/model/scatter/model_hsl.jpg used on input line
+ 496.
+(pdftex.def)             Requested size: 212.47618pt x 156.0757pt.
+
+<figures/model/scatter/model_luma.jpg, id=1211, 553.5882pt x 406.6392pt>
+File: figures/model/scatter/model_luma.jpg Graphic file (type jpg)
+
+<use figures/model/scatter/model_luma.jpg>
+Package pdftex.def Info: figures/model/scatter/model_luma.jpg used on input lin
+e 501.
+(pdftex.def)             Requested size: 212.47618pt x 156.0757pt.
+
+<figures/model/scatter/model_norm.jpg, id=1212, 553.5882pt x 406.6392pt>
+File: figures/model/scatter/model_norm.jpg Graphic file (type jpg)
+
+<use figures/model/scatter/model_norm.jpg>
+Package pdftex.def Info: figures/model/scatter/model_norm.jpg used on input lin
+e 506.
+(pdftex.def)             Requested size: 212.47618pt x 156.0757pt.
+
+<figures/model/highway1_calc_coneR1.jpg, id=1214, 447.1104pt x 272.6988pt>
+File: figures/model/highway1_calc_coneR1.jpg Graphic file (type jpg)
+
+<use figures/model/highway1_calc_coneR1.jpg>
+Package pdftex.def Info: figures/model/highway1_calc_coneR1.jpg used on input l
+ine 520.
+(pdftex.def)             Requested size: 346.89732pt x 211.58072pt.
+
+<figures/model/highway3_calc_coneR1.jpg, id=1215, 446.6286pt x 272.6988pt>
+File: figures/model/highway3_calc_coneR1.jpg Graphic file (type jpg)
+
+<use figures/model/highway3_calc_coneR1.jpg>
+Package pdftex.def Info: figures/model/highway3_calc_coneR1.jpg used on input l
+ine 525.
+(pdftex.def)             Requested size: 346.89732pt x 211.8054pt.
+ [71] [72 <./figures/model/scatter/model_hsv.jpg> <./figures/model/scatter/mode
+l_hsp.jpg> <./figures/model/scatter/model_hsi.jpg> <./figures/model/scatter/mod
+el_hsl.jpg> <./figures/model/scatter/model_luma.jpg> <./figures/model/scatter/m
+odel_norm.jpg>] [73 <./figures/model/highway1_calc_coneR1.jpg> <./figures/model
+/highway3_calc_coneR1.jpg>]
+<figures/model/detect_hsv.jpg, id=1240, 448.074pt x 314.1336pt>
+File: figures/model/detect_hsv.jpg Graphic file (type jpg)
+
+<use figures/model/detect_hsv.jpg>
+Package pdftex.def Info: figures/model/detect_hsv.jpg used on input line 542.
+(pdftex.def)             Requested size: 346.89732pt x 243.20656pt.
+
+<figures/model/discrim_hsv.jpg, id=1241, 448.074pt x 314.1336pt>
+File: figures/model/discrim_hsv.jpg Graphic file (type jpg)
+
+<use figures/model/discrim_hsv.jpg>
+Package pdftex.def Info: figures/model/discrim_hsv.jpg used on input line 547.
+(pdftex.def)             Requested size: 346.89732pt x 243.20656pt.
+
+<figures/model/campus_0061_gt.jpg, id=1243, 353.32pt x 289.08pt>
+File: figures/model/campus_0061_gt.jpg Graphic file (type jpg)
+
+<use figures/model/campus_0061_gt.jpg>
+Package pdftex.def Info: figures/model/campus_0061_gt.jpg used on input line 61
+8.
+(pdftex.def)             Requested size: 208.14236pt x 170.29988pt.
+
+<figures/model/campus_0061_default.jpg, id=1244, 400.49625pt x 328.22626pt>
+File: figures/model/campus_0061_default.jpg Graphic file (type jpg)
+
+<use figures/model/campus_0061_default.jpg>
+Package pdftex.def Info: figures/model/campus_0061_default.jpg used on input li
+ne 628.
+(pdftex.def)             Requested size: 208.14236pt x 170.58347pt.
+
+<figures/model/campus_0061_calc.jpg, id=1245, 400.49625pt x 328.22626pt>
+File: figures/model/campus_0061_calc.jpg Graphic file (type jpg)
+
+<use figures/model/campus_0061_calc.jpg>
+Package pdftex.def Info: figures/model/campus_0061_calc.jpg used on input line 
+633.
+(pdftex.def)             Requested size: 208.14236pt x 170.58347pt.
+
+<figures/model/room_0275_gt.jpg, id=1246, 321.2pt x 240.9pt>
+File: figures/model/room_0275_gt.jpg Graphic file (type jpg)
+
+<use figures/model/room_0275_gt.jpg>
+Package pdftex.def Info: figures/model/room_0275_gt.jpg used on input line 638.
+
+(pdftex.def)             Requested size: 208.14236pt x 156.10895pt.
+
+<figures/model/room_0275_default.jpg, id=1247, 437.38406pt x 328.22626pt>
+File: figures/model/room_0275_default.jpg Graphic file (type jpg)
+
+<use figures/model/room_0275_default.jpg>
+Package pdftex.def Info: figures/model/room_0275_default.jpg used on input line
+ 648.
+(pdftex.def)             Requested size: 208.14236pt x 156.19456pt.
+
+<figures/model/room_0275_calc.jpg, id=1248, 437.38406pt x 328.22626pt>
+File: figures/model/room_0275_calc.jpg Graphic file (type jpg)
+
+<use figures/model/room_0275_calc.jpg>
+Package pdftex.def Info: figures/model/room_0275_calc.jpg used on input line 65
+3.
+(pdftex.def)             Requested size: 208.14236pt x 156.19456pt.
+
+Overfull \hbox (6.98026pt too wide) in paragraph at lines 661--662
+\OT1/ptm/m/n/12 tion, ar-riv-ing at a net mod-est pos-i-tive of 1.2%. We hy-pot
+h-e-size that is be-cause aton[]highway1
+ []
+
+[74] [75 <./figures/model/detect_hsv.jpg> <./figures/model/discrim_hsv.jpg>]
+[76 <./figures/model/campus_0061_gt.jpg> <./figures/model/campus_0061_default.j
+pg> <./figures/model/campus_0061_calc.jpg> <./figures/model/room_0275_gt.jpg> <
+./figures/model/room_0275_default.jpg> <./figures/model/room_0275_calc.jpg>]
+<figures/model/pets2_translate.jpg, id=1267, 446.6286pt x 273.6624pt>
+File: figures/model/pets2_translate.jpg Graphic file (type jpg)
+
+<use figures/model/pets2_translate.jpg>
+Package pdftex.def Info: figures/model/pets2_translate.jpg used on input line 6
+67.
+(pdftex.def)             Requested size: 346.89732pt x 212.55383pt.
+) (./chapter5.tex [77] [78 <./figures/model/pets2_translate.jpg>]
+Chapter 5.
+[79
+
+
+] [80]) (./appendix.tex [81]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+ [82
+
+]
+Appendix A.
+) [83
+
+]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 228.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Overfull \hbox (1.26279pt too wide) in paragraph at lines 228--228
+[]\OT1/ptm/m/n/12 R. Cuc-chiara, C. Grana, M. Pic-cardi, and A. Prati, ``De-tec
+t-ing mov-ing ob-jects, ghosts,
+ []
+
+[84
+
+]
+Overfull \hbox (5.99663pt too wide) in paragraph at lines 228--228
+[]\OT1/ptm/m/n/12 C.-C. Chen and J. K. Ag-gar-wal, ``Hu-man shadow re-moval wit
+h un-known light source,''
+ []
+
+[85] [86]
+Missing character: There is no â in font ptmri7t!
+Missing character: There is no   in font ptmri7t!
+Missing character: There is no ´ in font ptmri7t!
+
+Overfull \hbox (52.53352pt too wide) in paragraph at lines 228--228
+[]\OT1/ptm/m/n/12 D. R. Fin-ley, \OT1/ptm/m/it/12 Hsp color model  al-ter-na-ti
+ve to hsv (hsb) and hsl\OT1/ptm/m/n/12 , []$\OT1/pcr/m/n/12 http : / / alienryd
+erflex .
+ []
+
+LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 228.
+[87]
+Overfull \hbox (25.61926pt too wide) in paragraph at lines 228--228
+[]\OT1/ptm/m/n/12 M. R. Bales, D. Forsthoe-fel, B. Valen-tine, D Scot-tWills, a
+nd L. M. Wills, ``Bigbackground-
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 233.
+[88]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 233.
+ (./thesis.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 233.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 233.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: D34BFAB485A5F11E41C0ADE1ABF6E258;2943.
+
+
+LaTeX Warning: There were undefined references.
+
+Package logreq Info: Writing requests to 'thesis.run.xml'.
+\openout1 = `thesis.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 14329 strings out of 495028
+ 235357 string characters out of 6181497
+ 422492 words of memory out of 5000000
+ 16918 multiletter control sequences out of 15000+600000
+ 22609 words of font info for 52 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 42i,10n,49p,1725b,1102s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on thesis.pdf (101 pages, 3711966 bytes).
+PDF statistics:
+ 1443 PDF objects out of 1728 (max. 8388607)
+ 1124 compressed objects within 12 object streams
+ 292 named destinations out of 1000 (max. 500000)
+ 910 words of extra memory for PDF output out of 10000 (max. 10000000)
+

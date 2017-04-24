@@ -56,6 +56,7 @@ do
   #array=(`python run_quantitative.py $file $INDIR/$BG/$filename.* $INDIR/$SD/$filename.*`)
   array=($(python run_quantitative.py $file $INDIR/$BG/$filename.* $INDIR/$SD/$filename.*))
   echo ${array[@]} >> $RESULTSDIR/$TRIM/shadowdetection.csv
+  echo $filename","${array[@]} >> $RESULTSDIR/$TRIM/shadowdetection2.csv
 
   counter=$((++counter))
 
