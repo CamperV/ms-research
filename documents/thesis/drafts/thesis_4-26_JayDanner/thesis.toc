@@ -1,0 +1,127 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Acknowledgments}{iii}{Doc-Start}
+\defcounter {refsection}{0}\relax 
+\cftpagenumbersoff {chapter}
+\defcounter {refsection}{0}\relax 
+\cftpagenumberson {chapter}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Tables}{vii}{chapter*.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Figures}{ix}{chapter*.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}The Problem}{3}{section.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Objective and Contributions}{6}{section.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Approach}{8}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Evaluation Metrics}{8}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Background: Shadow Removal Methods}{8}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.1}Chromacity}{9}{subsection.2.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.2}Physical}{10}{subsection.2.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.3}Geometry}{11}{subsection.2.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.4}Small-Region Texture}{11}{subsection.2.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.5}Large-Region Texture}{11}{subsection.2.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Approach}{12}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Methodology}{14}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Algorithm Assessment}{14}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}Data Collection}{15}{subsection.3.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Datasets}{15}{subsubsection*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Assessment Tools}{17}{subsubsection*.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Determining Optimal Parameter Values}{20}{subsubsection*.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}Algorithm Selection Strategy}{23}{subsection.3.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Evaluation of Methods}{25}{subsubsection*.20}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.3}Selecting a Parameter of Physical Shadow Removal}{30}{subsection.3.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Weak Detector - Physical Shadow Removal}{31}{subsubsection*.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Strong Detector - Physical Shadow Removal}{31}{subsubsection*.27}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Evaluation of Parameters}{32}{subsubsection*.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Assessment of Environmental Properties}{38}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}Previous Work - Large Region Texture Removal}{38}{subsection.3.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}Attenuation and Saturation}{39}{subsection.3.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.3}Non-linear Attenuation and Spectral Properties of Light}{41}{subsection.3.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Observed Spectral Properties in Outdoor Scenes}{42}{subsubsection*.34}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.4}Brightness Models}{45}{subsection.3.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{HSV}{45}{subsubsection*.37}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{HSI}{46}{subsubsection*.38}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{HSL}{46}{subsubsection*.39}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Relative Luminance (Y)}{46}{subsubsection*.40}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Euclidean Norm}{47}{subsubsection*.41}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{HSP}{47}{subsubsection*.42}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.5}Low-contrast SIFT Keypoints}{48}{subsection.3.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Weak Detector Estimation - Creating a Model}{52}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Results}{54}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Correlation of Parameters}{54}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.1}\textit {coneR1}* and Average Attenuation}{55}{subsection.4.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.2}Correlation Improvements}{59}{subsection.4.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Low-contrast SIFT Keypoints}{59}{subsubsection*.51}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Brightness Models - $\rho _{dB}$ Attenuation Model}{61}{subsubsection*.55}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Brightness Models - $\rho _{\%\Delta }$ Attenuation Model}{67}{subsubsection*.62}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Parameter Model Results}{70}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.1}Analysis}{73}{subsection.4.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{78}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Future Work}{79}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1.1}Modeling Low-contrast SIFT Keypoints}{79}{subsection.5.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1.2}Rapid Illumination Change Compensation}{80}{subsection.5.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1.3}Classifying Indoor/Outdoor Scenes}{80}{subsection.5.1.3}
+\defcounter {refsection}{0}\relax 
+\renewcommand {\cftchappresnum }{Appendix }
+\defcounter {refsection}{0}\relax 
+\renewcommand {\cftchapnumwidth }{6em}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Default Detection and Discrimination}{82}{Appendix.1.A}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {B}Parameter Evaluation}{92}{Appendix.1.B}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {C}Results}{103}{Appendix.1.C}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{References}{119}{chapter*.106}
