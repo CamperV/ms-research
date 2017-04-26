@@ -8,7 +8,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{List of Tables}{vii}{chapter*.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Figures}{ix}{chapter*.2}
+\contentsline {chapter}{List of Figures}{x}{chapter*.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \defcounter {refsection}{0}\relax 

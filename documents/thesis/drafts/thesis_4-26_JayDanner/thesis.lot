@@ -32,40 +32,40 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.1}{\ignorespaces PETS1\relax }}{83}{table.caption.73}
+\contentsline {table}{\numberline {A.1}{\ignorespaces PETS1 - Detection ($\eta $) and Discrimination ($\xi $) for each shadow removal method (default parameters)\relax }}{83}{table.caption.73}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.2}{\ignorespaces PETS2\relax }}{84}{table.caption.74}
+\contentsline {table}{\numberline {A.2}{\ignorespaces PETS2 - Detection ($\eta $) and Discrimination ($\xi $) for each shadow removal method (default parameters)\relax }}{84}{table.caption.74}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.3}{\ignorespaces aton\_highway1\relax }}{85}{table.caption.75}
+\contentsline {table}{\numberline {A.3}{\ignorespaces aton\_highway1 - Detection ($\eta $) and Discrimination ($\xi $) for each shadow removal method (default parameters)\relax }}{85}{table.caption.75}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.4}{\ignorespaces aton\_highway3\relax }}{86}{table.caption.76}
+\contentsline {table}{\numberline {A.4}{\ignorespaces aton\_highway3 - Detection ($\eta $) and Discrimination ($\xi $) for each shadow removal method (default parameters)\relax }}{86}{table.caption.76}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.5}{\ignorespaces aton\_room\relax }}{87}{table.caption.77}
+\contentsline {table}{\numberline {A.5}{\ignorespaces aton\_room - Detection ($\eta $) and Discrimination ($\xi $) for each shadow removal method (default parameters)\relax }}{87}{table.caption.77}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.6}{\ignorespaces aton\_campus (pt. 1 of 2)\relax }}{88}{table.caption.78}
+\contentsline {table}{\numberline {A.6}{\ignorespaces aton\_campus (pt. 1 of 2) - Detection ($\eta $) and Discrimination ($\xi $) for each shadow removal method (default parameters)\relax }}{88}{table.caption.78}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.7}{\ignorespaces aton\_campus (pt. 2 of 2)\relax }}{89}{table.caption.79}
+\contentsline {table}{\numberline {A.7}{\ignorespaces aton\_campus (pt. 2 of 2) - Detection ($\eta $) and Discrimination ($\xi $) for each shadow removal method (default parameters)\relax }}{89}{table.caption.79}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.8}{\ignorespaces aton\_hallway\relax }}{90}{table.caption.80}
+\contentsline {table}{\numberline {A.8}{\ignorespaces aton\_hallway - Detection ($\eta $) and Discrimination ($\xi $) for each shadow removal method (default parameters)\relax }}{90}{table.caption.80}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.9}{\ignorespaces aton\_lab\relax }}{91}{table.caption.81}
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {A.9}{\ignorespaces aton\_lab - Detection ($\eta $) and Discrimination ($\xi $) for each shadow removal method (default parameters)\relax }}{91}{table.caption.81}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {C.1}{\ignorespaces PETS1\relax }}{110}{table.caption.98}
+\addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {C.2}{\ignorespaces PETS2\relax }}{110}{table.caption.99}
+\contentsline {table}{\numberline {C.1}{\ignorespaces PETS1 - Detection and Discrimination rates calculated for both default coneR1 (Original) and coneR1$'$ (Adaptive).\relax }}{110}{table.caption.98}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {C.3}{\ignorespaces aton\_highway1\relax }}{111}{table.caption.100}
+\contentsline {table}{\numberline {C.2}{\ignorespaces PETS2 - Detection and Discrimination rates calculated for both default coneR1 (Original) and coneR1$'$ (Adaptive).\relax }}{110}{table.caption.99}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {C.4}{\ignorespaces aton\_highway3\relax }}{111}{table.caption.101}
+\contentsline {table}{\numberline {C.3}{\ignorespaces aton\_highway1 - Detection and Discrimination rates calculated for both default coneR1 (Original) and coneR1$'$ (Adaptive).\relax }}{111}{table.caption.100}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {C.5}{\ignorespaces aton\_room\relax }}{112}{table.caption.102}
+\contentsline {table}{\numberline {C.4}{\ignorespaces aton\_highway3 - Detection and Discrimination rates calculated for both default coneR1 (Original) and coneR1$'$ (Adaptive).\relax }}{111}{table.caption.101}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {C.6}{\ignorespaces aton\_campus\relax }}{113}{table.caption.103}
+\contentsline {table}{\numberline {C.5}{\ignorespaces aton\_room - Detection and Discrimination rates calculated for both default coneR1 (Original) and coneR1$'$ (Adaptive).\relax }}{112}{table.caption.102}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {C.7}{\ignorespaces aton\_hallway\relax }}{114}{table.caption.104}
+\contentsline {table}{\numberline {C.6}{\ignorespaces aton\_campus - Detection and Discrimination rates calculated for both default coneR1 (Original) and coneR1$'$ (Adaptive).\relax }}{113}{table.caption.103}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {C.8}{\ignorespaces aton\_lab\relax }}{114}{table.caption.105}
+\contentsline {table}{\numberline {C.7}{\ignorespaces aton\_hallway - Detection and Discrimination rates calculated for both default coneR1 (Original) and coneR1$'$ (Adaptive).\relax }}{114}{table.caption.104}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {C.8}{\ignorespaces aton\_lab - Detection and Discrimination rates calculated for both default coneR1 (Original) and coneR1$'$ (Adaptive).\relax }}{114}{table.caption.105}
