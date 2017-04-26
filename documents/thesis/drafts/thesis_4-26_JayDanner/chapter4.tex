@@ -63,6 +63,7 @@ Both attenuation models ($\alpha_{dB}$ and $\alpha_{\%\Delta}$) were considered 
 % Table Form (dB)
 \begin{table}
 \centering
+\caption{Datasets and their $\alpha_{dB}$ correlations to \textit{coneR1}*.}
 \begin{tabular}{ |c|c|c|c| }
 	\hline
 	%\textbf{Dataset} & \textbf{$\sigma_{coneR1}$} & \textbf{$\sigma_{dB}$} & \textbf{$\rho$} \\
@@ -94,13 +95,14 @@ Both attenuation models ($\alpha_{dB}$ and $\alpha_{\%\Delta}$) were considered 
 	\textbf{aton\_lab} &  0.695 \\
 	\hline
 \end{tabular}
-\caption{Datasets and their $\alpha_{dB}$ correlations to \textit{coneR1}*.}
+
 \label{table:corr_db}
 \end{table}
 
 % Table Form (RGB)
 \begin{table}
 \centering
+\caption{Datasets and their $\alpha_{\%\Delta}$ correlations to \textit{coneR1}*.}
 \begin{tabular}{ |c|c|c|c| }
 	\hline
 	\textbf{Dataset} & \textbf{$\rho_{\%\Delta}$} \\
@@ -123,7 +125,7 @@ Both attenuation models ($\alpha_{dB}$ and $\alpha_{\%\Delta}$) were considered 
 	\textbf{aton\_lab} & 0.551 \\
 	\hline
 \end{tabular}
-\caption{Datasets and their $\alpha_{\%\Delta}$ correlations to \textit{coneR1}*.}
+
 \label{table:corr_rgb}
 \end{table}
 
@@ -132,6 +134,7 @@ Both Tables \ref{table:corr_db} and \ref{table:corr_rgb} demonstrate significant
 % Table Form (bad 0.03 correlations)
 \begin{table}
 \centering
+\caption{Datasets and their $SIFT$ correlations to \textit{coneR1}*.}
 \begin{tabular}{ |c|c|c|c| }
 	\hline
 	\textbf{Dataset} & \textbf{$\rho_{SIFT}$} \\
@@ -154,7 +157,7 @@ Both Tables \ref{table:corr_db} and \ref{table:corr_rgb} demonstrate significant
 	\textbf{aton\_lab} & 0.046 \\
 	\hline
 \end{tabular}
-\caption{Datasets and their $SIFT$ correlations to \textit{coneR1}*.}
+
 \label{table:bad_corr}
 \end{table}
 
@@ -237,6 +240,7 @@ The result of the multiplication is stored in the variable $\alpha_{SIFT}$, and 
 % Table Form (SIFT Diff)
 \begin{table}
 \centering
+\caption{Correlation shifts ($\rho_{\%\Delta}$) when $SIFT_{fg/bg}$ is multiplied against observed attenuation $\alpha_{\%\Delta}$.}
 \begin{tabular}{ |c|c| }
 	\hline
 	\textbf{Dataset} & $\rho_{\%\Delta}$ Shift (\%)\\
@@ -259,7 +263,7 @@ The result of the multiplication is stored in the variable $\alpha_{SIFT}$, and 
 	\textbf{aton\_lab} & -10.17 \\
 	\hline
 \end{tabular}
-\caption{Correlation shifts ($\rho_{\%\Delta}$) when $SIFT_{fg/bg}$ is multiplied against observed attenuation $\alpha_{\%\Delta}$.}
+
 \label{table:corr_diff_sift}
 \end{table}
 
@@ -295,6 +299,7 @@ In addition to differing responses to attenuation models, datasets also respond 
 % Table Form ((dB) Corr v. Brightness
 \begin{table}
 \centering
+\caption{Datasets and their correlations to \textit{coneR1}* ($\alpha_{dB}$) against Brightness models. Outdoor (top) and Indoor (bottom) scenes are grouped appropriately.}
 \begin{tabular}{ |c|c|c|c|c|c|c|c| }
 	\hline
 	\textbf{Dataset} & \textbf{HSV} & \textbf{HSP} & \textbf{HSI} & \textbf{HSL}& \textbf{Y'} & \textbf{Norm} \\
@@ -319,14 +324,14 @@ In addition to differing responses to attenuation models, datasets also respond 
 	\textbf{aton\_lab} & 0.695 & 0.710 & 0.705 & 0.717 & 0.710 & 0.708 \\
 	\hline
 \end{tabular}
-\caption{Datasets and their correlations to \textit{coneR1}* ($\alpha_{dB}$) against Brightness models. Outdoor (top) and Indoor (bottom) scenes are grouped appropriately.}
+
 \label{table:brightness_corr_db}
 \end{table}
 
 % Brightness Models (dB)
 \begin{sidewaysfigure}
-  \includegraphics[width=\linewidth]{figures/correlation_x_db.jpg}
   \caption{Datasets and their correlations (y-axis)to \textit{coneR1}* ($\alpha_{dB}$) against Brightness models (x-axis).}
+  \includegraphics[width=\linewidth]{figures/correlation_x_db.jpg}
 \label{fig:brightness_corr_db}
 \end{sidewaysfigure}
 
@@ -361,6 +366,7 @@ This operation is performed on each foreground pixel that is darker than its cor
 % Table Form RG Color Bias
 \begin{table}
 \centering
+\caption{Red-green bias for each dataset. $\beta^{RG}$ represents the average of the $\beta^{RG}_{f}$ for each frame in a dataset. Outdoor (top) and Indoor (bottom) scenes are grouped together.}
 \begin{tabular}{ |c|c| }
 	\hline
 	\textbf{Dataset} & \textbf{$\beta^{RG}$} \\
@@ -384,7 +390,7 @@ This operation is performed on each foreground pixel that is darker than its cor
 	\textbf{aton\_lab} & 0.35 \\
 	\hline
 \end{tabular}
-\caption{Red-green bias for each dataset. $\beta^{RG}$ represents the average of the $\beta^{RG}_{f}$ for each frame in a dataset. Outdoor (top) and Indoor (bottom) scenes are grouped together.}
+
 \label{table:rg_bias}
 \end{table}
 
@@ -411,6 +417,7 @@ Results indicating correlations ($\rho_{\%\Delta}$) per brightness model are enu
 % Table Form (RGB) Corr v. Brightness
 \begin{table}
 \centering
+\caption{Datasets and their correlations to \textit{coneR1}* ($\alpha_{\%\Delta}$) against Brightness models. Outdoor (top) and Indoor (bottom) scenes are grouped appropriately.}
 \begin{tabular}{ |c|c|c|c|c|c|c|c| }
 	\hline
 	\textbf{Dataset} & \textbf{HSV} & \textbf{HSP} & \textbf{HSI} & \textbf{HSL}& \textbf{Y'} & \textbf{Norm} \\
@@ -435,14 +442,14 @@ Results indicating correlations ($\rho_{\%\Delta}$) per brightness model are enu
 	\textbf{aton\_lab} & 0.551 & 0.729 & 0.592 & 0.608 & 0.597 & 0.725 \\
 	\hline
 \end{tabular}
-\caption{Datasets and their correlations to \textit{coneR1}* ($\alpha_{\%\Delta}$) against Brightness models. Outdoor (top) and Indoor (bottom) scenes are grouped appropriately.}
+
 \label{table:brightness_corr_rgb}
 \end{table}
 
 % Brightness Models (RGB)
 \begin{sidewaysfigure}
-  \includegraphics[width=\linewidth]{figures/correlation_x_rgb.jpg}
   \caption{Datasets and their correlations (y-axis)to \textit{coneR1}* ($\alpha_{\%\Delta}$) against Brightness models (x-axis).}
+  \includegraphics[width=\linewidth]{figures/correlation_x_rgb.jpg}
 \label{fig:brightness_corr_rgb}
 \end{sidewaysfigure}
 
@@ -555,6 +562,7 @@ Figure \ref{fig:bars_hsv_calc} illustrates the resulting detection and discrimin
 % Table Form Quan Results Detect
 \begin{table}
 \centering
+\caption{Average detection ($\eta$) calculated from the adapted \textit{coneR1}$'$ (left). $\eta$ is compared against original naive detection (\textit{coneR1}$ = 0.3$). The difference (right) is represented as a percentage.}
 \begin{tabular}{ |c|c|c| }
 	\hline
 	\textbf{Dataset} & \textbf{$\eta$ (\%)} & \textbf{+/- (\%)} \\
@@ -577,13 +585,14 @@ Figure \ref{fig:bars_hsv_calc} illustrates the resulting detection and discrimin
 	\textbf{aton\_lab} & 93.12 & +0.192 \\
 	\hline
 \end{tabular}
-\caption{Average detection ($\eta$) calculated from the adapted \textit{coneR1}$'$ (left). $\eta$ is compared against original naive detection (\textit{coneR1}$ = 0.3$). The difference (right) is represented as a percentage.}
+
 \label{table:quan_results_detect}
 \end{table}
 
 % Table Form Quan Results Discrim
 \begin{table}
 \centering
+\caption{Average discrimination ($\xi$) calculated from the adapted \textit{coneR1}$'$ (left). $\xi$ is compared against original naive discrimination (\textit{coneR1}$ = 0.3$). The difference (right) is represented as a percentage.}
 \begin{tabular}{ |c|c|c| }
 	\hline
 	\textbf{Dataset} & \textbf{$\xi$ (\%)} & \textbf{+/- (\%)} \\
@@ -606,7 +615,7 @@ Figure \ref{fig:bars_hsv_calc} illustrates the resulting detection and discrimin
 	\textbf{aton\_lab} & 80.16 & +9.787 \\
 	\hline
 \end{tabular}
-\caption{Average discrimination ($\xi$) calculated from the adapted \textit{coneR1}$'$ (left). $\xi$ is compared against original naive discrimination (\textit{coneR1}$ = 0.3$). The difference (right) is represented as a percentage.}
+
 \label{table:quan_results_discrim}
 \end{table}
 
@@ -614,6 +623,7 @@ Results indicate that for a majority of datasets, small amounts of shadow detect
 
 \begin{sidewaysfigure}
   \centering
+  \caption{Qualitative shadow removal improvement. (a - c) feature the aton\_campus dataset, and (d - f) feature the aton\_room datasets.}
   \begin{subfigure}{.32\linewidth}
   \includegraphics[width=1\linewidth]{figures/model/campus_0061_gt.jpg}
   \caption{Ground Truth}
@@ -654,7 +664,6 @@ Results indicate that for a majority of datasets, small amounts of shadow detect
   \caption{\textit{coneR1}$'$}
   \end{subfigure}
   
-\caption{Qualitative shadow removal improvement. (a - c) feature the aton\_campus dataset, and (d - f) feature the aton\_room datasets.}
 \label{fig:qual_results}
 \end{sidewaysfigure} 
 

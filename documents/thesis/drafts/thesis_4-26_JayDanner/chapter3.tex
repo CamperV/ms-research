@@ -28,6 +28,7 @@ All eight datasets were manually segmented to form ground truths that identify s
 
 \begin{table}
 \centering
+\caption{Dataset information.}
 \begin{tabular}{ |c|c|c|c| }
 	\hline
 	\textbf{Name} & \textbf{Resolution} & \textbf{Sequence Length} & \textbf{\# GT Frames} \\
@@ -50,7 +51,7 @@ All eight datasets were manually segmented to form ground truths that identify s
 	aton\_lab & 320x240 & 887 & 14 \\ 
 	\hline
 \end{tabular}
-\caption{Dataset information.}
+
 \label{table:datasets}
 \end{table}
 
@@ -190,6 +191,7 @@ Candidate shadow removal algorithms are evaluated according to the correlation b
 
 \begin{sidewaysfigure}
 \centering
+\caption{Shadow detection ($\eta$)(orange) for each algorithm, run on the PETS1 dataset during an illumination change. Overall brightness of a scene is shown in gray.}
 \begin{subfigure}{.32\linewidth}
   \includegraphics[width=1\linewidth]{figures/selectinganalgorithm_chromacity.jpg}
   \caption{Chromacity removal.}
@@ -214,8 +216,6 @@ Candidate shadow removal algorithms are evaluated according to the correlation b
   \includegraphics[width=1\linewidth]{figures/selectinganalgorithm_lrt.jpg}
   \caption{Large-Region Texture removal.}
 \end{subfigure}
-
-\caption{Shadow detection ($\eta$)(orange) for each algorithm, run on the PETS1 dataset during an illumination change. Overall brightness of a scene is shown in gray.}
 \label{fig:selectinganalgorithm}
 \end{sidewaysfigure}
 
